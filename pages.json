@@ -1,6 +1,6 @@
 {
 	"pages": [{
-		"path": "pages/index/index",
+		"path": "pages/goods/list",
 		"style": {
 			"navigationBarTitleText": "天使童装"
 		}
