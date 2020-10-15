@@ -1,6 +1,6 @@
 <template>
 	<view class="goodsDetail_container">
-		
+		sdfsdfsdf
 	</view>
 </template>
 

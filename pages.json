@@ -1,6 +1,6 @@
 {
 	"pages": [{
-		"path": "pages/goods/list",
+		"path": "pages/index/index",
 		"style": {
 			"navigationBarTitleText": "天使童装"
 		}
@@ -24,7 +24,9 @@
         }
         ,{
             "path" : "pages/goodsDetail/goodsDetail",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "商品详情"
+			}
         }
     ],
 	"globalStyle": {
