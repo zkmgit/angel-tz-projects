@@ -22,6 +22,10 @@
 				"navigationBarTitleText": "分类"
 			}
         }
+        ,{
+            "path" : "pages/goodsDetail/goodsDetail",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
