@@ -25,7 +25,9 @@
         ,{
             "path" : "pages/goodsDetail/goodsDetail",
             "style" : {
-				"navigationBarTitleText": "商品详情"
+				"navigationBarTitleText": "商品详情",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#FFFFFF"
 			}
         }
     ],
