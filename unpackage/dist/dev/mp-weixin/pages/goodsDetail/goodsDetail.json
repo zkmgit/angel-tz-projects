@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "imgs-banner": "/components/imgsBanner-tag/imgsBanner-tag"
+  }
+}
