@@ -3,6 +3,7 @@
   "navigationBarTextStyle": "black",
   "navigationBarBackgroundColor": "#FFFFFF",
   "usingComponents": {
-    "imgs-banner": "/components/imgsBanner-tag/imgsBanner-tag"
+    "imgs-banner": "/components/imgsBanner-tag/imgsBanner-tag",
+    "preview-image": "/components/kxj-previewImage/kxj-previewImage"
   }
 }

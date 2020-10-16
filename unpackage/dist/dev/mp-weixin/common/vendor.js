@@ -8021,43 +8021,18 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 53:
-/*!******************************************************************!*\
-  !*** I:/miniProgramWork/angel-tz-projects/api/goodsDetailApi.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 57));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-
-//根据商品id获取对应的商品详情
-function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
-
-
-
-
-
-//根据商品id获取对应的商品信息
-function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsDetailByGoodsId?goodsId=".concat(goodsId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message[0]);case 5:case "end":return _context.stop();}}}, _callee);}));return _getGoodsDetailByGoodsId.apply(this, arguments);}function getGoodsByGoodsId(_x2) {return _getGoodsByGoodsId.apply(this, arguments);}function _getGoodsByGoodsId() {_getGoodsByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(goodsId) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-            url = "getGoodsByGoodsId?goodsId=".concat(goodsId);_context2.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
-            res.data.message[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsByGoodsId.apply(this, arguments);}
-
-/***/ }),
-
-/***/ 54:
+/***/ 43:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 55);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 44);
 
 /***/ }),
 
-/***/ 55:
+/***/ 44:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8088,7 +8063,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 56);
+module.exports = __webpack_require__(/*! ./runtime */ 45);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8105,7 +8080,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 56:
+/***/ 45:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8837,7 +8812,32 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 46:
+/*!******************************************************************!*\
+  !*** I:/miniProgramWork/angel-tz-projects/api/goodsDetailApi.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 43));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 47));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//根据商品id获取对应的商品详情
+function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
+
+
+
+
+
+//根据商品id获取对应的商品信息
+function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsDetailByGoodsId?goodsId=".concat(goodsId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message[0]);case 5:case "end":return _context.stop();}}}, _callee);}));return _getGoodsDetailByGoodsId.apply(this, arguments);}function getGoodsByGoodsId(_x2) {return _getGoodsByGoodsId.apply(this, arguments);}function _getGoodsByGoodsId() {_getGoodsByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(goodsId) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            url = "getGoodsByGoodsId?goodsId=".concat(goodsId);_context2.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
+            res.data.message[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsByGoodsId.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 47:
 /*!***********************************************************!*\
   !*** I:/miniProgramWork/angel-tz-projects/api/request.js ***!
   \***********************************************************/
