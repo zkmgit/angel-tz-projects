@@ -3,13 +3,14 @@
         "pages/index/index",
         "pages/user/user",
         "pages/shopingCar/shopingCar",
-        "pages/classify/classify"
+        "pages/classify/classify",
+        "pages/confirmOrder/confirmOrder"
     ],
     "subPackages": [],
     "window": {
-        "navigationBarTextStyle": "white",
+        "navigationBarTextStyle": "black",
         "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#007AFF",
+        "navigationBarBackgroundColor": "#FFFFFF",
         "backgroundColor": "#FFFFFF"
     },
     "tabBar": {
@@ -45,5 +46,5 @@
         ]
     },
     "usingComponents": {},
-    "sitemapLocation": "sitemap93.json"
+    "sitemapLocation": "sitemap65.json"
 }

@@ -4,7 +4,7 @@
         "ignore": []
     },
     "setting": {
-        "urlCheck": true,
+        "urlCheck": false,
         "es6": true,
         "enhance": false,
         "postcss": true,
@@ -29,14 +29,14 @@
             "outputPath": ""
         },
         "useIsolateContext": true,
-        "useCompilerModule": false,
+        "useCompilerModule": true,
         "userConfirmedUseCompilerModuleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": []
     },
     "compileType": "miniprogram",
     "libVersion": "",
-    "appid": "touristappid",
+    "appid": "wx9952fe6ac22b0492",
     "projectname": "angel-tz-projects",
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
@@ -49,13 +49,35 @@
             "current": -1,
             "list": []
         },
+        "plugin": {
+            "current": -1,
+            "list": []
+        },
         "game": {
+            "current": -1,
+            "list": []
+        },
+        "gamePlugin": {
             "current": -1,
             "list": []
         },
         "miniprogram": {
             "current": -1,
-            "list": []
+            "list": [
+                {
+                    "id": -1,
+                    "name": "pages/shopingCar/shopingCar",
+                    "pathName": "pages/shopingCar/shopingCar",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/confirmOrder/confirmOrder",
+                    "pathName": "pages/confirmOrder/confirmOrder",
+                    "scene": null
+                }
+            ]
         }
     }
 }
