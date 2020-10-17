@@ -13,3 +13,4 @@ export async function getGoodsByGoodsId(goodsId){
 	let res = await request(url);
 	return res.data.message[0];
 }
+

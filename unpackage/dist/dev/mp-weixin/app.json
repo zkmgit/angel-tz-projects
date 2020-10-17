@@ -5,9 +5,13 @@
     "pages/shopingCar/shopingCar",
     "pages/classify/classify",
     "pages/confirmOrder/confirmOrder",
+<<<<<<< HEAD
     "pages/goodsDetail/goodsDetail",
     "pages/editAddr/editAddr",
     "pages/authorization/authorization"
+=======
+    "pages/goodsDetail/goodsDetail"
+>>>>>>> 6e2dd48f100b56a64a5e4e7f6fbc066ff801e044
   ],
   "subPackages": [],
   "window": {
@@ -48,5 +52,10 @@
       }
     ]
   },
+<<<<<<< HEAD
   "usingComponents": {}
+=======
+  "usingComponents": {},
+  "sitemapLocation": "sitemap50.json"
+>>>>>>> 6e2dd48f100b56a64a5e4e7f6fbc066ff801e044
 }
