@@ -1,5 +1,10 @@
+<<<<<<< HEAD
+ <template>
+	<view class="category-wrap">
+=======
 <template>
 	<!-- <view class="category-wrap">
+>>>>>>> 5c85879ee4a21f3e5c8c11a29c8865a9a849af76
 		<category :categoryList="categoryList" :subCategoryList="subCategoryList" @categoryMainClick="categoryMainClick"
 		 @categorySubClick="categorySubClick"></category>
 	</view> -->
@@ -46,3 +51,9 @@
 <style lang="scss">
 
 </style>
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 5c85879ee4a21f3e5c8c11a29c8865a9a849af76
