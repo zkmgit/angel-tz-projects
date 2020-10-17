@@ -40,16 +40,32 @@
             "style" : {
 				"navigationBarTitleText": "确认订单",
 				"usingComponents": {
+				  "van-checkbox": "/wxcomponents/vant/dist/checkbox/index",
+				  "van-field": "/wxcomponents/vant/dist/field/index",
+				  "van-cell": "/wxcomponents/vant/dist/cell/index",
+				  "van-popup": "/wxcomponents/vant/dist/popup/index",
+				  "van-picker": "/wxcomponents/vant/dist/picker/index",
 				  "van-card": "/wxcomponents/vant/dist/card/index"
 				}
 			}
 		   }, 
-		  { "path" : "pages/goodsDetail/goodsDetail",
+		  { 
+			  "path" : "pages/goodsDetail/goodsDetail",
             "style" : {
 				"navigationBarTitleText": "商品详情",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#FFFFFF"
 			}
+        }
+        ,{
+            "path" : "pages/editAddr/editAddr",
+            "style" : {
+				"navigationBarTitleText": "收获地址"
+			}
+        }
+        ,{
+            "path" : "pages/authorization/authorization",
+            "style" : {}
         }
     ],
 	"globalStyle": {

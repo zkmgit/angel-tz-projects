@@ -122,11 +122,29 @@
 </template>
 
 <script>
+	import isUserInfo from '../../util/isarzt.js';
 	export default {
 		data() {
 			return {
 				
 			};
+		},
+		created(){
+			
+		},
+		onLoad() {
+			let pages = getCurrentPages();
+			let route = pages[pages.length - 1].route;
+			
+			// console.log('pages',pages);
+			// console.log('route',route);
+			
+			if(isUserInfo() == '') {
+				uni.redirectTo({					
+					url: `../authorization/authorization?route=${route}`
+				})
+			}
+			console.log(222)
 		}
 	}
 </script>

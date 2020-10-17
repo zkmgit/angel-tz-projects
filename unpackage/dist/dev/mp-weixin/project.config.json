@@ -1,34 +1,8 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": true,
-    "enhance": false,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": true,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
+    "description": "项目配置文件。",
+    "packOptions": {
+        "ignore": []
     },
-<<<<<<< HEAD
     "setting": {
         "urlCheck": false,
         "es6": true,
@@ -64,8 +38,6 @@
     "libVersion": "",
     "appid": "wx9952fe6ac22b0492",
     "projectname": "angel-tz-projects",
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
     "condition": {
         "search": {
             "current": -1,
@@ -92,61 +64,19 @@
             "list": [
                 {
                     "id": -1,
-                    "name": "pages/shopingCar/shopingCar",
-                    "pathName": "pages/shopingCar/shopingCar",
+                    "name": "pages/user/user",
+                    "pathName": "pages/user/user",
                     "query": "",
                     "scene": null
                 },
                 {
                     "id": -1,
-                    "name": "pages/confirmOrder/confirmOrder",
-                    "pathName": "pages/confirmOrder/confirmOrder",
+                    "name": "pages/editAddr/editAddr",
+                    "pathName": "pages/editAddr/editAddr",
+                    "query": "",
                     "scene": null
                 }
             ]
-=======
-    "useIsolateContext": true,
-    "useCompilerModule": true,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": []
-  },
-  "compileType": "miniprogram",
-  "libVersion": "",
-  "appid": "wxb4cac42e71483fa8",
-  "projectname": "angel-tz-projects",
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "gamePlugin": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": -1,
-      "list": [
-        {
-          "id": -1,
-          "name": "pages/goodsDetail/goodsDetail",
-          "pathName": "pages/goodsDetail/goodsDetail",
-          "scene": null
->>>>>>> ccb6835c4be653e519c5077afd98835b08ce34f9
         }
-      ]
     }
-  }
 }
