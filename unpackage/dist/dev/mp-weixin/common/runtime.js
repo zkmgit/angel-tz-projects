@@ -105,19 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-<<<<<<< HEAD
 /******/ 		var cssChunks = {"components/echone-sku/echone-sku":1,"components/imgsBanner-tag/imgsBanner-tag":1,"components/kxj-previewImage/kxj-previewImage":1,"components/echone-sku/popup-bottom":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
 /******/ 				var href = "" + ({"components/echone-sku/echone-sku":"components/echone-sku/echone-sku","components/imgsBanner-tag/imgsBanner-tag":"components/imgsBanner-tag/imgsBanner-tag","components/kxj-previewImage/kxj-previewImage":"components/kxj-previewImage/kxj-previewImage","components/echone-sku/popup-bottom":"components/echone-sku/popup-bottom"}[chunkId]||chunkId) + ".wxss";
-=======
-/******/ 		var cssChunks = {"components/qiyue-category/qiyue-category":1,"components/imgsBanner-tag/imgsBanner-tag":1};
-/******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
-/******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
-/******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/qiyue-category/qiyue-category":"components/qiyue-category/qiyue-category","components/imgsBanner-tag/imgsBanner-tag":"components/imgsBanner-tag/imgsBanner-tag"}[chunkId]||chunkId) + ".wxss";
->>>>>>> 6e2dd48f100b56a64a5e4e7f6fbc066ff801e044
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
