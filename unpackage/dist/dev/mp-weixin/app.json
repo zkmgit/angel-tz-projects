@@ -1,61 +1,53 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/user/user",
-    "pages/shopingCar/shopingCar",
-    "pages/classify/classify",
-    "pages/confirmOrder/confirmOrder",
-<<<<<<< HEAD
-    "pages/goodsDetail/goodsDetail",
-    "pages/editAddr/editAddr",
-    "pages/authorization/authorization"
-=======
-    "pages/goodsDetail/goodsDetail"
->>>>>>> 6e2dd48f100b56a64a5e4e7f6fbc066ff801e044
-  ],
-  "subPackages": [],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#FFFFFF",
-    "backgroundColor": "#FFFFFF"
-  },
-  "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#FF0000",
-    "borderStyle": "black",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "iconPath": "static/images/nav/home-off.png",
-        "selectedIconPath": "static/images/nav/home-on.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/classify/classify",
-        "iconPath": "static/images/nav/ic_catefory_normal.png",
-        "selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
-        "text": "分类"
-      },
-      {
-        "pagePath": "pages/shopingCar/shopingCar",
-        "iconPath": "static/images/nav/cart-off.png",
-        "selectedIconPath": "static/images/nav/cart-on.png",
-        "text": "购物车"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "iconPath": "static/images/nav/my-off.png",
-        "selectedIconPath": "static/images/nav/my-on.png",
-        "text": "我的"
-      }
-    ]
-  },
-<<<<<<< HEAD
-  "usingComponents": {}
-=======
-  "usingComponents": {},
-  "sitemapLocation": "sitemap50.json"
->>>>>>> 6e2dd48f100b56a64a5e4e7f6fbc066ff801e044
+    "pages": [
+        "pages/index/index",
+        "pages/user/user",
+        "pages/shopingCar/shopingCar",
+        "pages/classify/classify",
+        "pages/confirmOrder/confirmOrder",
+        "pages/goodsDetail/goodsDetail",
+        "pages/editAddr/editAddr",
+        "pages/authorization/authorization"
+    ],
+    "subPackages": [],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#FFFFFF",
+        "backgroundColor": "#FFFFFF"
+    },
+    "tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#FF0000",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "static/images/nav/home-off.png",
+                "selectedIconPath": "static/images/nav/home-on.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/classify/classify",
+                "iconPath": "static/images/nav/ic_catefory_normal.png",
+                "selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
+                "text": "分类"
+            },
+            {
+                "pagePath": "pages/shopingCar/shopingCar",
+                "iconPath": "static/images/nav/cart-off.png",
+                "selectedIconPath": "static/images/nav/cart-on.png",
+                "text": "购物车"
+            },
+            {
+                "pagePath": "pages/user/user",
+                "iconPath": "static/images/nav/my-off.png",
+                "selectedIconPath": "static/images/nav/my-on.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "usingComponents": {},
+    "sitemapLocation": "sitemap77.json"
 }

@@ -8039,22 +8039,22 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-pages-loader/lib/index.js):\nError: uni-app-compiler: Unexpected token < in JSON at position 2588\n    at parseJson (D:\\daywork\\内容通\\汪老师\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\uni-cli-shared\\lib\\json.js:20:13)\n    at parseManifestJson (D:\\daywork\\内容通\\汪老师\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\uni-cli-shared\\lib\\manifest.js:32:10)\n    at Object.module.exports (D:\\daywork\\内容通\\汪老师\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-pages-loader\\lib\\index-new.js:53:24)\n    at Object.module.exports (D:\\daywork\\内容通\\汪老师\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-pages-loader\\lib\\index.js:49:35)");
+
 
 /***/ }),
 
-/***/ 56:
+/***/ 54:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 57);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 55);
 
 /***/ }),
 
-/***/ 57:
+/***/ 55:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8085,7 +8085,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 58);
+module.exports = __webpack_require__(/*! ./runtime */ 56);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8102,7 +8102,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 58:
+/***/ 56:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8834,7 +8834,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 59:
+/***/ 57:
 /*!*************************************************************************************!*\
   !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/goodsDetailApi.js ***!
   \*************************************************************************************/
@@ -8842,7 +8842,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 56));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 60));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 58));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
 //根据商品id获取对应的商品详情
 function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
@@ -8859,7 +8859,7 @@ function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerato
 
 /***/ }),
 
-/***/ 60:
+/***/ 58:
 /*!******************************************************************************!*\
   !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/request.js ***!
   \******************************************************************************/

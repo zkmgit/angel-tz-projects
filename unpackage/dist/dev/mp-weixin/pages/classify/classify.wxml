@@ -1,1 +1,1 @@
-<view class="category-wrap"><category vue-id="91ba9280-1" categoryList="{{categoryList}}" subCategoryList="{{subCategoryList}}" data-event-opts="{{[['^categoryMainClick',[['categoryMainClick']]],['^categorySubClick',[['categorySubClick']]]]}}" bind:categoryMainClick="__e" bind:categorySubClick="__e" bind:__l="__l"></category></view>
+<view class="_div data-v-71432b06"></view>

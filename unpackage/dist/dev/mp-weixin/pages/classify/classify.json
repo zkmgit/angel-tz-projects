@@ -1,6 +1,4 @@
 {
   "navigationBarTitleText": "分类",
-  "usingComponents": {
-    "category": "/components/qiyue-category/qiyue-category"
-  }
+  "usingComponents": {}
 }
