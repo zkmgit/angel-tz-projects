@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var category = function category() {__webpack_require__.e(/*! require.ensure | components/qiyue-category/qiyue-category */ "components/qiyue-category/qiyue-category").then((function () {return resolve(__webpack_require__(/*! ../../components/qiyue-category/qiyue-category.vue */ 37));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -137,10 +137,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+var _goodsDetailApi = __webpack_require__(/*! ../../api/goodsDetailApi.js */ 37);var category = function category() {__webpack_require__.e(/*! require.ensure | components/qiyue-category/qiyue-category */ "components/qiyue-category/qiyue-category").then((function () {return resolve(__webpack_require__(/*! ../../components/qiyue-category/qiyue-category.vue */ 64));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
-  components: {
-    category: category },
-
+  components: { category: category },
   data: function data() {
     return {
       categoryList: [],
@@ -160,7 +159,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       var subList = [];
       for (var j = 0; j < 30; j++) {
         subList.push({
-          "name": "分类" + i + ":商品" + j,
+          "name": "分类" + i + "0 " + j,
           "logo": "http://placehold.it/50x50" });
 
       }

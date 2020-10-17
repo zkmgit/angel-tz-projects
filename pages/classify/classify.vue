@@ -6,11 +6,10 @@
 </template>
 
 <script>
-	import category from "../../components/qiyue-category/qiyue-category.vue"
+	import category from "../../components/qiyue-category/qiyue-category.vue";
+	import { getClassifiedGoods } from "../../api/goodsDetailApi.js";
 	export default {
-		components: {
-			category
-		},
+		components: { category },
 		data() {
 			return {
 				categoryList: [],
@@ -30,7 +29,7 @@
 				var subList = [];
 				for (var j = 0; j < 30; j++) {
 					subList.push({
-						"name": "分类" + i + ":商品" + j,
+						"name": "分类" + i + "0 " + j,
 						"logo": "http://placehold.it/50x50"
 					})
 				}
