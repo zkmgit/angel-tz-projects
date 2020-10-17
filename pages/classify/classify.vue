@@ -29,7 +29,7 @@
 				var subList = [];
 				for (var j = 0; j < 30; j++) {
 					subList.push({
-						"name": "分类" + i + "0 " + j,
+						"name": "儿童睡衣男童短袖" + i + "0 " + j,
 						"logo": "http://placehold.it/50x50"
 					})
 				}

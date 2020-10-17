@@ -1,4 +1,9 @@
 {
   "navigationBarTitleText": "会员中心",
-  "usingComponents": {}
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#FF0000",
+  "usingComponents": {
+    "van-cell": "/wxcomponents/vant/dist/cell/index",
+    "van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+  }
 }
