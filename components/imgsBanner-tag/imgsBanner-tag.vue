@@ -76,7 +76,7 @@
 <style lang="scss" scoped>
 .imgsBannerBox{
 	position: relative;
-	background-color: #F2F2F2;
+	// background-color: #F2F2F2;
 }
 .imgLength{
 	position: absolute;

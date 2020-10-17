@@ -1,4 +1,4 @@
-<!-- <template>
+ <template>
 	<view class="category-wrap">
 		<category :categoryList="categoryList" :subCategoryList="subCategoryList" @categoryMainClick="categoryMainClick"
 		 @categorySubClick="categorySubClick"></category>
@@ -46,19 +46,6 @@
 <style lang="scss">
 
 </style>
- -->
- <template>
- 	<view class="">
- 		
- 	</view>
- </template>
- 
- <script>
- 	export default {
- 		
- 	}
- </script>
- 
- <style scoped>
- 
- </style>
+
+
+
