@@ -5,7 +5,9 @@
     "pages/shopingCar/shopingCar",
     "pages/classify/classify",
     "pages/confirmOrder/confirmOrder",
-    "pages/goodsDetail/goodsDetail"
+    "pages/goodsDetail/goodsDetail",
+    "pages/editAddr/editAddr",
+    "pages/authorization/authorization"
   ],
   "subPackages": [],
   "window": {
@@ -47,5 +49,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap67.json"
+  "sitemapLocation": "sitemap71.json"
 }

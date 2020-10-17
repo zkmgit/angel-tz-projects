@@ -95,9 +95,9 @@
 				id = 1;
 			}
 			//根据商品id获取对应的商品数详情信息
-			let res = await getGoodsDetailByGoodsId(3);
+			let res = await getGoodsDetailByGoodsId(1);
 			//根据商品id获取对应的商品数据信息
-			let res2 = await getGoodsByGoodsId(3);
+			let res2 = await getGoodsByGoodsId(1);
 			//将获取出来的图片转换成数组的形式，以便循环展示
 			let imgArr = res.show__img.split(",");
 			this.imgList = imgArr;

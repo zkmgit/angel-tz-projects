@@ -36,8 +36,10 @@
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "wx9952fe6ac22b0492",
+  "appid": "wxb4cac42e71483fa8",
   "projectname": "angel-tz-projects",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "current": -1,
@@ -62,6 +64,13 @@
     "miniprogram": {
       "current": -1,
       "list": [
+        {
+          "id": -1,
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
         {
           "id": -1,
           "name": "pages/goodsDetail/goodsDetail",
