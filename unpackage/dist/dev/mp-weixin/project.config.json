@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -12,7 +12,7 @@
     "minified": true,
     "newFeature": false,
     "coverView": true,
-    "nodeModules": true,
+    "nodeModules": false,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
@@ -36,7 +36,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "wxb4cac42e71483fa8",
+  "appid": "wxc3514d8278e8cce7",
   "projectname": "angel-tz-projects",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -49,20 +49,13 @@
       "current": -1,
       "list": []
     },
-    "plugin": {
-      "current": -1,
-      "list": []
-    },
     "game": {
-      "current": -1,
-      "list": []
-    },
-    "gamePlugin": {
       "current": -1,
       "list": []
     },
     "miniprogram": {
       "current": -1,
+<<<<<<< HEAD
       "list": [
         {
           "id": -1,
@@ -71,6 +64,9 @@
           "scene": null
         }
       ]
+=======
+      "list": []
+>>>>>>> 6e2dd48f100b56a64a5e4e7f6fbc066ff801e044
     }
   }
 }

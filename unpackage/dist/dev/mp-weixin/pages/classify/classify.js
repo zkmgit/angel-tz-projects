@@ -125,22 +125,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!I:/miniProgramWork/angel-tz-projects/pages/classify/classify.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-var _default =
-{
-  data: function data() {
-    return {};
-
-
-  } };exports.default = _default;
+throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js):\nError: Can't resolve '../../components/qiyue-category/qiyue-category.vue' in 'I:\\miniProgramWork\\angel-tz-projects\\pages\\classify'\n    at doResolve (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:209:21)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn0 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at resolver.doResolve (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\UnsafeCachePlugin.js:44:7)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn0 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn1 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn43 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn1 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn1 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:16:1)\n    at hook.callAsync (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\enhanced-resolve\\lib\\Resolver.js:285:5)\n    at _fn0 (eval at create (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\tapable\\lib\\HookCodeFactory.js:33:10), <anonymous>:15:1)");
 
 /***/ })
 

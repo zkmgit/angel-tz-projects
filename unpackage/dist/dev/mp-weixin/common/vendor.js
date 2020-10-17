@@ -8017,7 +8017,7 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-pages-loader/lib/index.js):\nError: uni-app-compiler: Unexpected token < in JSON at position 2588\n    at parseJson (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\uni-cli-shared\\lib\\json.js:20:13)\n    at parseManifestJson (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\uni-cli-shared\\lib\\manifest.js:32:10)\n    at Object.module.exports (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-pages-loader\\lib\\index-new.js:53:24)\n    at Object.module.exports (D:\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-pages-loader\\lib\\index.js:49:35)");
 
 /***/ }),
 
