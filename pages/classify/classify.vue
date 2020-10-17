@@ -48,9 +48,9 @@
 </style>
  -->
  <template>
- 	<div>
- 
- 	</div>
+ 	<view class="">
+ 		
+ 	</view>
  </template>
  
  <script>
