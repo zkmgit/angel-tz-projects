@@ -72,9 +72,10 @@
           "scene": null
         },
         {
-          "id": -1,
-          "name": "pages/goodsDetail/goodsDetail",
-          "pathName": "pages/goodsDetail/goodsDetail",
+          "id": 1,
+          "name": "pages/confirmOrder/confirmOrder",
+          "pathName": "pages/confirmOrder/confirmOrder",
+          "query": "",
           "scene": null
         }
       ]
