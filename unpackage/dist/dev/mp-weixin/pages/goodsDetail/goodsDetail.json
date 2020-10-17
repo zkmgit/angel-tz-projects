@@ -3,6 +3,12 @@
   "navigationBarTextStyle": "black",
   "navigationBarBackgroundColor": "#FFFFFF",
   "usingComponents": {
+    "echone-sku": "/components/echone-sku/echone-sku",
+    "van-goods-action": "/wxcomponents/vant/dist/goods-action/index",
+    "van-goods-action-icon": "/wxcomponents/vant/dist/goods-action-icon/index",
+    "van-goods-action-button": "/wxcomponents/vant/dist/goods-action-button/index",
+    "van-cell": "/wxcomponents/vant/dist/cell/index",
+    "van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
     "imgs-banner": "/components/imgsBanner-tag/imgsBanner-tag",
     "preview-image": "/components/kxj-previewImage/kxj-previewImage"
   }

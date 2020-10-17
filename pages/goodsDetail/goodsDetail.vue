@@ -9,34 +9,53 @@
 				<view class="price-sales">
 					<text class="price">￥{{currentGoods.nowPrice}}</text>
 					<text class="sales">已有{{currentGoods.sales}}人购买</text>
+					<view class="goods-info-fx">
+						<view class="item">
+							<image src="../../static/images/share/share1.png"></image>
+							<button class="weui-btn" type="primary" open-type="share"></button>
+						</view>
+					</view>
 				</view>
 			</view>
 			<view class="bink"></view>
+			<van-cell title="请选择" is-link @click="checkType" />
+			<view class="goodsIntroduction">
+				商品介绍
+			</view>
 			<view class="content">
 				<image v-for="(item,index) in content" :src="item" mode="" @tap="previewOpen" :key="index"></image>
 			</view>
 			<previewImage ref="previewImage" :opacity="0.8" :imgs="imgs" :descs="descs"></previewImage>
-			<view class="goods-info-fx">
-				<view class="item">
-					<image src="../../static/images/share/share1.png" mode=""></image>
-					<button open-type="share" role="button" aria-disabled="false"></button>
-				</view>
-			</view>
 		</view>
+		<van-goods-action>
+			<van-goods-action-icon icon="chat-o" text="客服" @click="clickCustomerService" />
+			<van-goods-action-icon icon="cart-o" text="购物车" @click="clickShoppingCar" :info="shoppingCarNum" />
+			<van-goods-action-icon icon="like" text="收藏" @click="clickCollection" v-if="isCollect" />
+			<van-goods-action-icon icon="like-o" text="收藏" @click="clickCollection" v-else />
+			<van-goods-action-button text="加入购物车" type="warning" @click="addCar" />
+			<van-goods-action-button text="立即购买" @click="buyNow" />
+		</van-goods-action>
+		<echone-sku :show="popupShow" theme-color="#ff0000" :combinations="combinations" :specifications="specifications"
+		 :default-select-index="selectedIndex" @close="handleClose" @confirm="handleConfirm"></echone-sku>
 	</view>
 </template>
 
 <script>
 	import imgsBanner from '../../components/imgsBanner-tag/imgsBanner-tag.vue';
+	import echoneSku from '@/components/echone-sku/echone-sku.vue';
 	import {
 		getGoodsDetailByGoodsId,
-		getGoodsByGoodsId
+		getGoodsByGoodsId,
+		addToShoppingCar,
+		getShoppingCarByCarContent,
+		updateShoppingCarNumByCarId
 	} from "../../api/goodsDetailApi.js";
 	import previewImage from '@/components/kxj-previewImage/kxj-previewImage.vue';
 	export default {
 		components: {
 			imgsBanner,
-			previewImage
+			previewImage,
+			echoneSku
 		},
 		data() {
 			return {
@@ -44,14 +63,41 @@
 				currentImg: 0, //当前默认选中
 				currentGoods: {}, //当前商品数据信息
 				content: [], //当前商品图片
-				imgs: [] //当前商品图片
+				imgs: [], //当前商品图片
+				shareText: "", //保存分享标题
+				shareImgs: "", //保存分享图片
+				shoppingCarNum: 0,
+				isCollect: false, //是否收藏
+				specifications: [],
+				combinations: [],
+				popupShow: false,
+				selectedIndex: 0
 			};
 		},
-		async created() {
+		onShareAppMessage() { //分享触发事件
+			this.shareText = this.currentGoods.goods_name;
+			this.shareImgs = this.imgs[0]
+			return {
+				title: this.shareText,
+				path: '/pages/tabBar/component/component',
+				imageUrl: this.shareImgs,
+				success: ret => {
+					console.log("成功");
+				},
+				fail: err => {
+					console.log("失败")
+				}
+			}
+		},
+		async onLoad(options) {
+			let id = options.goodsId;
+			if (!id) {
+				id = 1;
+			}
 			//根据商品id获取对应的商品数详情信息
-			let res = await getGoodsDetailByGoodsId(1);
+			let res = await getGoodsDetailByGoodsId(3);
 			//根据商品id获取对应的商品数据信息
-			let res2 = await getGoodsByGoodsId(1);
+			let res2 = await getGoodsByGoodsId(3);
 			//将获取出来的图片转换成数组的形式，以便循环展示
 			let imgArr = res.show__img.split(",");
 			this.imgList = imgArr;
@@ -60,6 +106,59 @@
 			this.currentGoods = res;
 			this.content = res.goods_content.split(",");
 			this.imgs = res.goods_content.split(",");
+			//获取出所有的商品规格数据信息
+			let specifications = JSON.parse(res.specifications);
+			if (specifications.length == 0) {
+				this.specifications = [{
+					"name": "",
+					"id": "1",
+					"list": []
+				}];
+				this.combinations = [{
+					"id": '1',
+					"value": this.currentGoods.goods_name,
+					"image": this.imgList[0],
+					"price": this.currentGoods.nowPrice,
+					"stock": this.currentGoods.stores
+				}];
+			} else if (specifications.length == 1) {
+				this.specifications = [{
+					"name": specifications[0].name,
+					"id": "1",
+					"list": specifications[0].content
+				}];
+				let tempArr = [];
+				specifications[0].content.map((e, index) => {
+					tempArr.push({
+						"id": index + 1,
+						"value": e,
+						"image": this.imgList[0],
+						"price": this.currentGoods.nowPrice,
+						"stock": this.currentGoods.stores
+					})
+				});
+				this.combinations = tempArr;
+			} else {
+				let tempArr = [];
+				//拼接specifications数组所需数据信息
+				specifications.map((e, index) => {
+					tempArr.push({
+						"name": e.name,
+						"id": index + 1,
+						"list": e.content
+					});
+				})
+				this.specifications = tempArr;
+				//拼接combinations数组所需的数据信息
+				let tempArr2 = [];
+				for(let i=0;i<tempArr[0].list.length;i++){
+					for(let j=0;j<tempArr[1].list.length;j++){
+						let tempStr = tempArr[0].list[i] + "," + tempArr[1].list[j];
+						tempArr2.push({"id":j+1,"value":tempStr,"image":this.imgList[0],"price":this.currentGoods.nowPrice,"stock":this.currentGoods.stores});
+					}
+				}
+				this.combinations = tempArr2;
+			}
 		},
 		methods: {
 			//打开预览e
@@ -70,6 +169,68 @@
 					current: param,
 					urls: _this.imgs
 				});
+			},
+			//选择商品规格触发事件
+			checkType() {
+				this.popupShow = true;
+			},
+			//点击底部导航栏客服
+			clickCustomerService() {
+				uni.showToast({
+					title: "不好意思哦，该功能尚未实现",
+					icon: "none"
+				})
+			},
+			//点击底部导航栏购物车
+			clickShoppingCar() {
+				uni.showToast({
+					title: "购物车",
+					icon: "none"
+				})
+			},
+			//点击底部导航栏收藏
+			clickCollection() {
+				this.isCollect = !this.isCollect;
+				uni.showToast({
+					title: "收藏",
+					icon: "none"
+				})
+			},
+			//加入购物车
+			addCar() {
+				this.popupShow = true;
+			},
+			//立即购买
+			buyNow() {
+				this.popupShow = true;
+			},
+			//关闭商品规格选择框
+			handleClose(e) {
+				this.popupShow = false;
+			},
+			//选择商品规格框中的立即购买按钮
+			async handleConfirm(e) {
+				let res = await getShoppingCarByCarContent(e.value);
+				if(res){
+					let num = Number(res.num) + Number(e.count);
+					let temp = await updateShoppingCarNumByCarId(res.id,num);
+					if(temp == "成功"){
+						this.popupShow = false;
+						uni.showToast({
+							title:"购物车中已有该商品，已为您自动添加数量了",
+							icon:"none"
+						})
+					}
+				}else{
+					let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":1,"content":e.value});
+					if(res2 == "成功"){
+						this.popupShow = false;
+						uni.showToast({
+							title:"成功加入购物车",
+							icon:"none"
+						})
+					}
+				}
 			}
 		}
 	}
@@ -84,51 +245,22 @@
 			height: 60rpx;
 			background-color: #F2F2F2;
 		}
-		.goods-info{
+
+		.goods-info {
 			border-top: 1rpx solid #ccc;
 			border-bottom: 1rpx solid #ccc;
-		}
-		.goods-info-fx {
-			position: absolute;
-			right: 35rpx;
-			bottom: 150rpx;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			width: 130rpx;
 
-			.item {
-				width: 50rpx;
-				height: 50rpx;
-				right: 130rpx;
-				top: 70rpx;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				font-size: 24rpx;
-				background: #fff;
-				z-index: 20;
-
-				button {
-					position: absolute;
-					height: 100%;
-					width: 100%;
-					opacity: 0;
-					z-index: 99;
-				}
-
-				image {
-					width: 50rpx;
-					height: 50rpx;
-				}
+			image {
+				width: 46rpx;
+				height: 46rpx;
 			}
 		}
+
 
 		.title-price-sales {
 			display: flex;
 			flex-direction: column;
-			margin: 30rpx;
+			margin: 30rpx 20rpx;
 
 			.title {
 				box-sizing: border-box;
@@ -137,12 +269,46 @@
 				line-height: 1.4;
 				color: #000;
 				margin-bottom: 28rpx;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
 			}
 
 			.price-sales {
 				display: flex;
 				align-items: center;
 				margin-bottom: 20rpx;
+				justify-content: space-between;
+
+				.goods-info-fx {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					width: 130rpx;
+
+					.item {
+						width: 50rpx;
+						height: 50rpx;
+						right: 130rpx;
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						font-size: 24rpx;
+						background: #fff;
+						z-index: 20;
+
+						button {
+							position: absolute;
+							width: 50rpx;
+							height: 50rpx;
+							opacity: 0;
+							z-index: 99;
+						}
+					}
+				}
 
 				.price {
 					color: #e64340;
@@ -158,10 +324,17 @@
 			}
 		}
 
+		.goodsIntroduction {
+			margin: 20rpx 20rpx 30rpx 20rpx;
+			font-weight: 600;
+		}
+
 		.content {
+			margin-bottom: 200rpx;
+
 			image {
 				width: 100vw;
-				height: 818rpx;
+				height: 880rpx;
 				margin: 0rpx auto;
 				margin-top: -12rpx;
 			}

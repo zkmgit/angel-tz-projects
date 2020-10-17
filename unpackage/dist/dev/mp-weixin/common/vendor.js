@@ -8021,18 +8021,18 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 43:
+/***/ 55:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 44);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 56);
 
 /***/ }),
 
-/***/ 44:
+/***/ 56:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -8063,7 +8063,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 45);
+module.exports = __webpack_require__(/*! ./runtime */ 57);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -8080,7 +8080,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 45:
+/***/ 57:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -8812,7 +8812,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 46:
+/***/ 58:
 /*!******************************************************************!*\
   !*** I:/miniProgramWork/angel-tz-projects/api/goodsDetailApi.js ***!
   \******************************************************************/
@@ -8820,7 +8820,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 43));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 47));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;exports.addToShoppingCar = addToShoppingCar;exports.getShoppingCarByCarContent = getShoppingCarByCarContent;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 55));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 59));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
 //根据商品id获取对应的商品详情
 function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
@@ -8830,14 +8830,38 @@ function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this
 
 
 //根据商品id获取对应的商品信息
-function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsDetailByGoodsId?goodsId=".concat(goodsId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message[0]);case 5:case "end":return _context.stop();}}}, _callee);}));return _getGoodsDetailByGoodsId.apply(this, arguments);}function getGoodsByGoodsId(_x2) {return _getGoodsByGoodsId.apply(this, arguments);}function _getGoodsByGoodsId() {_getGoodsByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(goodsId) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-            url = "getGoodsByGoodsId?goodsId=".concat(goodsId);_context2.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
-            res.data.message[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsByGoodsId.apply(this, arguments);}
+function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsDetailByGoodsId?goodsId=".concat(goodsId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message[0]);case 5:case "end":return _context.stop();}}}, _callee);}));return _getGoodsDetailByGoodsId.apply(this, arguments);}function getGoodsByGoodsId(_x2) {return _getGoodsByGoodsId.apply(this, arguments);}
+
+
+
+
+
+//添加购物车
+function _getGoodsByGoodsId() {_getGoodsByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(goodsId) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "getGoodsByGoodsId?goodsId=".concat(goodsId);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsByGoodsId.apply(this, arguments);}function addToShoppingCar(_x3) {return _addToShoppingCar.apply(this, arguments);}
+
+
+
+
+
+
+
+
+//根据购物车内容查询购物车中是否有匹配的数据信息
+function _addToShoppingCar() {_addToShoppingCar = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(goods) {var url, method, data, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "addToShoppingCar";method = "POST";data = goods;console.log("goods", goods);_context3.next = 6;return (0, _request.default)(url, method, data);case 6:res = _context3.sent;return _context3.abrupt("return", res.data.message);case 8:case "end":return _context3.stop();}}}, _callee3);}));return _addToShoppingCar.apply(this, arguments);}function getShoppingCarByCarContent(_x4) {return _getShoppingCarByCarContent.apply(this, arguments);}
+
+
+
+
+
+//修改购物车中的商品购买数量
+function _getShoppingCarByCarContent() {_getShoppingCarByCarContent = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(content) {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getShoppingCarByCarContent?content=".concat(content);_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data.message[0]);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getShoppingCarByCarContent.apply(this, arguments);}function updateShoppingCarNumByCarId(_x5, _x6) {return _updateShoppingCarNumByCarId.apply(this, arguments);}function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(carId, num) {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
+            url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context5.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context5.sent;return _context5.abrupt("return",
+            res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}
 
 /***/ }),
 
-/***/ 47:
+/***/ 59:
 /*!***********************************************************!*\
   !*** I:/miniProgramWork/angel-tz-projects/api/request.js ***!
   \***********************************************************/
@@ -8846,7 +8870,6 @@ function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerato
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = request;var baseUrl = "http://47.112.194.162:5959/";
-
 function request(url) {var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Get";var data = arguments.length > 2 ? arguments[2] : undefined;
   return new Promise(function (resolve, reject) {
     uni.request({
@@ -8858,7 +8881,11 @@ function request(url) {var method = arguments.length > 1 && arguments[1] !== und
       },
       fail: function fail(err) {
         reject(err);
-      } });
+      },
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' } });
+
 
   });
 }
