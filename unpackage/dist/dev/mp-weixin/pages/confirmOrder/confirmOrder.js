@@ -303,7 +303,8 @@ var _default =
       // 点击空白处关闭
       this.show = false;
     },
-    onChange: function onChange(event) {var _event$detail =
+    onChange: function onChange(event) {
+      console.log(event);var _event$detail =
       event.detail,picker = _event$detail.picker,value = _event$detail.value,index = _event$detail.index;
       console.log("\u5F53\u524D\u503C\uFF1A".concat(value, ", \u5F53\u524D\u7D22\u5F15\uFF1A").concat(index, ",").concat(picker));
       this.discount = value;

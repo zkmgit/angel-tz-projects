@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "购物车",
-  "usingComponents": {
-    "van-submit-bar": "/wxcomponents/vant/dist/submit-bar/index",
-    "van-checkbox-group": "/wxcomponents/vant/dist/checkbox-group/index",
-    "van-checkbox": "/wxcomponents/vant/dist/checkbox/index",
-    "van-stepper": "/wxcomponents/vant/dist/stepper/index"
-  }
-}

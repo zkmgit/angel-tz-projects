@@ -8780,7 +8780,6 @@ internalMixin(Vue);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexLunbo = getIndexLunbo;exports.getAnnouncementDatas = getAnnouncementDatas;exports.getMenuDatasByHome = getMenuDatasByHome;exports.getRooms = getRooms;exports.getSeckillGoods = getSeckillGoods;exports.getRecommendedGoods = getRecommendedGoods;exports.getGoodsList = getGoodsList;exports.getSpellAGroupGoods = getSpellAGroupGoods;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
-
 // 轮播图
 function getIndexLunbo() {return _getIndexLunbo.apply(this, arguments);}
 

@@ -1,6 +1,5 @@
 import request from "./request.js"
 
-
 // 轮播图
 export async function getIndexLunbo(){
 	let url = `getIndexLunbo`;
