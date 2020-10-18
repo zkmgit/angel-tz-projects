@@ -2,7 +2,12 @@
 	"pages": [{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "天使童装"
+				"navigationBarTitleText": "天使童装",
+				"usingComponents": {
+					"van-button": "/wxcomponents/vant/dist/button/index",
+					"van-divider": "/wxcomponents/vant/dist/divider/index",
+					"van-count-down": "/wxcomponents/vant/dist/count-down/index"
+				}
 			}
 		},
 		{
@@ -70,7 +75,20 @@
 				"path": "pages/authorization/authorization",
 				"style": {}
 			}
-		],
+		    ,{
+            "path" : "pages/liveStreaming/liveStreaming",
+            "style" : {
+				"navigationBarTitleText": "直播特卖",
+				"usingComponents": {
+					"van-button": "/wxcomponents/vant/dist/button/index"
+				}
+			}
+        }
+        ,{
+            "path" : "pages/announcementDatas/announcementDatas",
+            "style" : {}
+        }
+    ],
 		"globalStyle": {
 			"navigationBarTextStyle": "black",
 			"navigationBarTitleText": "uni-app",

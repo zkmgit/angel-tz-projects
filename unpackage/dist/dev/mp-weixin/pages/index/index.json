@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "天使童装",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button": "/wxcomponents/vant/dist/button/index",
+    "van-divider": "/wxcomponents/vant/dist/divider/index",
+    "van-count-down": "/wxcomponents/vant/dist/count-down/index"
+  }
 }

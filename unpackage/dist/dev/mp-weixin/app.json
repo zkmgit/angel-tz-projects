@@ -7,7 +7,9 @@
     "pages/confirmOrder/confirmOrder",
     "pages/goodsDetail/goodsDetail",
     "pages/editAddr/editAddr",
-    "pages/authorization/authorization"
+    "pages/authorization/authorization",
+    "pages/liveStreaming/liveStreaming",
+    "pages/announcementDatas/announcementDatas"
   ],
   "subPackages": [],
   "window": {
@@ -48,6 +50,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap71.json"
+  "usingComponents": {}
 }

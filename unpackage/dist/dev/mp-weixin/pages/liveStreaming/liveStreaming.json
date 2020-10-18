@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "直播特卖",
+  "usingComponents": {
+    "van-button": "/wxcomponents/vant/dist/button/index"
+  }
+}
