@@ -1,4 +1,1 @@
-<view>公告111111111111111
-	公告111111111111111
-	公告111111111111111
-	公告111111111111111</view>
+<view data-event-opts="{{[['tap',[['comment',['$0'],['Announcement.__$n0.title']]]]]}}" bindtap="__e"><block wx:for="{{Announcement}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><view class="cashlogs"><view class="profile"><view class="typeStr">{{item.title}}</view><view class="dateAdd">{{item.add_time}}</view></view><view class="amount">查看 ></view></view></block></view>

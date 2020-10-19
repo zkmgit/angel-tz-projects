@@ -12,6 +12,12 @@ export async function getAnnouncementDatas(){
 	let res = await request(url);
 	return res.data.message;
 }
+// 公告详情
+export async function getAnnouncementDetailsById(title){
+	let url = `getAnnouncementDetailsById?title=${title}`;
+	let res = await request(url);
+	return res.data.message[0];
+}
 // 宫格分类
 export async function getMenuDatasByHome(){
 	let url = `getMenuDatasByHome`;

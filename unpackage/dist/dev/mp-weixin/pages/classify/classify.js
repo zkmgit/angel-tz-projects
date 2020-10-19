@@ -137,7 +137,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _goodsDetailApi = __webpack_require__(/*! ../../api/goodsDetailApi.js */ 61);var category = function category() {__webpack_require__.e(/*! require.ensure | components/qiyue-category/qiyue-category */ "components/qiyue-category/qiyue-category").then((function () {return resolve(__webpack_require__(/*! ../../components/qiyue-category/qiyue-category.vue */ 132));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _goodsDetailApi = __webpack_require__(/*! ../../api/goodsDetailApi.js */ 47);var category = function category() {__webpack_require__.e(/*! require.ensure | components/qiyue-category/qiyue-category */ "components/qiyue-category/qiyue-category").then((function () {return resolve(__webpack_require__(/*! ../../components/qiyue-category/qiyue-category.vue */ 98));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: { category: category },
   data: function data() {

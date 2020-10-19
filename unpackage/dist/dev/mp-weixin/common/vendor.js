@@ -8778,7 +8778,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexLunbo = getIndexLunbo;exports.getAnnouncementDatas = getAnnouncementDatas;exports.getMenuDatasByHome = getMenuDatasByHome;exports.getRooms = getRooms;exports.getSeckillGoods = getSeckillGoods;exports.getRecommendedGoods = getRecommendedGoods;exports.getGoodsList = getGoodsList;exports.getSpellAGroupGoods = getSpellAGroupGoods;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getIndexLunbo = getIndexLunbo;exports.getAnnouncementDatas = getAnnouncementDatas;exports.getAnnouncementDetailsById = getAnnouncementDetailsById;exports.getMenuDatasByHome = getMenuDatasByHome;exports.getRooms = getRooms;exports.getSeckillGoods = getSeckillGoods;exports.getRecommendedGoods = getRecommendedGoods;exports.getGoodsList = getGoodsList;exports.getSpellAGroupGoods = getSpellAGroupGoods;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
 // 轮播图
 function getIndexLunbo() {return _getIndexLunbo.apply(this, arguments);}
@@ -8792,41 +8792,47 @@ function _getIndexLunbo() {_getIndexLunbo = _asyncToGenerator( /*#__PURE__*/_reg
 
 
 
+// 公告详情
+function _getAnnouncementDatas() {_getAnnouncementDatas = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "getAnnouncementDatas";_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getAnnouncementDatas.apply(this, arguments);}function getAnnouncementDetailsById(_x) {return _getAnnouncementDetailsById.apply(this, arguments);}
+
+
+
+
 // 宫格分类
-function _getAnnouncementDatas() {_getAnnouncementDatas = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "getAnnouncementDatas";_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getAnnouncementDatas.apply(this, arguments);}function getMenuDatasByHome() {return _getMenuDatasByHome.apply(this, arguments);}
+function _getAnnouncementDetailsById() {_getAnnouncementDetailsById = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(title) {var url, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "getAnnouncementDetailsById?title=".concat(title);_context3.next = 3;return (0, _request.default)(url);case 3:res = _context3.sent;return _context3.abrupt("return", res.data.message[0]);case 5:case "end":return _context3.stop();}}}, _callee3);}));return _getAnnouncementDetailsById.apply(this, arguments);}function getMenuDatasByHome() {return _getMenuDatasByHome.apply(this, arguments);}
 
 
 
 
 // 直播公告
-function _getMenuDatasByHome() {_getMenuDatasByHome = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var url, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "getMenuDatasByHome";_context3.next = 3;return (0, _request.default)(url);case 3:res = _context3.sent;return _context3.abrupt("return", res.data.message);case 5:case "end":return _context3.stop();}}}, _callee3);}));return _getMenuDatasByHome.apply(this, arguments);}function getRooms() {return _getRooms.apply(this, arguments);}
+function _getMenuDatasByHome() {_getMenuDatasByHome = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getMenuDatasByHome";_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data.message);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getMenuDatasByHome.apply(this, arguments);}function getRooms() {return _getRooms.apply(this, arguments);}
 
 
 
 
 // 限时秒杀
-function _getRooms() {_getRooms = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getRooms";_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data.message);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getRooms.apply(this, arguments);}function getSeckillGoods() {return _getSeckillGoods.apply(this, arguments);}
+function _getRooms() {_getRooms = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:url = "getRooms";_context5.next = 3;return (0, _request.default)(url);case 3:res = _context5.sent;return _context5.abrupt("return", res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _getRooms.apply(this, arguments);}function getSeckillGoods() {return _getSeckillGoods.apply(this, arguments);}
 
 
 
 
 // 爆品推荐
-function _getSeckillGoods() {_getSeckillGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:url = "getSeckillGoods";_context5.next = 3;return (0, _request.default)(url);case 3:res = _context5.sent;return _context5.abrupt("return", res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _getSeckillGoods.apply(this, arguments);}function getRecommendedGoods() {return _getRecommendedGoods.apply(this, arguments);}
+function _getSeckillGoods() {_getSeckillGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var url, res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:url = "getSeckillGoods";_context6.next = 3;return (0, _request.default)(url);case 3:res = _context6.sent;return _context6.abrupt("return", res.data.message);case 5:case "end":return _context6.stop();}}}, _callee6);}));return _getSeckillGoods.apply(this, arguments);}function getRecommendedGoods() {return _getRecommendedGoods.apply(this, arguments);}
 
 
 
 
 // 商品列表
-function _getRecommendedGoods() {_getRecommendedGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var url, res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:url = "getRecommendedGoods";_context6.next = 3;return (0, _request.default)(url);case 3:res = _context6.sent;return _context6.abrupt("return", res.data.message);case 5:case "end":return _context6.stop();}}}, _callee6);}));return _getRecommendedGoods.apply(this, arguments);}function getGoodsList() {return _getGoodsList.apply(this, arguments);}
+function _getRecommendedGoods() {_getRecommendedGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var url, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:url = "getRecommendedGoods";_context7.next = 3;return (0, _request.default)(url);case 3:res = _context7.sent;return _context7.abrupt("return", res.data.message);case 5:case "end":return _context7.stop();}}}, _callee7);}));return _getRecommendedGoods.apply(this, arguments);}function getGoodsList() {return _getGoodsList.apply(this, arguments);}
 
 
 
 
 // 拼团
-function _getGoodsList() {_getGoodsList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var url, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:url = "getGoodsList";_context7.next = 3;return (0, _request.default)(url);case 3:res = _context7.sent;return _context7.abrupt("return", res.data.message);case 5:case "end":return _context7.stop();}}}, _callee7);}));return _getGoodsList.apply(this, arguments);}function getSpellAGroupGoods() {return _getSpellAGroupGoods.apply(this, arguments);}function _getSpellAGroupGoods() {_getSpellAGroupGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8() {var url, res;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:
-            url = "getSpellAGroupGoods";_context8.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context8.sent;return _context8.abrupt("return",
-            res.data.message);case 5:case "end":return _context8.stop();}}}, _callee8);}));return _getSpellAGroupGoods.apply(this, arguments);}
+function _getGoodsList() {_getGoodsList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8() {var url, res;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:url = "getGoodsList";_context8.next = 3;return (0, _request.default)(url);case 3:res = _context8.sent;return _context8.abrupt("return", res.data.message);case 5:case "end":return _context8.stop();}}}, _callee8);}));return _getGoodsList.apply(this, arguments);}function getSpellAGroupGoods() {return _getSpellAGroupGoods.apply(this, arguments);}function _getSpellAGroupGoods() {_getSpellAGroupGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee9() {var url, res;return _regenerator.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:
+            url = "getSpellAGroupGoods";_context9.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context9.sent;return _context9.abrupt("return",
+            res.data.message);case 5:case "end":return _context9.stop();}}}, _callee9);}));return _getSpellAGroupGoods.apply(this, arguments);}
 
 /***/ }),
 
@@ -8926,7 +8932,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 61:
+/***/ 47:
 /*!*****************************************************************!*\
   !*** D:/2020-毕业项目/temp/angel-tz-projects/api/goodsDetailApi.js ***!
   \*****************************************************************/

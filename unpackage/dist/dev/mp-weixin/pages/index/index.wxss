@@ -174,9 +174,11 @@
   padding: 8rpx 16rpx;
   border-radius: 16rpx;
   margin-top: 12rpx;
+  color: #f6f6f6;
 }
 .miaosha-goods-list .right .count-down van-count-down {
-  background: #f6f6f6;
+  background-color: #f6f6f6;
+  color: #f6f6f6;
 }
 .miaosha-goods-list .right .miaosha-price-btn {
   display: -webkit-box;

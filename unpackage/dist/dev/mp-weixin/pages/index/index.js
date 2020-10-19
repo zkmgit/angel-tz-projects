@@ -135,7 +135,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -323,8 +335,18 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
                   (0, _homeApi.getSpellAGroupGoods)());case 2:res = _context7.sent;
                 // console.log(res);
                 _this7.SpellAGroupGoods = res;case 4:case "end":return _context7.stop();}}}, _callee7);}))();
+    },
+    // 公告详情
+    comment: function comment(title) {
+      uni.navigateTo({
+        url: "/pages/announcementDetail/announcementDetail?title=".concat(title) });
+
     } },
 
+
+  // onLoad:function(option){				//opthin为object类型，会序列化上页面传递的参数
+  // 	console.log(option.title);			//打印出上页面传递的参数
+  // },
   created: function created() {
     this.getLunboData();
     this.getAnnouncementData();
@@ -334,6 +356,7 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
     this.getGoodsListData();
     this.getSpellAGroupGoodsData();
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */,
