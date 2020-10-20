@@ -64,7 +64,7 @@
 				</view>
 				<view class="info">
 					<view class="title">
-						幼儿园园服韩版男女童装春秋季班服英伦学院分白色衬衫小学生校服1
+						幼儿园园服韩版男女童装春秋季班服英伦学院分白色衬衫小学生校服1555555555555555555555555555
 					</view>
 					<view class="price">
 						<view class="totalPrice">
@@ -188,13 +188,13 @@
 
 <style lang="scss">
 	.confirm-order {
-		background-color: #F4F5F9;
+		background-color: #F2F2F2;
 		font-size: 26rpx;
 		padding-bottom: 120rpx;
 		
 		
 		.car-container{
-			background-color: #FFFFFF;
+			background-color: #FAFAFA;
 			
 			.item {
 				display: flex;
@@ -218,6 +218,11 @@
 					
 					.title {
 						font-weight: 600;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
 					}
 					
 					.price {

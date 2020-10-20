@@ -24,6 +24,10 @@
 				subCategoryList: []
 			};
 		},
+		async onLoad(options) {
+			let id = options.id;
+			console.log(id)
+		},
 		methods: {
 			categoryMainClick(category) {
 				this.subCategoryList = this.getClassifiedGoodsData(category.id) ;
@@ -56,7 +60,5 @@
 </script>
 
 <style>
-
-
 
 </style>

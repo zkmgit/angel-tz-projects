@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -285,6 +285,11 @@ var _default =
 
   },
   methods: {
+    goAddAddr: function goAddAddr() {
+      uni.navigateTo({
+        url: '../editAddr/editAddr' });
+
+    },
     determine: function determine() {
       // 选中优惠并退出
       this.onClose();
@@ -309,6 +314,7 @@ var _default =
       console.log("\u5F53\u524D\u503C\uFF1A".concat(value, ", \u5F53\u524D\u7D22\u5F15\uFF1A").concat(index, ",").concat(picker));
       this.discount = value;
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

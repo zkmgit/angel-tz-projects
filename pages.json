@@ -62,6 +62,7 @@
 				"usingComponents": {
 					"van-card": "/wxcomponents/vant/dist/card/index",
 					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-checkbox": "/wxcomponents/vant/dist/checkbox/index",
 					"van-picker": "/wxcomponents/vant/dist/picker/index",
 					"van-popup": "/wxcomponents/vant/dist/popup/index"
 				}
@@ -117,7 +118,10 @@
         ,{
             "path" : "pages/collect/collect",
             "style" : {
-				"navigationBarTitleText": "我的收藏"
+				"navigationBarTitleText": "我的收藏",
+				"usingComponents": {
+				  "van-divider": "/wxcomponents/vant/dist/divider/index"
+				}
 			}
         }
         ,{
@@ -131,11 +135,7 @@
             "style" : {
 				"navigationBarTitleText": "领卷中心",
 				"usingComponents": {
-<<<<<<< HEAD
 					"van-tag": "/wxcomponents/vant/dist/tag/index"
-=======
-				  "van-tag": "/wxcomponents/vant/dist/tag/index"
->>>>>>> 02bc9e3c9bb2b60aa4a4c797049da5491aa02168
 				  }
 			}
 		},
@@ -153,7 +153,8 @@
             "style" : {
 				"navigationBarTitleText": "积分兑换成长值",
 				"usingComponents": {
-				  "van-field": "/wxcomponents/vant/dist/field/index"
+				  "van-field": "/wxcomponents/vant/dist/field/index",
+				   "van-toast": "/wxcomponents/vant/dist/toast/index"
 				}
 			}
 		},
@@ -163,12 +164,7 @@
 				"navigationBarTitleText": "公告"
 			}
         }
-        ,{
-            "path" : "pages/announcementDetail/announcementDetail",
-            "style" : {
-				"navigationBarTitleText": "公告详情"
-			}
-        }
+       
     ],
 		"globalStyle": {
 			"navigationBarTextStyle": "black",

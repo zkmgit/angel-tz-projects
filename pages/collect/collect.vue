@@ -1,6 +1,6 @@
 <template>
 	<view class="collect-container">
-		<view class="collect-list">
+		<view class="collect-list" v-if="isShow">
 			<view class="good-item">
 				<view class="img">
 					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
@@ -33,6 +33,14 @@
 				</view>
 			</view>
 		</view>
+		<view class="empty" v-else>
+			<van-divider
+			  contentPosition="center"
+			  customStyle="color: #CCCCCC; border-color: #CCCCCC; font-size: 36rpx;"
+			>
+			  暂无收藏
+			</van-divider>
+		</view>
 	</view>
 </template>
 
@@ -41,7 +49,7 @@
 	export default {
 		data() {
 			return {
-				
+				isShow:true
 			};
 		},
 		methods:{

@@ -54,7 +54,7 @@
 				<van-checkbox :value="checked" @change="setCheck">全选</van-checkbox>
 				<view class="right" v-if="isShow">
 					<view class="price">
-						<text class="fs">合计</text>:￥0
+						<text class="fs">合计</text>:￥1111
 					</view>
 					<view class="btn" @click="settlementCar">
 						结算
@@ -91,7 +91,8 @@
 		methods:{
 			onChange(event) {
 			    this.result = event.detail;
-				if(this.first){
+				
+				if(this.first){ 
 					this.checked = !this.checked;
 					this.first = !this.first;
 				}
@@ -100,7 +101,6 @@
 					this.checked = !this.checked;
 					this.first = !this.first;
 				}
-				// this.checked = !this.checked;
 				
 				
 			},
@@ -110,6 +110,7 @@
 			},
 			setCheck(){
 				this.checked = !this.checked;
+				this.first = !this.first;
 				if(this.checked){
 					this.result.push('a');
 					this.result.push('b');
@@ -147,7 +148,7 @@
 
 <style lang="scss">
 	.car-container {
-		background-color: #F4F5F9;
+		background-color: #F2F2F2;
 		height: 100vh;
 		font-size: 26rpx;
 		

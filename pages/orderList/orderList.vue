@@ -10,7 +10,12 @@
 			  			2010147285734828
 			  		</view>
 					<view class="emit">
-						订单关闭 >
+						<view class="text">
+							订单关闭 
+						</view>
+						<view class="img">
+							<image src="../../static/images/userAddr/right.png" mode=""></image>
+						</view>
 					</view>
 			  	</view>
 				<view class="line"></view>
@@ -19,15 +24,21 @@
 					<view class="imgs">
 						<scroll-view scroll-x="true">
 							<block>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
-							<image class="img" src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
 							</block>
 						</scroll-view>
 						
@@ -68,7 +79,9 @@
 			    });
 			  },
 			  goOrderDetails(){
-				  console.log('前往订单详情页面')
+				  uni.navigateTo({
+				  	url:'../orderDetails/orderDetails'
+				  })
 			  }
 		}
 	}
@@ -81,12 +94,13 @@
 		font-size: 26rpx;
 		
 		.order-item {
+			// width: 100vw;
 			padding-left: 20rpx;
 			background-color: #FFFFFF;
 			margin-top: 20rpx;
 			
 			.line {
-				border-top: 2rpx solid #CCCCCC;
+				border-top: 3rpx solid #F5F5F5;
 			}
 			
 			.order-num {
@@ -100,9 +114,25 @@
 				}
 				
 				.emit {
+					display: flex;
+					align-items: center;
+					.text {
+						color: #747474;
+						margin-right: 15rpx;
+						font-size: 28rpx;
+					}
 					
-					color: #747474;
-					margin-right: 30rpx;
+					.img {
+						width: 30rpx;
+						height: 30rpx;
+						;
+						margin-right: 30rpx;
+						
+						image {
+							width: 100%;
+							height: 100%;
+						}
+					}
 				}
 			}
 			
@@ -113,7 +143,7 @@
 				
 				.imgs {
 					white-space: nowrap;
-					width: 100vw;
+					// width: 100vw;
 					.img {
 						width: 100rpx;
 						height: 100rpx;

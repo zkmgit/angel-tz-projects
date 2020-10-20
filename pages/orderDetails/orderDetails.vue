@@ -50,11 +50,11 @@
 			
 			<view class="shop-item" v-for="item in list">
 				<view class="shop-img">
-					<image src="https://img.yzcdn.cn/vant/cat.jpeg" mode=""></image>
+					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
 				</view>
 				
 				<view class="shop-name">
-					幼儿园园服韩版男女童装春幼儿园园服韩版男女童装春
+					幼儿园园服韩版男女童装春幼儿园
 				</view>
 				<view class="total">
 					<text class="price">￥1652</text>
@@ -104,7 +104,7 @@
 
 <style lang="scss">
 	.orderDetails-container {
-		background-color: #F4F5F9;
+		background-color: #F2F2F2;
 		height: 100vh;
 		font-size: 26rpx;
 		padding-top: 20rpx;
@@ -116,7 +116,7 @@
 			margin-bottom: 20rpx;
 			
 			.line {
-				border-top: 2rpx solid #CCCCCC;
+				border-top: 2rpx solid #F6F6F6;
 			}
 			
 			.order-emit {
@@ -161,7 +161,7 @@
 					}
 					
 					.tackinfo {
-						color: #CBC4C4;
+						color: #919191;
 					}
 				}
 			}
@@ -187,7 +187,7 @@
 					}
 					
 					.addr {
-						color: #CBC4C4;
+						color: #919191;
 					}
 				}
 			}
@@ -205,7 +205,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: 20rpx 0;
-				border-top: 2rpx solid #ccc;
+				border-top: 2rpx solid #F6F6F6;
 				
 				.shop-img {
 					width: 130rpx;
