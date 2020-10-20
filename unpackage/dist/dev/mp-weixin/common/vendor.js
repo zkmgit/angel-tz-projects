@@ -8925,16 +8925,22 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = isUserInfo;function isUserInfo() {
-  // 判断用户是否授权
-  console.log(999);
-  var userInfo = uni.getStorageSync('user');
-  var token = uni.getStorageSync('token');
-  console.log(userInfo, token);
-  console.log(888);
-  if (userInfo != '' && token != '') return true;
-  return false;
-}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = isUserInfo;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ../api/request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function
+
+isUserInfo() {return _isUserInfo.apply(this, arguments);}function _isUserInfo() {_isUserInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var userInfo, data, url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+            // 判断用户是否授权
+            userInfo = uni.getStorageSync('user');
+            data = uni.getStorageSync('token');if (!(
+            userInfo && data)) {_context.next = 14;break;}
+            url = "checktoken?token=" + data.token;_context.next = 6;return (
+              (0, _request.default)(url));case 6:res = _context.sent;if (!(
+            res.data.status == 200)) {_context.next = 11;break;}return _context.abrupt("return",
+            res.data.message[0]);case 11:return _context.abrupt("return",
+
+            false);case 12:_context.next = 15;break;case 14:return _context.abrupt("return",
+
+
+            false);case 15:case "end":return _context.stop();}}}, _callee);}));return _isUserInfo.apply(this, arguments);}
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -8958,7 +8964,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;exports.addToShoppingCar = addToShoppingCar;exports.getShoppingCarByCarContent = getShoppingCarByCarContent;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;exports.addToShoppingCar = addToShoppingCar;exports.getShoppingCarByCarContent = getShoppingCarByCarContent;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;exports.addCollection = addCollection;exports.delCollection = delCollection;exports.getCollectionByOpenid = getCollectionByOpenid;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
 //根据商品id获取对应的商品详情
 function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
@@ -8992,10 +8998,33 @@ function _addToShoppingCar() {_addToShoppingCar = _asyncToGenerator( /*#__PURE__
 
 
 //修改购物车中的商品购买数量
-function _getShoppingCarByCarContent() {_getShoppingCarByCarContent = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(content) {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getShoppingCarByCarContent?content=".concat(content);_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data.message[0]);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getShoppingCarByCarContent.apply(this, arguments);}function updateShoppingCarNumByCarId(_x5, _x6) {return _updateShoppingCarNumByCarId.apply(this, arguments);}function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(carId, num) {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
-            url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context5.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context5.sent;return _context5.abrupt("return",
-            res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}
+function _getShoppingCarByCarContent() {_getShoppingCarByCarContent = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(token) {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getShoppingCarByCarContent?token=".concat(token);_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getShoppingCarByCarContent.apply(this, arguments);}function updateShoppingCarNumByCarId(_x5, _x6) {return _updateShoppingCarNumByCarId.apply(this, arguments);}
+
+
+
+
+
+//添加收藏
+function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(carId, num) {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context5.next = 3;return (0, _request.default)(url);case 3:res = _context5.sent;return _context5.abrupt("return", res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}function addCollection(_x7) {return _addCollection.apply(this, arguments);}
+
+
+
+
+
+
+
+//删除收藏
+function _addCollection() {_addCollection = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(obj) {var url, method, data, res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:url = "addCollection";method = "POST";data = obj;_context6.next = 5;return (0, _request.default)(url, method, data);case 5:res = _context6.sent;return _context6.abrupt("return", res.data);case 7:case "end":return _context6.stop();}}}, _callee6);}));return _addCollection.apply(this, arguments);}function delCollection(_x8) {return _delCollection.apply(this, arguments);}
+
+
+
+
+
+//根据openid查询对应的收藏数据信息
+function _delCollection() {_delCollection = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7(token) {var url, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:url = "delCollection?token=".concat(token);_context7.next = 3;return (0, _request.default)(url);case 3:res = _context7.sent;return _context7.abrupt("return", res.data);case 5:case "end":return _context7.stop();}}}, _callee7);}));return _delCollection.apply(this, arguments);}function getCollectionByOpenid(_x9) {return _getCollectionByOpenid.apply(this, arguments);}function _getCollectionByOpenid() {_getCollectionByOpenid = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8(token) {var url, res;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:
+            url = "getCollectionByOpenid?token=".concat(token);_context8.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context8.sent;return _context8.abrupt("return",
+            res.data);case 5:case "end":return _context8.stop();}}}, _callee8);}));return _getCollectionByOpenid.apply(this, arguments);}
 
 /***/ }),
 
