@@ -160,6 +160,12 @@
             "style" : {
 				"navigationBarTitleText": "公告"
 			}
+        },
+		{
+            "path" : "pages/announcementDetail/announcementDetail",
+            "style" : {
+				"navigationBarTitleText": "公告详情"
+			}
         }
        
     ],

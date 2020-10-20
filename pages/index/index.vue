@@ -18,16 +18,9 @@
 			<view class="notice">
 				<image class="notice_icon" src="/static/images/home/notice.png"></image>
 				<swiper class="notice_swiper" vertical autoplay circular>
-					<!-- <navigator v-for="item in Announcement" :key="item.id" url="/pages/announcementDetail/announcementDetail?title=">
-						<swiper-item>
-							<view class="notice_itemr">{{item.title}}</view>
-						</swiper-item>
-					</navigator> -->
-					<view>
-						<swiper-item>
-							<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
-						</swiper-item>
-					</view>
+					<swiper-item>
+						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
+					</swiper-item>
 				</swiper>
 			</view>
 			<view class="more">

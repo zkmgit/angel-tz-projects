@@ -16,7 +16,8 @@
     "pages/coupon/coupon",
     "pages/liveStreaming/liveStreaming",
     "pages/integral/integral",
-    "pages/announcementDatas/announcementDatas"
+    "pages/announcementDatas/announcementDatas",
+    "pages/announcementDetail/announcementDetail"
   ],
   "subPackages": [],
   "window": {
