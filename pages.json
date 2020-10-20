@@ -126,9 +126,9 @@
             "style" : {
 				"navigationBarTitleText": "领卷中心",
 				"usingComponents": {
-				  "van-tag": "/wxcomponents/vant/dist/tag/index",
-				  },
-			},
+				  "van-tag": "/wxcomponents/vant/dist/tag/index"
+				  }
+			}
 		},
 		{
             "path" : "pages/liveStreaming/liveStreaming",
@@ -151,7 +151,12 @@
 		{
             "path" : "pages/announcementDatas/announcementDatas",
             "style" : {}
-        }
+        },
+		{
+		    "path" : "pages/goodsList/goodsList",
+		    "style" : {}
+		}
+		
     ],
 		"globalStyle": {
 			"navigationBarTextStyle": "black",
