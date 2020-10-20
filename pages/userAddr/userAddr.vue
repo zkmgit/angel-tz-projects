@@ -83,7 +83,6 @@
 <style lang="scss">
 	.userAddr-container {
 		background-color: #F4F5F9;
-		height: 100vh;
 		font-size: 28rpx;
 		padding-top: 20rpx;
 		
@@ -95,14 +94,14 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				border-bottom: 1rpx solid #ccc;
+				border-bottom: 1rpx solid #F0F0F0;
 				padding: 30rpx 0;
 				
 				.addr-info {
 					.street {
-						margin-top: 30rpx;
+						margin-top: 10rpx;
 						font-size: 24rpx;
-						color: #ccc;
+						color: #CBCBCB;
 					}
 				}
 				
@@ -128,7 +127,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: 20rpx 30rpx;
-				border-top: 1rpx solid #CCCCCC;
+				border-top: 1rpx solid #F0F0F0;
 			
 				.text {
 					flex: 1;
