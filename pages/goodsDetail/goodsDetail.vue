@@ -183,9 +183,8 @@
 			},
 			//点击底部导航栏购物车
 			clickShoppingCar() {
-				uni.showToast({
-					title: "购物车",
-					icon: "none"
+				uni.switchTab({
+					url:"../shopingCar/shopingCar"
 				})
 			},
 			//点击底部导航栏收藏
