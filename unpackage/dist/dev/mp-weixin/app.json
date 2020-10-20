@@ -16,8 +16,12 @@
     "pages/coupon/coupon",
     "pages/liveStreaming/liveStreaming",
     "pages/integral/integral",
+<<<<<<< HEAD
     "pages/announcementDatas/announcementDatas",
     "pages/announcementDetail/announcementDetail"
+=======
+    "pages/announcementDatas/announcementDatas"
+>>>>>>> 6b392057cec1bf2d07797d4df004b30d06d6e3c6
   ],
   "subPackages": [],
   "window": {
