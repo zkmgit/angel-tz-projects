@@ -1,5 +1,6 @@
 {
-	"pages": [{
+	"pages": [
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "天使童装",
@@ -59,6 +60,7 @@
 				"usingComponents": {
 					"van-card": "/wxcomponents/vant/dist/card/index",
 					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-checkbox": "/wxcomponents/vant/dist/checkbox/index",
 					"van-picker": "/wxcomponents/vant/dist/picker/index",
 					"van-popup": "/wxcomponents/vant/dist/popup/index"
 				}
@@ -117,6 +119,14 @@
 			"style": {
 				"navigationBarTitleText": "我的收藏"
 			}
+		}, {
+			"path": "pages/collect/collect",
+			"style": {
+				"navigationBarTitleText": "我的收藏",
+				"usingComponents": {
+					"van-divider": "/wxcomponents/vant/dist/divider/index"
+				}
+			}
 		},
 		{
 			"path": "pages/signin/signin",
@@ -147,7 +157,8 @@
 			"style": {
 				"navigationBarTitleText": "积分兑换成长值",
 				"usingComponents": {
-					"van-field": "/wxcomponents/vant/dist/field/index"
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-toast": "/wxcomponents/vant/dist/toast/index"
 				}
 			}
 		},
@@ -157,6 +168,7 @@
 				"navigationBarTitleText": "公告"
 			}
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
