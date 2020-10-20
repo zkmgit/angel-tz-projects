@@ -4,5 +4,13 @@ import request from "./request.js";
 export async function getClassifiedGoods(classificationId){
 	let url = `getClassifiedGoods?classificationId=${classificationId}`;
 	let res = await request(url);
-	return res.data.message[0];
+	return res.data.message;
+}
+
+
+//获取首页八宫格数据信息
+export async function getMenuDatasByHome(){
+	let url = `getMenuDatasByHome`;
+	let res = await request(url);
+	return res.data.message;
 }

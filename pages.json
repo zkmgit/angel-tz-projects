@@ -33,7 +33,10 @@
 		{
 			"path": "pages/classify/classify",
 			"style": {
-				"navigationBarTitleText": "分类"
+				"navigationBarTitleText": "分类",
+				"usingComponents": {
+				  "van-search": "@vant/weapp/search/index"
+				}
 			}
 		},
 		{
