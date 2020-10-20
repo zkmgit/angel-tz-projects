@@ -9,8 +9,8 @@
 			</swiper>
 		</view>
 		<!-- 搜索输入框 -->
-		<view class="search">
-			<input type="text" placeholder="输入搜索关键词" value="" />
+		<view class="search" @click="goodsList()">
+			<input type="text" placeholder="输入搜索关键词" value=""/>
 			<image src="/static/images/home/search.svg"></image>
 		</view>
 		<!-- 公告 跳转页面-->
@@ -37,7 +37,7 @@
 		<!-- 宫格分类 -->
 		<view class="category-box">
 			<view class="category-list" v-for="item in MenuDatasByHome" :key="item.id">
-				<view class="category-column">
+				<view class="category-column" @click="switchToCate(item.id)">
 					<image class="category-imgbox" :src="item.img"></image>
 					<view class="category-title">{{item.name}}</view>
 				</view>
@@ -129,7 +129,12 @@
 				</view>
 			</view>
 		</block>
-
+		<!-- 优惠价 -->
+		<view class='coupons-float'>
+			<navigator url="/pages/coupon/coupon">
+				<image src="/static/images/home/gift.png"/>
+			</navigator>
+		</view>
 	</view>
 </template>
 
@@ -146,17 +151,34 @@
 	export default {
 		data() {
 			return {
-				LunboData: [], // 轮播图
-				Announcement: [], // 公告
-				MenuDatasByHome: [], // 宫格分类
-				SeckillGoods: [], // 限时秒杀
-				RecommendedGoods: [], // 爆品推荐
+				LunboData: [], 			// 轮播图
+				Announcement: [], 		// 公告
+				MenuDatasByHome: [],	// 宫格分类
+				SeckillGoods: [], 		// 限时秒杀
+				RecommendedGoods: [], 	// 爆品推荐
 				time: 30 * 60 * 60 * 1000, // 倒计时
-				GoodsList: [], // 商品列表
-				SpellAGroupGoods: [], // 拼团
+				GoodsList: [],			 // 商品列表
+				SpellAGroupGoods: [],	 // 拼团
 			}
 		},
 		methods: {
+			// 搜索
+			goodsList(){
+				uni.switchTab({
+					// goodsList
+					url:`/pages/goodsList/goodsList`
+		
+				})
+			},
+			
+			// 宫格
+			switchToCate(id){
+				// this.$store.commit('changeCategoryId',{id:id});
+				uni.switchTab({
+					url:`/pages/classify/classify?id=`+ id
+				})
+			},
+			
 			// 轮播图
 			async getLunboData() {
 				var res = await getIndexLunbo();
@@ -361,9 +383,6 @@
 		border-radius: 16rpx;
 		display: flex;
 		padding: 20rpx;
-		// justify-content: space-between;
-		// flex-wrap: wrap;
-		// box-sizing: content-box;
 		.image {
 			width: 260rpx;
 			height: 260rpx;
@@ -519,5 +538,23 @@
 				bottom: 10rpx;
 			}
 		}
+	}
+
+	// 优惠卷
+	.coupons-float {
+	  position: fixed;
+	  right:15rpx;
+	  bottom:80rpx;
+	  width:80rpx;
+	  height:80rpx;
+	  background-color: #fff;
+	  text-align: center;
+	  border-radius:50%;
+	  border: 1rpx solid #ddd;
+	  image {
+	    width:60rpx;
+	    height:60rpx;
+	    margin-top: 10rpx;
+	  }
 	}
 </style>

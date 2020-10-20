@@ -128,11 +128,7 @@
             "style" : {
 				"navigationBarTitleText": "领卷中心",
 				"usingComponents": {
-<<<<<<< HEAD
 					"van-tag": "/wxcomponents/vant/dist/tag/index"
-=======
-				  "van-tag": "/wxcomponents/vant/dist/tag/index"
->>>>>>> 02bc9e3c9bb2b60aa4a4c797049da5491aa02168
 				  }
 			}
 		},

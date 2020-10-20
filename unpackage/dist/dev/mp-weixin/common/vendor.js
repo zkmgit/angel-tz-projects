@@ -1935,6 +1935,24 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ 125:
+/*!*********************************************************!*\
+  !*** D:/2020-毕业项目/temp/angel-tz-projects/api/coupon.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getPreferentialDatas = getPreferentialDatas;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//获取所有的优惠卷
+function getPreferentialDatas() {return _getPreferentialDatas.apply(this, arguments);}function _getPreferentialDatas() {_getPreferentialDatas = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+            url = "getPreferentialDatas";_context.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context.sent;return _context.abrupt("return",
+            res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getPreferentialDatas.apply(this, arguments);}
+
+/***/ }),
+
 /***/ 17:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
@@ -8909,13 +8927,13 @@ module.exports = g;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = isUserInfo;function isUserInfo() {
   // 判断用户是否授权
-  var userInfo = {};
-  try {
-    userInfo = uni.getStorageSync('user');
-  } catch (e) {
-    // error
-  }
-  return userInfo;
+  console.log(999);
+  var userInfo = uni.getStorageSync('user');
+  var token = uni.getStorageSync('token');
+  console.log(userInfo, token);
+  console.log(888);
+  if (userInfo != '' && token != '') return true;
+  return false;
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
