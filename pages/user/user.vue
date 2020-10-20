@@ -78,19 +78,19 @@
 			</view>
 		</view>
 		<view class="wire"></view>
-		<van-cell size="large" title-style="color:#000000" title="收货地址" is-link />
+		<van-cell size="large" title-style="color:#000000" title="收货地址" is-link @click='goUserAddr' />
 		<view class="wire"></view>
 		<van-cell size="large" title-style="color:#000000" title="资金明细" is-link />
 		<view class="margin"></view>
-		<van-cell size="large" title-style="color:#000000" title="我的收藏" is-link />
+		<van-cell size="large" title-style="color:#000000" title="我的收藏" is-link @click='goCollect'/>
 		<view class="wire"></view>
-		<van-cell size="large" title-style="color:#000000" title="领卷中心" is-link />
+		<van-cell size="large" title-style="color:#000000" title="领卷中心" is-link @click="goCoupon"/>
 		<view class="margin"></view>
-		<van-cell size="large" title-style="color:#000000" title="每日签到" is-link />
+		<van-cell size="large" title-style="color:#000000" title="每日签到" is-link @click="goSignin"/>
 		<view class="wire"></view>
 		<van-cell size="large" title-style="color:#000000" title="积分卷兑换积分" is-link />
 		<view class="wire"></view>
-		<van-cell size="large" title-style="color:#000000" title="积分兑换成长值" is-link />
+		<van-cell size="large" title-style="color:#000000" title="积分兑换成长值" is-link @click="goIntegral"/>
 		
 		<view class="phone">
 			<text>绑定手机</text>
@@ -129,6 +129,38 @@
 				
 			};
 		},
+		methods:{
+			goUserAddr(){
+				// 前往我的地址
+				uni.navigateTo({
+					url:'../userAddr/userAddr'
+				})
+			},
+			goCollect(){
+				// 前往我的收藏
+				uni.navigateTo({
+					url:'../collect/collect'
+				})
+			},
+			goSignin(){
+				// 前往每日签到
+				uni.navigateTo({
+					url:'../signin/signin'
+				})
+			},
+			goCoupon(){
+				// 前往领卷中心
+				uni.navigateTo({
+					url:'../coupon/coupon'
+				})
+			},
+			goIntegral(){
+				// 前往积分兑换成长值
+				uni.navigateTo({
+					url:'../integral/integral'
+				})
+			}
+		},
 		created(){
 			
 		},
@@ -139,7 +171,7 @@
 			// console.log('pages',pages);
 			// console.log('route',route);
 			
-			if(isUserInfo() == '') {
+			if(isUserInfo() == false) {
 				uni.redirectTo({					
 					url: `../authorization/authorization?route=${route}`
 				})

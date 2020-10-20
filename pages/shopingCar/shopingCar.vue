@@ -54,7 +54,7 @@
 				<van-checkbox :value="checked" @change="setCheck">全选</van-checkbox>
 				<view class="right" v-if="isShow">
 					<view class="price">
-						<text class="fs">合计</text>:￥0
+						<text class="fs">合计</text>:￥1111
 					</view>
 					<view class="btn" @click="settlementCar">
 						结算
@@ -69,6 +69,8 @@
 </template>
 
 <script>
+	import isUserInfo from '../../util/isarzt.js';
+	import { getShopingCarByUser } from '../../api/shopingCar.js';
 	export default {
 		data() {
 			return {
@@ -78,10 +80,27 @@
 				first:true
 			};
 		},
+		onLoad() {
+			let pages = getCurrentPages();
+			let route = pages[pages.length - 1].route;
+			if(isUserInfo() == false) {
+				uni.redirectTo({					
+					url: `../authorization/authorization?route=${route}`
+				})
+			}
+		},
 		methods:{
+			async getAllCar(){
+				// let token = uni.getStorage({
+					
+				// })
+				// let res = await getShopingCarByUser();
+				
+			},
 			onChange(event) {
 			    this.result = event.detail;
-				if(this.first){
+				
+				if(this.first){ 
 					this.checked = !this.checked;
 					this.first = !this.first;
 				}
@@ -90,7 +109,6 @@
 					this.checked = !this.checked;
 					this.first = !this.first;
 				}
-				// this.checked = !this.checked;
 				
 				
 			},
@@ -100,6 +118,7 @@
 			},
 			setCheck(){
 				this.checked = !this.checked;
+				this.first = !this.first;
 				if(this.checked){
 					this.result.push('a');
 					this.result.push('b');
@@ -114,6 +133,10 @@
 					    title: '请选中购物车的商品',
 					    duration: 2000
 					});
+				}else {
+					uni.navigateTo({
+						url:'../confirmOrder/confirmOrder'
+					})
 				}
 				console.log("结算",this.result);
 			},
@@ -133,7 +156,7 @@
 
 <style lang="scss">
 	.car-container {
-		background-color: #F4F5F9;
+		background-color: #F2F2F2;
 		height: 100vh;
 		font-size: 26rpx;
 		

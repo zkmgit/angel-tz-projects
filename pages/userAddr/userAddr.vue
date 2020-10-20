@@ -10,7 +10,7 @@
 						沙陇
 					</view>
 				</view>
-				<view class="img">
+				<view class="img" @click="goEditAddr">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
@@ -24,7 +24,7 @@
 						沙陇
 					</view>
 				</view>
-				<view class="img">
+				<view class="img" @click="goEditAddr">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
@@ -38,14 +38,14 @@
 						沙陇
 					</view>
 				</view>
-				<view class="img">
+				<view class="img" @click="goEditAddr">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
 		</view>
 	
 		<view class="fiexd">
-			<view class="footer">
+			<view class="footer" @click="goAddAddr">
 				<image src="../../static/images/userAddr/add.png" mode=""></image>
 				<view class="text">
 					新增收货地址
@@ -62,6 +62,20 @@
 			return {
 				
 			};
+		},
+		methods:{
+			goEditAddr(){
+				// 回显，编辑地址
+				uni.navigateTo({
+					url:'../editAddr/editAddr'
+				})
+			},
+			goAddAddr(){
+				// 新增地址
+				uni.navigateTo({
+					url:'../editAddr/editAddr'
+				})
+			}
 		}
 	}
 </script>
@@ -69,7 +83,6 @@
 <style lang="scss">
 	.userAddr-container {
 		background-color: #F4F5F9;
-		height: 100vh;
 		font-size: 28rpx;
 		padding-top: 20rpx;
 		
@@ -81,14 +94,14 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				border-bottom: 1rpx solid #ccc;
+				border-bottom: 1rpx solid #F0F0F0;
 				padding: 30rpx 0;
 				
 				.addr-info {
 					.street {
-						margin-top: 30rpx;
+						margin-top: 10rpx;
 						font-size: 24rpx;
-						color: #ccc;
+						color: #CBCBCB;
 					}
 				}
 				
@@ -114,7 +127,7 @@
 				display: flex;
 				justify-content: space-between;
 				padding: 20rpx 30rpx;
-				border-top: 1rpx solid #CCCCCC;
+				border-top: 1rpx solid #F0F0F0;
 			
 				.text {
 					flex: 1;

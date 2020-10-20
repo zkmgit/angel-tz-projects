@@ -1,4 +1,4 @@
-<template>
+【<template>
 	<view class="container">
 		<!-- 轮播图 已完成-->
 		<view class="swiper-container">
@@ -9,8 +9,8 @@
 			</swiper>
 		</view>
 		<!-- 搜索输入框 -->
-		<view class="search">
-			<input type="text" placeholder="输入搜索关键词" value="" />
+		<view class="search" @click="goodsList()">
+			<input type="text" placeholder="输入搜索关键词" value=""/>
 			<image src="/static/images/home/search.svg"></image>
 		</view>
 		<!-- 公告 跳转页面-->
@@ -18,11 +18,9 @@
 			<view class="notice">
 				<image class="notice_icon" src="/static/images/home/notice.png"></image>
 				<swiper class="notice_swiper" vertical autoplay circular>
-					<navigator url="/pages/announcementDatas/announcementDatas">
-						<swiper-item v-for="item in Announcement" :key="item.id">
-							<view class="notice_itemr">{{item.title}}</view>
-						</swiper-item>
-					</navigator>
+					<swiper-item>
+						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
+					</swiper-item>
 				</swiper>
 			</view>
 			<view class="more">
@@ -31,8 +29,8 @@
 		</view>
 		<!-- 宫格分类 -->
 		<view class="category-box">
-			<view class="category-list" v-for="item in MenuDatasByHome" :key="item.id">
-				<view class="category-column">
+			<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
+				<view class="category-column" @click="switchToCate(index)">
 					<image class="category-imgbox" :src="item.img"></image>
 					<view class="category-title">{{item.name}}</view>
 				</view>
@@ -45,7 +43,7 @@
 		<!-- 秒杀商品 -->
 		<block>
 			<van-divider contentPosition="center">限时秒杀</van-divider>
-			<view class="miaosha-goods-list" v-for="item in SeckillGoods" :if="item.id">
+			<view class="miaosha-goods-list" v-for="item in SeckillGoods" :key="item.id">
 				<image class="image" :src="item.show_img" />
 				<view class="right">
 					<view class="goods-title">{{item.name}}</view>
@@ -54,7 +52,9 @@
 					</view>
 					<view class="miaosha-price-btn">
 						<view class="price">￥{{item.original_price}} <text>￥{{item.now_price}}</text></view>
-						<van-button type="danger" size="small" round>立即抢购</van-button>
+						<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<van-button type="danger" size="small" round>立即抢购</van-button>
+						</navigator>
 					</view>
 				</view>
 			</view>
@@ -64,16 +64,18 @@
 			<van-divider contentPosition="center">爆品推荐</van-divider>
 			<view class="goods-container">
 				<view class="goods-box" v-for="item in RecommendedGoods" :key="item.id">
-					<view class="img-box">
-						<image :src="item.show_img" class="image" />
-					</view>
-					<view class="goods-title">{{item.name}}</view>
-					<view style='display:flex;'>
-						<view class="goods-price">¥ {{item.now_price}}</view>
-						<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
-							¥ {{item.original_price}}
+					<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+						<view class="img-box">
+							<image :src="item.show_img" class="image" />
 						</view>
-					</view>
+						<view class="goods-title">{{item.name}}</view>
+						<view style='display:flex;'>
+							<view class="goods-price">¥ {{item.now_price}}</view>
+							<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
+								¥ {{item.original_price}}
+							</view>
+						</view>
+					</navigator>
 				</view>
 			
 			</view>
@@ -93,31 +95,39 @@
 						<text class='original'>￥ {{item.original_price}}</text>
 					</view>
 					<view class="tuan-btn">
-						<button type="warn" size="mini">拼团</button>
+						<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<button type="warn" size="mini">拼团</button>
+						</navigator>
 					</view>
 				</view>
 			</view>
-
 		</block>
 		<!-- 商品列表 -->
 		<block>
 			<van-divider contentPosition="center">商品列表</van-divider>
 			<view class="goods-container">
 				<view class="goods-box" v-for="item in GoodsList" :key="item.id">
-					<view class="img-box">
-						<image :src="item.show_img" class="image" />
-					</view>
-					<view class="goods-title">{{item.name}}</view>
-					<view style='display:flex;'>
-						<view class="goods-price">¥ {{item.now_price}}</view>
-						<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
-							¥ {{item.original_price}}
+					<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+						<view class="img-box">
+							<image :src="item.show_img" class="image" />
 						</view>
-					</view>
+						<view class="goods-title">{{item.name}}</view>
+						<view style='display:flex;'>
+							<view class="goods-price">¥ {{item.now_price}}</view>
+							<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
+								¥ {{item.original_price}}
+							</view>
+						</view>
+					</navigator>
 				</view>
 			</view>
 		</block>
-
+		<!-- 优惠价 -->
+		<view class='coupons-float'>
+			<navigator url="/pages/coupon/coupon">
+				<image src="/static/images/home/gift.png"/>
+			</navigator>
+		</view>
 	</view>
 </template>
 
@@ -126,6 +136,7 @@
 		getIndexLunbo,
 		getAnnouncementDatas,
 		getMenuDatasByHome,
+		getClassifiedGoods,
 		getSeckillGoods,
 		getRecommendedGoods,
 		getGoodsList,
@@ -134,17 +145,35 @@
 	export default {
 		data() {
 			return {
-				LunboData: [], // 轮播图
-				Announcement: [], // 公告
-				MenuDatasByHome: [], // 宫格分类
-				SeckillGoods: [], // 限时秒杀
-				RecommendedGoods: [], // 爆品推荐
+				LunboData: [], 			// 轮播图
+				Announcement: [], 		// 公告
+				MenuDatasByHome: [],	// 宫格分类
+				SeckillGoods: [], 		// 限时秒杀
+				RecommendedGoods: [], 	// 爆品推荐
 				time: 30 * 60 * 60 * 1000, // 倒计时
-				GoodsList: [], // 商品列表
-				SpellAGroupGoods: [], // 拼团
+				GoodsList: [],			 // 商品列表
+				SpellAGroupGoods: [],	 // 拼团
 			}
 		},
 		methods: {
+			// 搜索
+			goodsList(){
+				uni.switchTab({
+					// goodsList
+					url:`/pages/goodsList/goodsList`
+		
+				})
+			},
+			
+			// 宫格分类id 
+			switchToCate:function(index){
+				console.log("点击index:"+index)
+				var data =  index
+				uni.setStorageSync('sell',data)
+				uni.switchTab({
+					url:`/pages/classify/classify`
+				})
+			},
 			// 轮播图
 			async getLunboData() {
 				var res = await getIndexLunbo();
@@ -187,7 +216,17 @@
 				// console.log(res);
 				this.SpellAGroupGoods = res;
 			},
+			// 公告详情
+			comment:function(title){
+				uni.navigateTo({
+					url: `/pages/announcementDetail/announcementDetail?title=${title}`
+				});
+			},
+		
 		},
+		// onLoad:function(option){				//opthin为object类型，会序列化上页面传递的参数
+		// 	console.log(option.title);			//打印出上页面传递的参数
+		// },
 		created() {
 			this.getLunboData();
 			this.getAnnouncementData();
@@ -339,7 +378,6 @@
 		border-radius: 16rpx;
 		display: flex;
 		padding: 20rpx;
-
 		.image {
 			width: 260rpx;
 			height: 260rpx;
@@ -360,9 +398,10 @@
 				padding: 8rpx 16rpx;
 				border-radius: 16rpx;
 				margin-top: 12rpx;
-
+				color: #f6f6f6;
 				van-count-down {
-					background: #f6f6f6;
+					background-color: #f6f6f6;
+					color: #f6f6f6;
 				}
 			}
 
@@ -494,5 +533,23 @@
 				bottom: 10rpx;
 			}
 		}
+	}
+
+	// 优惠卷
+	.coupons-float {
+	  position: fixed;
+	  right:15rpx;
+	  bottom:80rpx;
+	  width:80rpx;
+	  height:80rpx;
+	  background-color: #fff;
+	  text-align: center;
+	  border-radius:50%;
+	  border: 1rpx solid #ddd;
+	  image {
+	    width:60rpx;
+	    height:60rpx;
+	    margin-top: 10rpx;
+	  }
 	}
 </style>

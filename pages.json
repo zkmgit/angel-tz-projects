@@ -11,16 +11,16 @@
 			}
 		},
 		{
-				"path": "pages/orderList/orderList",
-				"style": {
-					"navigationBarTitleText": "订单列表",
-					"usingComponents": {
-					  "van-tab": "/wxcomponents/vant/dist/tab/index",
-					  "van-icon": "/wxcomponents/vant/dist/icon/index",
-					  "van-tabs": "/wxcomponents/vant/dist/tabs/index"
-					}
+			"path": "pages/orderList/orderList",
+			"style": {
+				"navigationBarTitleText": "订单列表",
+				"usingComponents": {
+					"van-tab": "/wxcomponents/vant/dist/tab/index",
+					"van-icon": "/wxcomponents/vant/dist/icon/index",
+					"van-tabs": "/wxcomponents/vant/dist/tabs/index"
 				}
-			},
+			}
+		},
 		{
 			"path": "pages/user/user",
 			"style": {
@@ -49,7 +49,10 @@
 		{
 			"path": "pages/classify/classify",
 			"style": {
-				"navigationBarTitleText": "分类"
+				"navigationBarTitleText": "分类",
+				"usingComponents": {
+				  "van-search": "/wxcomponents/vant/dist/search/index"
+				}
 			}
 		},
 		{
@@ -59,6 +62,7 @@
 				"usingComponents": {
 					"van-card": "/wxcomponents/vant/dist/card/index",
 					"van-cell": "/wxcomponents/vant/dist/cell/index",
+					"van-checkbox": "/wxcomponents/vant/dist/checkbox/index",
 					"van-picker": "/wxcomponents/vant/dist/picker/index",
 					"van-popup": "/wxcomponents/vant/dist/popup/index"
 				}
@@ -79,76 +83,82 @@
 				}
 			}
 		},
-			{
-				"path": "pages/editAddr/editAddr",
-				"style": {
-					"navigationBarTitleText": "收获地址",
-					"usingComponents": {
-					  "van-field": "/wxcomponents/vant/dist/field/index",
-					  "van-area": "/wxcomponents/vant/dist/area/index",
-					  "van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
-					}
-				}
-			},
-			{
-				"path": "pages/authorization/authorization",
-				"style": {}
-			}
-		    ,{
-            "path" : "pages/orderDetails/orderDetails",
-            "style" : {
-				"navigationBarTitleText": "订单详情"
-			}
-        }
-        ,{
-            "path" : "pages/userAddr/userAddr",
-            "style" : {
-				"navigationBarTitleText": "选择收货地址",
+		{
+			"path": "pages/editAddr/editAddr",
+			"style": {
+				"navigationBarTitleText": "收获地址",
 				"usingComponents": {
-				  "van-cell": "/wxcomponents/vant/dist/cell/index"
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-area": "/wxcomponents/vant/dist/area/index",
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-picker": "/wxcomponents/vant/dist/picker/index",
+					"van-popup": "/wxcomponents/vant/dist/popup/index"
 				}
-			}
-        }
-        ,{
-            "path" : "pages/collect/collect",
-            "style" : {
-				"navigationBarTitleText": "我的收藏"
-			}
-        }
-        ,{
-            "path" : "pages/signin/signin",
-            "style" : {
-				"navigationBarTitleText": "每日签到"
-			}
-        }
-        ,{
-            "path" : "pages/coupon/coupon",
-            "style" : {
-				"navigationBarTitleText": "领卷中心",
-				"usingComponents": {
-				  "van-tag": "/wxcomponents/vant/dist/tag/index"
-				  }
 			}
 		},
 		{
-            "path" : "pages/liveStreaming/liveStreaming",
-            "style" : {
+			"path": "pages/authorization/authorization",
+			"style": {}
+		}, {
+			"path": "pages/orderDetails/orderDetails",
+			"style": {
+				"navigationBarTitleText": "订单详情"
+			}
+		}, {
+			"path": "pages/userAddr/userAddr",
+			"style": {
+				"navigationBarTitleText": "选择收货地址",
+				"usingComponents": {
+					"van-cell": "/wxcomponents/vant/dist/cell/index"
+				}
+			}
+		}, {
+			"path": "pages/collect/collect",
+			"style": {
+				"navigationBarTitleText": "我的收藏",
+				"usingComponents": {
+					"van-divider": "/wxcomponents/vant/dist/divider/index"
+				}
+			}
+		}, {
+			"path": "pages/signin/signin",
+			"style": {
+				"navigationBarTitleText": "每日签到"
+			}
+		}, {
+			"path": "pages/coupon/coupon",
+			"style": {
+				"navigationBarTitleText": "领卷中心",
+				"usingComponents": {
+<<<<<<< HEAD
+				  "van-tag": "/wxcomponents/vant/dist/tag/index"
+				  }
+=======
+					"van-tag": "/wxcomponents/vant/dist/tag/index"
+				}
+>>>>>>> c15373f495be60851dbaa23e606d22b0da68d08d
+			}
+		},
+		{
+			"path": "pages/liveStreaming/liveStreaming",
+			"style": {
 				"navigationBarTitleText": "直播特卖",
 				"usingComponents": {
 					"van-button": "/wxcomponents/vant/dist/button/index"
 				}
 			}
-        }
-        ,{
-            "path" : "pages/integral/integral",
-            "style" : {
+		}, {
+			"path": "pages/integral/integral",
+			"style": {
 				"navigationBarTitleText": "积分兑换成长值",
 				"usingComponents": {
-				  "van-field": "/wxcomponents/vant/dist/field/index"
+					"van-field": "/wxcomponents/vant/dist/field/index",
+					"van-toast": "/wxcomponents/vant/dist/toast/index"
 				}
 			}
 		},
 		{
+<<<<<<< HEAD
             "path" : "pages/announcementDatas/announcementDatas",
             "style" : {}
         },
@@ -163,34 +173,53 @@
 			"navigationBarTitleText": "uni-app",
 			"navigationBarBackgroundColor": "#FFFFFF",
 			"backgroundColor": "#FFFFFF"
+=======
+			"path": "pages/announcementDatas/announcementDatas",
+			"style": {
+				"navigationBarTitleText": "公告"
+			}
+>>>>>>> c15373f495be60851dbaa23e606d22b0da68d08d
 		},
-		"tabBar": {
-			"color": "#7A7E83",
-			"selectedColor": "#FF0000",
-			"borderStyle": "black",
-			"backgroundColor": "#ffffff",
-			"list": [{
-					"pagePath": "pages/index/index",
-					"iconPath": "static/images/nav/home-off.png",
-					"selectedIconPath": "static/images/nav/home-on.png",
-					"text": "首页"
-				}, {
-					"pagePath": "pages/classify/classify",
-					"iconPath": "static/images/nav/ic_catefory_normal.png",
-					"selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
-					"text": "分类"
-				},
-				{
-					"pagePath": "pages/shopingCar/shopingCar",
-					"iconPath": "static/images/nav/cart-off.png",
-					"selectedIconPath": "static/images/nav/cart-on.png",
-					"text": "购物车"
-				}, {
-					"pagePath": "pages/user/user",
-					"iconPath": "static/images/nav/my-off.png",
-					"selectedIconPath": "static/images/nav/my-on.png",
-					"text": "我的"
-				}
-			]
+		{
+			"path": "pages/announcementDetail/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
 		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#FF0000",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/images/nav/home-off.png",
+				"selectedIconPath": "static/images/nav/home-on.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/classify/classify",
+				"iconPath": "static/images/nav/ic_catefory_normal.png",
+				"selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/shopingCar/shopingCar",
+				"iconPath": "static/images/nav/cart-off.png",
+				"selectedIconPath": "static/images/nav/cart-on.png",
+				"text": "购物车"
+			}, {
+				"pagePath": "pages/user/user",
+				"iconPath": "static/images/nav/my-off.png",
+				"selectedIconPath": "static/images/nav/my-on.png",
+				"text": "我的"
+			}
+		]
 	}
+}

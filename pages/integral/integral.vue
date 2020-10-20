@@ -18,7 +18,7 @@
 			  />
 		</view>
 		<!-- 立即兑换 -->
-		<view class="btn">
+		<view class="btn" @click="exchange">
 			立即兑换
 		</view>
 		
@@ -45,7 +45,9 @@
 			};
 		},
 		methods:{
-			
+			exchange(){
+				console.log('请输入积分数量');
+			}
 		}
 	}
 </script>
@@ -60,7 +62,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			background-color: #D6211C;
+			background-color: #E75653;
 			color: #FFFFFF;
 			padding: 40rpx 0;
 			
@@ -74,7 +76,7 @@
 		}
 		
 		.btn {
-			background-color: #FF0000;
+			background-color: #E64240;
 			color: #FFFFFF;
 			width: 90%;
 			height: 80rpx;

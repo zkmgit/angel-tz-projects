@@ -28,6 +28,8 @@ export default {
 		  })
 	  },
     bindGetUserInfo (e) {
+		let _this = this;
+		console.log("test")
       if (e.mp.detail.userInfo) {
         //用户按了允许授权按钮
         // console.log(e.mp.detail.userInfo)
@@ -58,7 +60,30 @@ export default {
 						'content-type': 'application/x-www-form-urlencoded'
 					} ,
 			      success: (res) => {
-			          console.log(res.data);
+			          console.log("data",res.data.token);
+					  uni.setStorage({
+					    key: 'token',
+					    data: res.data
+					  })
+					  // 缓存用户信息
+					  uni.setStorage({
+					    key: 'user',
+					    data: e.mp.detail.userInfo
+					  })
+					  
+					  if(_this.prePage.indexOf("index") > 0 || _this.prePage.indexOf("shopingCar") > 0 || _this.prePage.indexOf("user") > 0 ){
+						  console.log("switchTab");
+						  uni.switchTab({
+						  	url: _this.prePage
+						  })
+					  }else{
+						  console.log("navigateTo");
+						  uni.navigateTo({
+						  	url: _this.prePage
+						  })
+					  }
+					  
+					  
 			      }
 			  });
 		    
@@ -73,18 +98,7 @@ export default {
 		// 每次启动进入 app.vue  onlaunch生命周期
 		// 每次进来的时候，可以检测是否有token, 无，则 执行 1 2 3 4
 		// 有token  则 执行  3 4
-		
-		
-        // 缓存用户信息
-        uni.setStorage({
-          key: 'user',
-          data: e.mp.detail.userInfo
-        })
-		
-		uni.switchTab({
-			url: this.prePage
-		})
-        
+		        
       } else {
         uni.showModal({
           title: '警告',
@@ -107,7 +121,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 	.footer {
 		padding: 20rpx;
 		.btn {
@@ -122,22 +136,22 @@ export default {
 	
 .login{
     padding: 10% 0 0 0;
-    &__title{
+    .login__title{
       color: #FDBB0D;
       font-size: 25px;
       text-align: center
     }
-    &__m1{
+    .login__m1{
       color: #282828;
       font-size: 20px;
       margin: 4% 0 0 4%;
     }
-    &__m2{
+    .login__m2{
       color: #9d9d9d;
       font-size: 20px;
       margin: 4% 0 0 4%;
     }
-    &__btn{
+    .login__btn{
       width: 94%;
       background-color: #FDBB0D;
       margin-top: 5%;
