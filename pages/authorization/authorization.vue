@@ -28,6 +28,8 @@ export default {
 		  })
 	  },
     bindGetUserInfo (e) {
+		let _this = this;
+		console.log("test")
       if (e.mp.detail.userInfo) {
         //用户按了允许授权按钮
         // console.log(e.mp.detail.userInfo)
@@ -59,6 +61,20 @@ export default {
 					} ,
 			      success: (res) => {
 			          console.log(res.data);
+					  uni.setStorage({
+					    key: 'token',
+					    data: res.data
+					  })
+					  // 缓存用户信息
+					  uni.setStorage({
+					    key: 'user',
+					    data: e.mp.detail.userInfo
+					  })
+					  
+					  uni.switchTab({
+					  	url: _this.prePage
+					  })
+					  
 			      }
 			  });
 		    
@@ -73,18 +89,7 @@ export default {
 		// 每次启动进入 app.vue  onlaunch生命周期
 		// 每次进来的时候，可以检测是否有token, 无，则 执行 1 2 3 4
 		// 有token  则 执行  3 4
-		
-		
-        // 缓存用户信息
-        uni.setStorage({
-          key: 'user',
-          data: e.mp.detail.userInfo
-        })
-		
-		uni.switchTab({
-			url: this.prePage
-		})
-        
+		        
       } else {
         uni.showModal({
           title: '警告',
