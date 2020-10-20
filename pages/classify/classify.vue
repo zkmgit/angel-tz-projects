@@ -1,13 +1,12 @@
 <template>
 	<view class="category-wrap">
-			<!-- <van-search value="" placeholder="请输入搜索关键词" @click="change" :use-right-icon-slot="true"/> -->
-			
-			<van-search
-			  shape="round"
-			  background="rgba($color: #000000, $alpha: 0);"
-			  placeholder="输入搜索关键词"
-			  @click="change"
-			/>
+		<!-- <van-search value="" placeholder="请输入搜索关键词" @click="change" :use-right-icon-slot="true"/> -->
+		<!-- van-search shape="round" background="rgba($color: #000000, $alpha: 0);" placeholder="输入搜索关键词" @click="change" />
+		-->
+		<view class="search" @click="change">
+			<input type="text" placeholder="输入搜索关键词" value="" />
+			<image src="/static/images/category/search.svg"></image>
+		</view>
 		<category :categoryList="categoryList" :subCategoryList="subCategoryList" @categoryMainClick="categoryMainClick"
 		 @categorySubClick="categorySubClick"></category>
 	</view>
@@ -15,9 +14,14 @@
 
 <script>
 	import category from "../../components/qiyue-category/qiyue-category.vue"
-	import { getClassifiedGoods, getMenuDatasByHome} from "../../api/classifiedGoodsApi.js";
+	import {
+		getClassifiedGoods,
+		getMenuDatasByHome
+	} from "../../api/classifiedGoodsApi.js";
 	export default {
-		components: { category, },
+		components: {
+			category,
+		},
 		data() {
 			return {
 				categoryList: [],
@@ -30,35 +34,66 @@
 		},
 		methods: {
 			categoryMainClick(category) {
-				this.subCategoryList = this.getClassifiedGoodsData(category.id) ;
+				this.subCategoryList = this.getClassifiedGoodsData(category.id);
 			},
 			categorySubClick(category) {
-				console.log(456)
+				
 				console.log(category);
+				uni.navigateTo({
+					url: `/pages/goodsDetail/goodsDetail?goodsId=`+category.id
+				})
 			},
-			async getClassifiedGoodsData(classificationId){
+			async getClassifiedGoodsData(classificationId) {
 				var data = await getClassifiedGoods(classificationId);
 				this.subCategoryList = data;
 			},
-			async getMenuDatasByHomeData(){
+			async getMenuDatasByHomeData() {
 				var data = await getMenuDatasByHome();
 				this.categoryList = data;
 			},
-			change(){
+			change() {
 				// 跳转到的地址
 				uni.navigateTo({
-					url:"/"
+					url: `/pages/goodsList/goodsList`
 				})
 			}
-				
+
 		},
 		mounted() {
-			this.getClassifiedGoodsData(1) 
+			this.getClassifiedGoodsData(1)
 			this.getMenuDatasByHomeData();
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
+	.search {
+		position: absolute;
+		top: 32rpx;
+		left: 25rpx;
+		width: 700rpx;
+		height: 66rpx;
+		display: block;
+		box-sizing: border-box;
 
+		input {
+			display: block;		
+			box-sizing: border-box;
+			background: rgba(255, 255, 255, 0.8);
+			border: 1rpx solid #e3e3e3;
+			width: 700rpx;
+			height: 66rpx;
+			border-radius: 30rpx;
+			padding-left: 32rpx;
+		}
+
+		image {
+			width: 35rpx;
+			height: 35rpx;
+			position: absolute;
+			top: 16rpx;
+			right: 32rpx;
+			z-index: 99;
+		}
+	}
 </style>
