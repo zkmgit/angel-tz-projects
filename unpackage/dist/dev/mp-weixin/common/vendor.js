@@ -8980,6 +8980,32 @@ function getShopingCarByUser(_x) {return _getShopingCarByUser.apply(this, argume
 /***/ }),
 
 /***/ 56:
+/*!*********************************************************************!*\
+  !*** D:/2020-毕业项目/temp/angel-tz-projects/api/classifiedGoodsApi.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getClassifiedGoods = getClassifiedGoods;exports.getMenuDatasByHome = getMenuDatasByHome;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//根据分类id获取对应的分类商品信息
+function getClassifiedGoods(_x) {return _getClassifiedGoods.apply(this, arguments);}
+
+
+
+
+
+
+//获取首页八宫格数据信息
+function _getClassifiedGoods() {_getClassifiedGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(classificationId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getClassifiedGoods?classificationId=".concat(classificationId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getClassifiedGoods.apply(this, arguments);}function getMenuDatasByHome() {return _getMenuDatasByHome.apply(this, arguments);}function _getMenuDatasByHome() {_getMenuDatasByHome = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            url = "getMenuDatasByHome";_context2.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
+            res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getMenuDatasByHome.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 73:
 /*!*****************************************************************!*\
   !*** D:/2020-毕业项目/temp/angel-tz-projects/api/goodsDetailApi.js ***!
   \*****************************************************************/
@@ -9048,32 +9074,6 @@ function _delCollection() {_delCollection = _asyncToGenerator( /*#__PURE__*/_reg
             url = "getCollectionByOpenid?token=".concat(token);_context8.next = 3;return (
               (0, _request.default)(url));case 3:res = _context8.sent;return _context8.abrupt("return",
             res.data);case 5:case "end":return _context8.stop();}}}, _callee8);}));return _getCollectionByOpenid.apply(this, arguments);}
-
-/***/ }),
-
-/***/ 81:
-/*!*********************************************************************!*\
-  !*** D:/2020-毕业项目/temp/angel-tz-projects/api/classifiedGoodsApi.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getClassifiedGoods = getClassifiedGoods;exports.getMenuDatasByHome = getMenuDatasByHome;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-
-//根据分类id获取对应的分类商品信息
-function getClassifiedGoods(_x) {return _getClassifiedGoods.apply(this, arguments);}
-
-
-
-
-
-
-//获取首页八宫格数据信息
-function _getClassifiedGoods() {_getClassifiedGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(classificationId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getClassifiedGoods?classificationId=".concat(classificationId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getClassifiedGoods.apply(this, arguments);}function getMenuDatasByHome() {return _getMenuDatasByHome.apply(this, arguments);}function _getMenuDatasByHome() {_getMenuDatasByHome = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-            url = "getMenuDatasByHome";_context2.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
-            res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getMenuDatasByHome.apply(this, arguments);}
 
 /***/ })
 

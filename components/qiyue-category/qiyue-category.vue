@@ -147,6 +147,7 @@
 	.nav {
 		display: flex;
 		width: 100%;
+		padding-top: 140rpx;
 	}
 
 	.nav-left {
