@@ -16,6 +16,10 @@
 				subCategoryList: []
 			};
 		},
+		async onLoad(options) {
+			let id = options.id;
+			console.log(id)
+		},
 		methods: {
 			categoryMainClick(category) {
 				this.subCategoryList = category.subCategoryList;
@@ -44,7 +48,5 @@
 </script>
 
 <style lang="scss">
-
-
 
 </style>

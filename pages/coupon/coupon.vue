@@ -68,6 +68,10 @@
 				 couponData:[]
 			};
 		},
+		async onLoad(options) {
+			let id = options.id;
+			console.log(id)
+		},
 		methods: {
 			setSelected(key){
 				if(key == 0) {

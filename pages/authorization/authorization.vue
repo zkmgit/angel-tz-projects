@@ -60,7 +60,7 @@ export default {
 						'content-type': 'application/x-www-form-urlencoded'
 					} ,
 			      success: (res) => {
-			          console.log(res.data);
+			          console.log("data",res.data.token);
 					  uni.setStorage({
 					    key: 'token',
 					    data: res.data
@@ -71,9 +71,18 @@ export default {
 					    data: e.mp.detail.userInfo
 					  })
 					  
-					  uni.switchTab({
-					  	url: _this.prePage
-					  })
+					  if(_this.prePage.indexOf("index") > 0 || _this.prePage.indexOf("shopingCar") > 0 || _this.prePage.indexOf("user") > 0 ){
+						  console.log("switchTab");
+						  uni.switchTab({
+						  	url: _this.prePage
+						  })
+					  }else{
+						  console.log("navigateTo");
+						  uni.navigateTo({
+						  	url: _this.prePage
+						  })
+					  }
+					  
 					  
 			      }
 			  });
