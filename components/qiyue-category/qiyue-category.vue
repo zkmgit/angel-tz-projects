@@ -181,10 +181,12 @@
 	.nav-right-item {
 		float: left;
 		text-align: center;
-		padding: 5px;
+		/* padding: 5px; */
 		font-size: 13px;
 		display: flex;
+		padding: 0rpx 20rpx;
 		border-bottom: 1px solid #f7f7f7;
+		align-items: center;
 	}
 
 	.nav-right-item image {

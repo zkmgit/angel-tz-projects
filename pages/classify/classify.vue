@@ -1,13 +1,13 @@
 <template>
 	<view class="category-wrap">
-			<van-search value="" placeholder="请输入搜索关键词" @click="change" :use-right-icon-slot="true"/>
+			<!-- <van-search value="" placeholder="请输入搜索关键词" @click="change" :use-right-icon-slot="true"/> -->
 			
-			<!-- <van-search
+			<van-search
 			  shape="round"
 			  background="rgba($color: #000000, $alpha: 0);"
-			  
-			  placeholder="请输入搜索关键词"
-			/> -->
+			  placeholder="输入搜索关键词"
+			  @click="change"
+			/>
 		<category :categoryList="categoryList" :subCategoryList="subCategoryList" @categoryMainClick="categoryMainClick"
 		 @categorySubClick="categorySubClick"></category>
 	</view>
