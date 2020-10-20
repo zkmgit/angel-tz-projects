@@ -9,7 +9,7 @@
 		<view class="coupon-list" v-if="isShow">
 			<view class="coupon-item" v-for="item in couponData">
 				<view class="img">
-					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+					<image src="../../static/images/coupon/coupons-active.svg" mode=""></image>
 				</view>
 				
 				<view class="info">
@@ -18,7 +18,12 @@
 						<text class="text">{{ item.title }}</text>
 					</view>
 					<view class="center">
-						<text class="small">{{ item.condition }}</text><text class="color">￥<text class="size">{{ item.money }}</text></text>
+						<view class="">
+							
+						</view>
+						<view class="right">
+							<text class="small">{{ item.condition }}</text><text class="color">￥<text class="size">{{ item.money }}</text></text>
+						</view>
 					</view>
 					<view class="footer">
 						立即领取
@@ -26,6 +31,12 @@
 				</view>
 			</view>
 			
+		</view>
+		<view class="empty" v-else>
+			<image src="../../static/images/coupon/coupons-empty.svg" mode=""></image>
+			<view class="text">
+				暂无优惠卷
+			</view>
 		</view>
 		
 	</view>
@@ -98,21 +109,22 @@
 			background-color: #EEEEEE;
 			
 			.tag-item {
-				background-color: #EDEAE9;
+				background-color: #EEEEEE;
 				width: 33%;
 				text-align: center;
 				padding: 30rpx 0;
 			}
 			
 			.selected {
-				color: #FFD121;
+				color: #FEB31C;
+				// color: #FFD121;
 				background-color: #FFFFFF;
 			}
 		}
 	
 		.coupon-list {
-			background-color: #F4F5F9;
-			padding: 20rpx 20rpx 0;
+			background-color: #F7F8FA;
+			padding: 0rpx 20rpx 0;
 			
 			.coupon-item {
 				display: flex;
@@ -120,7 +132,7 @@
 				align-items: center;
 				background-color: #FFFFFF;
 				padding: 30rpx 0;
-				box-shadow: 5px 5px #EEEEEE;
+				box-shadow: 2px 2px #EEEEEE;
 				margin-top: 20rpx;
 				
 				.img {
@@ -135,6 +147,8 @@
 				}
 				
 				.info {
+					display: flex;
+					flex-direction: column;
 					.top {
 						.text {
 							margin-right: 20rpx;
@@ -143,19 +157,28 @@
 					}
 					
 					.center {
+						display: flex;
+						justify-content: space-between;
+						align-items: flex-start;
 						margin-top: 20rpx;
 						margin-bottom: 20rpx;
-						margin-left: 115rpx;
-						.small {
-							font-size: 18rpx;
-							margin-right: 20rpx;
-						}
-						.color {
-							color: #FFD121;
-							.size {
-								font-size: 40rpx;
+						margin-right: 20rpx;
+						
+						.right {
+							.small {
+								font-size: 18rpx;
+								margin-right: 20rpx;
+								color: #9C9C9C;
+							}
+							.color {
+								color: #FFD121;
+								.size {
+									font-size: 40rpx;
+								}
 							}
 						}
+						
+						
 					}
 					
 					.footer {
@@ -169,6 +192,24 @@
 						font-size: 24rpx;
 					}
 				}
+			}
+		}
+	
+		.empty {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin-top: 70rpx;
+				
+			image {
+				width: 150rpx;
+				height: 150rpx;
+				margin-bottom: 40rpx;
+			}
+			
+			.text {
+				
 			}
 		}
 	}
