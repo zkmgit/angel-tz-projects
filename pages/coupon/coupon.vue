@@ -6,8 +6,8 @@
 			</view>
 		</view>
 		
-		<view class="coupon-list">
-			<view class="coupon-item">
+		<view class="coupon-list" v-if="isShow">
+			<view class="coupon-item" v-for="item in couponData">
 				<view class="img">
 					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
 				</view>
@@ -15,10 +15,10 @@
 				<view class="info">
 					<view class="top">
 						<van-tag color="#FFD121">代金券</van-tag>
-						<text class="text">一人一份</text>
+						<text class="text">{{ item.title }}</text>
 					</view>
 					<view class="center">
-						<text class="small">满0</text><text class="color">￥<text class="size">1</text></text>
+						<text class="small">{{ item.condition }}</text><text class="color">￥<text class="size">{{ item.money }}</text></text>
 					</view>
 					<view class="footer">
 						立即领取
@@ -26,33 +26,17 @@
 				</view>
 			</view>
 			
-			<view class="coupon-item">
-				<view class="img">
-					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-				</view>
-				
-				<view class="info">
-					<view class="top">
-						<van-tag color="#FFD121">代金券</van-tag>
-						<text class="text">一人一份</text>
-					</view>
-					<view class="center">
-						<text class="small">满0</text><text class="color">￥<text class="size">1</text></text>
-					</view>
-					<view class="footer">
-						立即领取
-					</view>
-				</view>
-			</view>
 		</view>
 		
 	</view>
 </template>
 
 <script>
+	import { getPreferentialDatas } from '../../api/coupon.js';
 	export default {
 		data() {
 			return {
+				isShow:true,
 				 tagList:[
 					 {
 						 "index": 0,
@@ -69,17 +53,31 @@
 					 	"title": "已失效",
 					 	"selected": "false"
 					 }
-				 ]
+				 ],
+				 couponData:[]
 			};
 		},
 		methods: {
 			setSelected(key){
-				console.log(key)
+				if(key == 0) {
+					this.isShow = true;
+				}else {
+					this.isShow = false;
+				}
 				this.tagList.map(v=>{
 					v.selected = "false"
 				})
 				this.tagList[key].selected = "true";
+			},
+			// 获取优惠卷
+			async getCouponData(){
+				let res = await getPreferentialDatas();
+				console.log(res);
+				this.couponData = res;
 			}
+		},
+		created(){
+			this.getCouponData();
 		}
 	}
 </script>
@@ -93,7 +91,7 @@
 		.tag {
 			display: flex;
 			justify-content: space-around;
-			background-color: #E1F3D8;
+			background-color: #EEEEEE;
 			
 			.tag-item {
 				background-color: #EDEAE9;

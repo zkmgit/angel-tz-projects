@@ -10,7 +10,7 @@
 						沙陇
 					</view>
 				</view>
-				<view class="img">
+				<view class="img" @click="goEditAddr">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
@@ -24,7 +24,7 @@
 						沙陇
 					</view>
 				</view>
-				<view class="img">
+				<view class="img" @click="goEditAddr">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
@@ -38,14 +38,14 @@
 						沙陇
 					</view>
 				</view>
-				<view class="img">
+				<view class="img" @click="goEditAddr">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
 		</view>
 	
 		<view class="fiexd">
-			<view class="footer">
+			<view class="footer" @click="goAddAddr">
 				<image src="../../static/images/userAddr/add.png" mode=""></image>
 				<view class="text">
 					新增收货地址
@@ -62,6 +62,20 @@
 			return {
 				
 			};
+		},
+		methods:{
+			goEditAddr(){
+				// 回显，编辑地址
+				uni.navigateTo({
+					url:'../editAddr/editAddr'
+				})
+			},
+			goAddAddr(){
+				// 新增地址
+				uni.navigateTo({
+					url:'../editAddr/editAddr'
+				})
+			}
 		}
 	}
 </script>

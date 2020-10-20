@@ -86,7 +86,9 @@
 					"usingComponents": {
 					  "van-field": "/wxcomponents/vant/dist/field/index",
 					  "van-area": "/wxcomponents/vant/dist/area/index",
-					  "van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+					  "van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					  "van-picker": "/wxcomponents/vant/dist/picker/index",
+					  "van-popup": "/wxcomponents/vant/dist/popup/index"
 					}
 				}
 			},
@@ -126,9 +128,9 @@
             "style" : {
 				"navigationBarTitleText": "领卷中心",
 				"usingComponents": {
-				  "van-tag": "/wxcomponents/vant/dist/tag/index",
-				  },
-			},
+					"van-tag": "/wxcomponents/vant/dist/tag/index"
+				  }
+			}
 		},
 		{
             "path" : "pages/liveStreaming/liveStreaming",
