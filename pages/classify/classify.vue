@@ -16,9 +16,9 @@
 				subCategoryList: []
 			};
 		},
-		async onLoad(options) {
-			let id = options.id;
-			console.log(id)
+		onLoad(options){
+			console.log("接收id:"+options.classificationId)
+			this.getAnnouncementDetailsByIdData(options.classificationId);
 		},
 		methods: {
 			categoryMainClick(category) {

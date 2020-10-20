@@ -45,7 +45,6 @@
 		},
 		onLoad(options){
 			console.log(options)
-			
 			this.getAnnouncementDetailsByIdData(options.title);
 		}
 	}

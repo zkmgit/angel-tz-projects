@@ -278,6 +278,7 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
 
 
 
+
 {
   data: function data() {
     return {
@@ -301,14 +302,13 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
 
     },
 
-    // 宫格
-    switchToCate: function switchToCate(id) {
-      // this.$store.commit('changeCategoryId',{id:id});
+    // 宫格分类id 
+    switchToCate: function switchToCate(classificationId) {
+      console.log("点击id:" + classificationId);
       uni.switchTab({
-        url: "/pages/classify/classify?id=" + id });
+        url: "/pages/classify/classify?classificationId=".concat(classificationId) });
 
     },
-
     // 轮播图
     getLunboData: function getLunboData() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                   (0, _homeApi.getIndexLunbo)());case 2:res = _context.sent;

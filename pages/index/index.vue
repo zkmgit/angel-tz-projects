@@ -108,7 +108,7 @@
 			<view class="goods-container">
 				<view class="goods-box" v-for="item in GoodsList" :key="item.id">
 					<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-						<view class="img-box" @click="switchToCate(cateItem.id)">
+						<view class="img-box">
 							<image :src="item.show_img" class="image" />
 						</view>
 						<view class="goods-title">{{item.name}}</view>
@@ -136,6 +136,7 @@
 		getIndexLunbo,
 		getAnnouncementDatas,
 		getMenuDatasByHome,
+		getClassifiedGoods,
 		getSeckillGoods,
 		getRecommendedGoods,
 		getGoodsList,
@@ -164,14 +165,13 @@
 				})
 			},
 			
-			// 宫格
-			switchToCate(id){
-				// this.$store.commit('changeCategoryId',{id:id});
+			// 宫格分类id 
+			switchToCate:function(classificationId){
+				console.log("点击id:"+classificationId)
 				uni.switchTab({
-					url:`/pages/classify/classify?id=`+ id
+					url:`/pages/classify/classify?classificationId=${classificationId}`
 				})
 			},
-			
 			// 轮播图
 			async getLunboData() {
 				var res = await getIndexLunbo();
