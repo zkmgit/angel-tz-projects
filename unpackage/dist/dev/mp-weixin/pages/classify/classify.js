@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));
 
 
 
@@ -137,43 +137,61 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _goodsDetailApi = __webpack_require__(/*! ../../api/goodsDetailApi.js */ 56);var category = function category() {__webpack_require__.e(/*! require.ensure | components/qiyue-category/qiyue-category */ "components/qiyue-category/qiyue-category").then((function () {return resolve(__webpack_require__(/*! ../../components/qiyue-category/qiyue-category.vue */ 161));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+var _classifiedGoodsApi = __webpack_require__(/*! ../../api/classifiedGoodsApi.js */ 81);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var category = function category() {__webpack_require__.e(/*! require.ensure | components/qiyue-category/qiyue-category */ "components/qiyue-category/qiyue-category").then((function () {return resolve(__webpack_require__(/*! ../../components/qiyue-category/qiyue-category.vue */ 161));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   components: { category: category },
   data: function data() {
     return {
       categoryList: [],
-      subCategoryList: [] };
+      subCategoryList: [],
+      activeIndex: 0 };
 
   },
   onLoad: function onLoad(options) {
-    console.log("接收id:" + options.classificationId);
-    this.getAnnouncementDetailsByIdData(options.classificationId);
+    var res = uni.getStorageSync('sell');
+    this.activeIndex = res;
+    console.log("接收index:" + this.activeIndex);
+    // this.getAnnouncementDetailsByIdData(classificationId);
+  },
+  onShow: function onShow() {
   },
   methods: {
     categoryMainClick: function categoryMainClick(category) {
-      this.subCategoryList = category.subCategoryList;
+      this.subCategoryList = this.getClassifiedGoodsData(category.id);
+      console.log("接收id:" + category.id);
     },
     categorySubClick: function categorySubClick(category) {
+      console.log(456);
       console.log(category);
+    },
+    getClassifiedGoodsData: function getClassifiedGoodsData(classificationId) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  (0, _classifiedGoodsApi.getClassifiedGoods)(classificationId));case 2:data = _context.sent;
+                _this.subCategoryList = data;case 4:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    getMenuDatasByHomeData: function getMenuDatasByHomeData() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var data;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  (0, _classifiedGoodsApi.getMenuDatasByHome)());case 2:data = _context2.sent;
+                _this2.categoryList = data;case 4:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
+    change: function change() {
+      // 跳转到的地址
+      uni.navigateTo({
+        url: "/" });
+
     } },
 
   mounted: function mounted() {
-    for (var i = 0; i < 20; i++) {
-      var subList = [];
-      for (var j = 0; j < 30; j++) {
-        subList.push({
-          "name": "儿童睡衣男童短袖" + i + "0 " + j,
-          "logo": "http://placehold.it/50x50" });
-
-      }
-      this.categoryList.push({
-        "name": "分类" + i,
-        "subCategoryList": subList });
-
-    }
-    this.subCategoryList = this.categoryList[0].subCategoryList;
+    this.getClassifiedGoodsData(1);
+    this.getMenuDatasByHomeData();
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

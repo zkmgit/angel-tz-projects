@@ -29,8 +29,8 @@
 		</view>
 		<!-- 宫格分类 -->
 		<view class="category-box">
-			<view class="category-list" v-for="item in MenuDatasByHome" :key="item.id">
-				<view class="category-column" @click="switchToCate(item.id)">
+			<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
+				<view class="category-column" @click="switchToCate(index)">
 					<image class="category-imgbox" :src="item.img"></image>
 					<view class="category-title">{{item.name}}</view>
 				</view>
@@ -166,10 +166,12 @@
 			},
 			
 			// 宫格分类id 
-			switchToCate:function(classificationId){
-				console.log("点击id:"+classificationId)
+			switchToCate:function(index){
+				console.log("点击index:"+index)
+				var data =  index
+				uni.setStorageSync('sell',data)
 				uni.switchTab({
-					url:`/pages/classify/classify?classificationId=${classificationId}`
+					url:`/pages/classify/classify`
 				})
 			},
 			// 轮播图

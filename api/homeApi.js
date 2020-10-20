@@ -24,11 +24,11 @@ export async function getMenuDatasByHome(){
 	let res = await request(url);
 	return res.data.message;
 }
-export async function getClassifiedGoods(classificationId){
-	let url = `getClassifiedGoods?classificationId=${classificationId}`;
-	let res = await request(url);
-	return res.data.message[0];
-}
+// export async function getClassifiedGoods(classificationId){
+// 	let url = `getClassifiedGoods?classificationId=${classificationId}`;
+// 	let res = await request(url);
+// 	return res.data.message[0];
+// }
 // 直播公告
 export async function getRooms(){
 	let url = `getRooms`;

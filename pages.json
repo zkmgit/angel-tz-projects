@@ -51,7 +51,7 @@
 			"style": {
 				"navigationBarTitleText": "分类",
 				"usingComponents": {
-					"van-search": "/wxcomponents/vant/dist/search/index"
+				  "van-search": "/wxcomponents/vant/dist/search/index"
 				}
 			}
 		},

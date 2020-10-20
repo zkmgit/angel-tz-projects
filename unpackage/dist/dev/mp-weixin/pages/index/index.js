@@ -303,10 +303,12 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
     },
 
     // 宫格分类id 
-    switchToCate: function switchToCate(classificationId) {
-      console.log("点击id:" + classificationId);
+    switchToCate: function switchToCate(index) {
+      console.log("点击index:" + index);
+      var data = index;
+      uni.setStorageSync('sell', data);
       uni.switchTab({
-        url: "/pages/classify/classify?classificationId=".concat(classificationId) });
+        url: "/pages/classify/classify" });
 
     },
     // 轮播图
