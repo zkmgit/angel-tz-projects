@@ -172,6 +172,7 @@
 				this.show = false;
 			 },
 			 onChange(event) {
+				 console.log(event);
 			     const { picker, value, index } = event.detail;
 			     console.log(`当前值：${value}, 当前索引：${index},${picker}`);
 				this.discount = value;
