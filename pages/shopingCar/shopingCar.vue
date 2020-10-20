@@ -70,6 +70,7 @@
 
 <script>
 	import isUserInfo from '../../util/isarzt.js';
+	import { getShopingCarByUser } from '../../api/shopingCar.js';
 	export default {
 		data() {
 			return {
@@ -89,6 +90,13 @@
 			}
 		},
 		methods:{
+			async getAllCar(){
+				// let token = uni.getStorage({
+					
+				// })
+				// let res = await getShopingCarByUser();
+				
+			},
 			onChange(event) {
 			    this.result = event.detail;
 				
