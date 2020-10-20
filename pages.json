@@ -79,6 +79,7 @@
 				}
 			}
 		},
+
 		{
 			"path": "pages/editAddr/editAddr",
 			"style": {
@@ -86,19 +87,23 @@
 				"usingComponents": {
 					"van-field": "/wxcomponents/vant/dist/field/index",
 					"van-area": "/wxcomponents/vant/dist/area/index",
-					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index"
+					"van-cell-group": "/wxcomponents/vant/dist/cell-group/index",
+					"van-picker": "/wxcomponents/vant/dist/picker/index",
+					"van-popup": "/wxcomponents/vant/dist/popup/index"
 				}
 			}
 		},
 		{
 			"path": "pages/authorization/authorization",
 			"style": {}
-		}, {
+		},
+		{
 			"path": "pages/orderDetails/orderDetails",
 			"style": {
 				"navigationBarTitleText": "订单详情"
 			}
-		}, {
+		},
+		{
 			"path": "pages/userAddr/userAddr",
 			"style": {
 				"navigationBarTitleText": "选择收货地址",
@@ -106,17 +111,20 @@
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/collect/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏"
 			}
-		}, {
+		},
+		{
 			"path": "pages/signin/signin",
 			"style": {
 				"navigationBarTitleText": "每日签到"
 			}
-		}, {
+		},
+		{
 			"path": "pages/coupon/coupon",
 			"style": {
 				"navigationBarTitleText": "领卷中心",
@@ -133,7 +141,8 @@
 					"van-button": "/wxcomponents/vant/dist/button/index"
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/integral/integral",
 			"style": {
 				"navigationBarTitleText": "积分兑换成长值",

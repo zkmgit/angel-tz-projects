@@ -95,7 +95,7 @@
 			<view class="line">
 				
 			</view>
-			<view class="addr">
+			<view class="addr" @click="goAddAddr">
 				<image class="img" src="/static/images/confirmOrder/add.png" mode=""></image>
 				<text>新增收货地址</text>
 			</view>
@@ -153,6 +153,11 @@
 			};
 		},
 		methods:{
+			goAddAddr(){
+				uni.navigateTo({
+					url:'../editAddr/editAddr'
+				})
+			},
 			determine(){
 				// 选中优惠并退出
 				this.onClose();

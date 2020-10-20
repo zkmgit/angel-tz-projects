@@ -43,12 +43,16 @@
 <script>
 	import imgsBanner from '../../components/imgsBanner-tag/imgsBanner-tag.vue';
 	import echoneSku from '@/components/echone-sku/echone-sku.vue';
+	import isUserInfo from '../../util/isarzt.js';
 	import {
 		getGoodsDetailByGoodsId,
 		getGoodsByGoodsId,
 		addToShoppingCar,
 		getShoppingCarByCarContent,
-		updateShoppingCarNumByCarId
+		updateShoppingCarNumByCarId,
+		addCollection,
+		delCollection,
+		getCollectionByOpenid
 	} from "../../api/goodsDetailApi.js";
 	import previewImage from '@/components/kxj-previewImage/kxj-previewImage.vue';
 	export default {
@@ -67,6 +71,7 @@
 				shareText: "", //保存分享标题
 				shareImgs: "", //保存分享图片
 				shoppingCarNum: 0,
+				currentGoodsId: "",
 				isCollect: false, //是否收藏
 				specifications: [],
 				combinations: [],
@@ -91,7 +96,7 @@
 		},
 		async onLoad(options) {
 			let id = options.goodsId;
-			console.log(id)
+			this.currentGoodsId = id;
 			if (!id) {
 				id = 1;
 			}
@@ -160,8 +165,21 @@
 				}
 				this.combinations = tempArr2;
 			}
+			
+			
+			//判断该商品是否已经有收藏了
+			let token = uni.getStorageSync('token').token || "";
+			let checkCollection = await getCollectionByOpenid(token);
+			let _this = this;
+			if(checkCollection.status == 200){
+				let res = checkCollection.message;
+				res.map(e => {
+					if(e.goods_id == id){
+						_this.isCollect = true;
+					}
+				});
+			}
 		},
-		
 		methods: {
 			//打开预览e
 			previewOpen(e) {
@@ -190,20 +208,65 @@
 				})
 			},
 			//点击底部导航栏收藏
-			clickCollection() {
-				this.isCollect = !this.isCollect;
-				uni.showToast({
-					title: "收藏",
-					icon: "none"
-				})
+			async clickCollection() {
+				let pages = getCurrentPages();
+				let route = pages[pages.length - 1].route;
+				let res = await isUserInfo();
+				if(res == false){
+					uni.redirectTo({
+						url: `../authorization/authorization?route=${route}`
+					})
+				}else{
+					this.isCollect = !this.isCollect;
+					let token = uni.getStorageSync('token').token;
+					if(this.isCollect){
+						let goodsId = this.currentGoods.id;
+						let goodsName = this.currentGoods.goods_name;
+						let goodsShowImg = this.imgList[0];
+						let tempObj = {token,goodsId,goodsName,goodsShowImg};
+						console.log("tempObj tempObj ",tempObj );
+						let res2 = await addCollection(tempObj);
+						console.log("res2res2res2",res2);
+						if(res2.status == 200){
+							uni.showToast({
+								title:"收藏成功"
+							})
+						}
+					}else{
+						let res2 = await delCollection(token);
+						if(res2.status == 200){
+							uni.showToast({
+								title:"取消收藏"
+							})
+						}
+					}
+				}
 			},
 			//加入购物车
-			addCar() {
-				this.popupShow = true;
+			async addCar() {
+				let pages = getCurrentPages();
+				let route = pages[pages.length - 1].route;
+				let res = await isUserInfo();
+				if(res == false){
+					uni.redirectTo({
+						url: `../authorization/authorization?route=${route}`
+					})
+				}else{
+					this.popupShow = true;
+				}
 			},
 			//立即购买
-			buyNow() {
-				this.popupShow = true;
+			async buyNow() {
+				let pages = getCurrentPages();
+				let route = pages[pages.length - 1].route;
+				let res = await isUserInfo();
+				if(res == false){
+					uni.redirectTo({
+						url: `../authorization/authorization?route=${route}`
+					})
+				}else{
+					this.popupShow = true;
+				}
 			},
 			//关闭商品规格选择框
 			handleClose(e) {
@@ -211,19 +274,32 @@
 			},
 			//选择商品规格框中的立即购买按钮
 			async handleConfirm(e) {
-				let res = await getShoppingCarByCarContent(e.value);
-				if(res){
-					let num = Number(res.num) + Number(e.count);
-					let temp = await updateShoppingCarNumByCarId(res.id,num);
-					if(temp == "成功"){
-						this.popupShow = false;
-						uni.showToast({
-							title:"购物车中已有该商品，已为您自动添加数量了",
-							icon:"none"
-						})
+				let token = uni.getStorageSync('token').token;
+				let res = await getShoppingCarByCarContent(token);
+				if(res.message.result2.length > 0){
+					let tempObj = res.message.result2.find(r => r.content == e.value);
+					if(tempObj){
+						let num = Number(tempObj.num) + Number(e.count);
+						let temp = await updateShoppingCarNumByCarId(tempObj.id,num);
+						if(temp == "成功"){
+							this.popupShow = false;
+							uni.showToast({
+								title:"购物车中已有该商品，已为您自动添加数量了",
+								icon:"none"
+							})
+						}
+					}else{
+						let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
+						if(res2 == "成功"){
+							this.popupShow = false;
+							uni.showToast({
+								title:"成功加入购物车",
+								icon:"none"
+							})
+						}
 					}
 				}else{
-					let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":1,"content":e.value});
+					let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
 					if(res2 == "成功"){
 						this.popupShow = false;
 						uni.showToast({
@@ -299,14 +375,12 @@
 						justify-content: center;
 						font-size: 24rpx;
 						background: #fff;
-						z-index: 20;
 
 						button {
 							position: absolute;
 							width: 50rpx;
 							height: 50rpx;
 							opacity: 0;
-							z-index: 99;
 						}
 					}
 				}

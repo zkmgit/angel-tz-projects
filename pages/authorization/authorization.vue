@@ -28,6 +28,8 @@ export default {
 		  })
 	  },
     bindGetUserInfo (e) {
+		let _this = this;
+		console.log("test")
       if (e.mp.detail.userInfo) {
         //用户按了允许授权按钮
         // console.log(e.mp.detail.userInfo)
@@ -58,7 +60,30 @@ export default {
 						'content-type': 'application/x-www-form-urlencoded'
 					} ,
 			      success: (res) => {
-			          console.log(res.data);
+			          console.log("data",res.data.token);
+					  uni.setStorage({
+					    key: 'token',
+					    data: res.data
+					  })
+					  // 缓存用户信息
+					  uni.setStorage({
+					    key: 'user',
+					    data: e.mp.detail.userInfo
+					  })
+					  
+					  if(_this.prePage.indexOf("index") > 0 || _this.prePage.indexOf("shopingCar") > 0 || _this.prePage.indexOf("user") > 0 ){
+						  console.log("switchTab");
+						  uni.switchTab({
+						  	url: _this.prePage
+						  })
+					  }else{
+						  console.log("navigateTo");
+						  uni.navigateTo({
+						  	url: _this.prePage
+						  })
+					  }
+					  
+					  
 			      }
 			  });
 		    
@@ -73,18 +98,7 @@ export default {
 		// 每次启动进入 app.vue  onlaunch生命周期
 		// 每次进来的时候，可以检测是否有token, 无，则 执行 1 2 3 4
 		// 有token  则 执行  3 4
-		
-		
-        // 缓存用户信息
-        uni.setStorage({
-          key: 'user',
-          data: e.mp.detail.userInfo
-        })
-		
-		uni.switchTab({
-			url: this.prePage
-		})
-        
+		        
       } else {
         uni.showModal({
           title: '警告',

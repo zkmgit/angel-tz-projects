@@ -69,6 +69,7 @@
 </template>
 
 <script>
+	import isUserInfo from '../../util/isarzt.js';
 	export default {
 		data() {
 			return {
@@ -77,6 +78,15 @@
 				checked:false,
 				first:true
 			};
+		},
+		onLoad() {
+			let pages = getCurrentPages();
+			let route = pages[pages.length - 1].route;
+			if(isUserInfo() == false) {
+				uni.redirectTo({					
+					url: `../authorization/authorization?route=${route}`
+				})
+			}
 		},
 		methods:{
 			onChange(event) {
@@ -114,6 +124,10 @@
 					    title: '请选中购物车的商品',
 					    duration: 2000
 					});
+				}else {
+					uni.navigateTo({
+						url:'../confirmOrder/confirmOrder'
+					})
 				}
 				console.log("结算",this.result);
 			},
