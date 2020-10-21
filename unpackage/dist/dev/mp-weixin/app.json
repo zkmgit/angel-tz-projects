@@ -17,6 +17,7 @@
   "pages/liveStreaming/liveStreaming",
   "pages/integral/integral",
   "pages/announcementDatas/announcementDatas",
+  "pages/goodsList/goodsList",
   "pages/announcementDetail/announcementDetail"
  ],
  "subPackages": [],
@@ -59,5 +60,5 @@
   ]
  },
  "usingComponents": {},
- "sitemapLocation": "sitemap38.json"
+ "sitemapLocation": "sitemap88.json"
 }

@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1950,6 +1950,25 @@ function getPreferentialDatas() {return _getPreferentialDatas.apply(this, argume
             url = "getPreferentialDatas";_context.next = 3;return (
               (0, _request.default)(url));case 3:res = _context.sent;return _context.abrupt("return",
             res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getPreferentialDatas.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 159:
+/*!**********************************************************************!*\
+  !*** D:/2020-毕业项目/temp/angel-tz-projects/api/getGoodsByGoodsName.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsByGoodsName = getGoodsByGoodsName;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+// 搜索 
+function getGoodsByGoodsName(_x) {return _getGoodsByGoodsName.apply(this, arguments);}function _getGoodsByGoodsName() {_getGoodsByGoodsName = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsName) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+            url = "getGoodsByGoodsName?goodsName=".concat(goodsName);_context.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context.sent;
+            console.log(res);return _context.abrupt("return",
+            res.data.message);case 6:case "end":return _context.stop();}}}, _callee);}));return _getGoodsByGoodsName.apply(this, arguments);}
 
 /***/ }),
 
@@ -8268,7 +8287,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8289,14 +8308,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8381,7 +8400,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8822,11 +8841,6 @@ function _getAnnouncementDetailsById() {_getAnnouncementDetailsById = _asyncToGe
 
 
 
-// export async function getClassifiedGoods(classificationId){
-// 	let url = `getClassifiedGoods?classificationId=${classificationId}`;
-// 	let res = await request(url);
-// 	return res.data.message[0];
-// }
 // 直播公告
 function _getMenuDatasByHome() {_getMenuDatasByHome = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getMenuDatasByHome";_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data.message);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getMenuDatasByHome.apply(this, arguments);}function getRooms() {return _getRooms.apply(this, arguments);}
 

@@ -295,10 +295,9 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
   methods: {
     // 搜索
     goodsList: function goodsList() {
-      uni.switchTab({
+      uni.navigateTo({
         // goodsList
         url: "/pages/goodsList/goodsList" });
-
 
     },
 
@@ -359,7 +358,6 @@ var _homeApi = __webpack_require__(/*! ../../api/homeApi.js */ 20);function _int
         url: "/pages/announcementDetail/announcementDetail?title=".concat(title) });
 
     } },
-
 
   // onLoad:function(option){				//opthin为object类型，会序列化上页面传递的参数
   // 	console.log(option.title);			//打印出上页面传递的参数
