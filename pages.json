@@ -167,10 +167,6 @@
 			"style": {
 				"navigationBarTitleText": "商品列表"
 			}
-<<<<<<< HEAD
-
-=======
->>>>>>> f7f57a64a8fdc5b745e051673ca9ba5da682d723
 		},
 		{
 			"path": "pages/goodsList/goodsList",

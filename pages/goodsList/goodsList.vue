@@ -4,7 +4,9 @@
 		<view class="header">
 			<view class="search">
 				<input type="text" placeholder="输入搜索关键词" @confirm="search"    v-model="value" ></input>
-				<image class="search-icon" src="/static/images/icon/search.svg"></image>
+				<view  @click="search">
+					<image class="search-icon" src="/static/images/icon/search.svg"></image>
+				</view>
 			</view>
 			<view>
 				<!-- 切换 图标 -->
@@ -89,24 +91,26 @@
 
 			/* 切换数据 */
 			async selected(index) {
-				
-				
 				switch (index) {
 					case 0:
+						/* 综合 */ 
 						this.data = JSON.parse(JSON.stringify(this.tempData));
 						console.log(this.tempData);
 						break;
 					case 1:
+						/* 新品上市时间排序 */ 
 						this.data = this.data.sort(function(v1, v2) {
 							return new Date(v1.add_time).getTime() - new Date(v2.add_time).getTime()
 						})
 						break;
 					case 2:
+						/* 已出售排序 */ 
 						this.data = this.data.sort(function(v1, v2) {
 							return Number(v1.sales) - Number(v2.sales)
 						})
 						break;
 					default:
+						/* 价格排序 */ 
 						this.data = this.data.sort(function(v1, v2) {
 							return Number(v1.original_price) - Number(v2.original_price)
 						})
