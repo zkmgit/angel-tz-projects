@@ -18,7 +18,8 @@
 
 		<!-- 导航栏 -->
 		<view class="tab">
-			<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)" v-model="value">
+			<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
+			 v-model="value">
 				{{ item }}
 			</view>
 		</view>
@@ -26,8 +27,8 @@
 		<view class="list">
 			<view v-for="item in data" :key="item.id">
 				<!-- 跳入商品详情 -->
-				<navigator class="goods">
-					<!-- :url="'../../details/goodsDetails/goodsDetails?goodsId='+item.id"-->
+				<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+					{{ item.id }}
 					<!-- 切换一张图片 -->
 					<view class="image">
 						<!-- 第一张图片页面图片地址 -->
@@ -38,18 +39,22 @@
 						<view class="title">
 							{{item.name}}
 						</view>
-
-						<view class="buy">
-							<!-- 切换一张图片上价格 -->
-							<view class="price">
-								<view class="icon">&yen;</view>{{item.original_price}}
-							</view>
-
-							<!-- 切换一张图片上购物车图标 -->
-							<view class="cart">
-								<view class="cart-icon" style="background-image: url(../../../static/images/goodlist/car-2.png);background-size: cover;"></view>
-							</view>
+						<!-- 价格 -->
+						<view class="price">
+							<view class="price-icon">&yen;{{item.original_price}}</view>
 						</view>
+						<view class="add_time">
+							<view class="add_time-icon">{{item.add_time}}</view>
+						</view>
+						
+						<view class="title">
+							{{item.name}}
+						</view>
+						<!-- 购物车图标 -->
+						<view class="cart">
+							<image class="cart-icon" src="../../static/images/goodlist/car.svg"></image>
+						</view>
+
 					</view>
 				</navigator>
 			</view>
@@ -87,11 +92,10 @@
 			};
 		},
 		methods: {
-				
+
 			/* 切换数据 */
 			async selected(index) {
-				// console.log(index)
-				// console.log(isSearch)
+	
 				switch (index) {
 					case 0:
 						this.data = await getGoodsByGoodsName(this.value);
@@ -101,10 +105,12 @@
 						this.data = await getGoodsByGoodsName(this.value);
 						break;
 					case 2:
-						this.data = await getGoodsByGoodsName(this.value);
+						this.data = this.data.sort(function(v1,v2){
+							return Number(v1.sales) - Number(v2.sales)
+						})
 						break;
 					default:
-						this.data = this.data.sort(function(v1, v2){
+						this.data = this.data.sort(function(v1, v2) {
 							return Number(v1.original_price) - Number(v2.original_price)
 						})
 						console.log(this.data);
@@ -141,7 +147,7 @@
 				width: 100%;
 				height: 100%;
 				border-radius: 30rpx;
-				padding-left: 60rpx; 
+				padding-left: 60rpx;
 			}
 
 			.search-icon {
@@ -177,10 +183,10 @@
 		justify-content: space-around;
 
 		.option {
-			 line-height: 88rpx;
+			line-height: 88rpx;
 
 			.filter {
-				color:#fa1e26;
+				color: #fa1e26;
 
 				.rank {
 					margin: 16rpx;
@@ -194,19 +200,14 @@
 				}
 
 				.ascend {
-				width: 220rpx;
-				height: 220rpx;
-				flex-shrink: 0;
+					width: 220rpx;
+					height: 220rpx;
+					flex-shrink: 0;
 				}
 
 				.descend {
 					padding: 16rpx 32rpx 0 24rpx;
 					width: 100%;
-				}
-
-				.sel {
-					color: #333;
-					font-size: 30rpx;
 				}
 			}
 		}
@@ -243,47 +244,47 @@
 				flex-direction: column;
 				justify-content: space-between;
 				padding-right: 24rpx;
+				font-size: 30rpx;
 
 				.title {
 					margin: 24rpx 0 8rpx;
 					color: #323233;
-					font-size: 28rpx;
+
 				}
 
-				.buy {
+
+				.price {
 					display: flex;
-					justify-content: space-around;
-					height: 88rpx;
+					color: #f44;
+					font-size: 30rpx;
 					align-items: center;
 
-					.price {
-						display: flex;
-						color: #f44;
-						font-size: 36rpx;
-						align-items: center;
+					.price-icon {
+						margin-right: 4rpx;
 
-						.icon {
-							margin-right: 4rpx;
-							font-size: 24rpx;
-						}
 					}
-					
-					
-					.cart{
-						width: 100rpx;
-						height: 100rpx;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						
-						
-						.cart-icon {
-							width: 50rpx;
-							height: 50rpx;
-							
-						}
+				}
+
+				.sales {
+					display: flex;
+					font-size: 30rpx;
+
+					.sales-icon {
+
+						color: gray;
 					}
-					
+				}
+
+				.cart {
+
+					display: flex;
+					align-items: center;
+					justify-content: flex-end;
+
+					.cart-icon {
+						width: 46rpx;
+						height: 46rpx;
+					}
 				}
 			}
 		}

@@ -160,7 +160,9 @@
 		},
 		{
 			"path": "pages/goodsList/goodsList",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
 		}
 
 	],
