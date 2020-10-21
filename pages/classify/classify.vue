@@ -26,7 +26,7 @@
 			return {
 				categoryList: [],
 				subCategoryList: [],
-				activeIndex:0
+				activeIndex:1
 			};
 		},
 		onLoad(options){

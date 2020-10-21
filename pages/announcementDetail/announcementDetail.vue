@@ -1,68 +1,62 @@
 <template>
 	<!-- 公告详情 -->
-	<view class="announcementDetail">
-		<view v-for="item in Announcements" :key="item.id">
-			<view class="title">
-				{{item.title}}
-			</view>
+	<view class="notice">
+		<view class="title">
+			{{title}}
 		</view>
-		<view>
-			<view class="text">
-				{{Announcement.content}}
-			</view>
+		<view class="text" v-for="(item,index) in Announcement.info" :key="index">
+			<text>{{item.title}}</text>
+			<text v-for="detail in item.activeDatas" :key="detail">
+				{{detail}}
+			</text>
 		</view>
 	</view>
 </template>
 
 <script>
 	import {
-		getAnnouncementDatas,
 		getAnnouncementDetailsById
 	} from "../../api/homeApi.js"
 	export default {
 		data() {
 			return {
-				Announcements: [], // 公告
-				Announcement: [], //  公告详情
+				title:"",				// 公告标题
+				Announcement: []		// 公告详情
 			}
 		},
 		methods: {
-			// 公告
-			async getAnnouncementData() {
-				var res = await getAnnouncementDatas();
-				this.Announcements = res;
-			},
 			// 公告详情
 			async getAnnouncementDetailsByIdData(title) {
 				var res = await getAnnouncementDetailsById(title);
 				console.log(res)
-				this.Announcement = res;
+				this.Announcement = JSON.parse(res.content)
 				console.log(this.Announcement)
 			},
 		},
 		created() {
-			this.getAnnouncementData();
 		},
 		onLoad(options){
 			console.log(options)
 			this.getAnnouncementDetailsByIdData(options.title);
+			this.title = options.title
 		}
 	}
 </script>
 
 <style lang="scss">
+	.notice {
+		padding: 32rpx;
+		font-size: 26rpx;
+		color: #333;
+	}
 	.title {
 		width: 100%;
 		font-weight: bold;
 		border-bottom: 1rpx solid #eaeaea;
 		padding-bottom: 32rpx;
 	}
-
 	.text {
 		margin-top: 32rpx;
 		line-height: 64rpx;
-		image {
-			max-width: 100%;
-		}
 	}
 </style>

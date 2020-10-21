@@ -158,7 +158,7 @@ var _classifiedGoodsApi = __webpack_require__(/*! ../../api/classifiedGoodsApi.j
     return {
       categoryList: [],
       subCategoryList: [],
-      activeIndex: 0 };
+      activeIndex: 1 };
 
   },
   onLoad: function onLoad(options) {
