@@ -3,13 +3,12 @@
 		<!-- 搜索栏 -->
 		<view class="header">
 			<view class="search">
-				<input type="text" placeholder="输入搜索关键词" @confirm="search" v-model="value" bgColor="#fff"></input>
+				<input type="text" placeholder="输入搜索关键词" @confirm="search"    v-model="value" ></input>
 				<image class="search-icon" src="/static/images/icon/search.svg"></image>
 			</view>
-
 			<view>
-				<!-- 切换图标 -->
-				<image class="show-type" src="/static/images/icon/list1.svg"></image>
+				<!-- 切换 图标 -->
+				<image class="show-type" src="/static/images/icon/list1.svg" @tap="changeShowType"></image>
 			</view>
 		</view>
 
@@ -19,45 +18,37 @@
 		<!-- 导航栏 -->
 		<view class="tab">
 			<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
-			 v-model="value">
-				{{ item }}
+			 v-model="value">{{ item }}
 			</view>
 		</view>
 		<!-- 切换成显示一张图片页面 -->
 		<view class="list">
 			<view v-for="item in data" :key="item.id">
 				<!-- 跳入商品详情 -->
-				<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+				<view class="goods">
 					{{ item.id }}
-					<!-- 切换一张图片 -->
 					<view class="image">
-						<!-- 第一张图片页面图片地址 -->
-						<image :src="item.show_img" class="img" />
+						<image :src="item.show_img" class="img"  />
 					</view>
-
 					<view class="info">
-						<view class="title">
-							{{item.name}}
-						</view>
+						<view class="title">{{item.name}}</view>
 						<!-- 价格 -->
 						<view class="price">
 							<view class="price-icon">&yen;{{item.original_price}}</view>
 						</view>
-						<view class="add_time">
-							<view class="add_time-icon">{{item.add_time}}</view>
-						</view>
-						
-						<view class="title">
-							{{item.name}}
+						<!-- 已出售件数 -->
+						<view class="sales">
+							<view class="sales-icon">已售出{{item.sales}}件</view>
 						</view>
 						<!-- 购物车图标 -->
-						<view class="cart">
-							<image class="cart-icon" src="../../static/images/goodlist/car.svg"></image>
-						</view>
+						<navigator class="cart" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<image class="cart-icon" src="../../static/images/goodslist/car.svg" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id"></image>
+						</navigator>
 
 					</view>
-				</navigator>
+				</view>
 			</view>
+		
 
 			<!-- 搜索 -->
 			<view class="empty" v-show="data.length === 0">
@@ -76,8 +67,10 @@
 
 <script>
 	import {
-		getGoodsByGoodsName
+		getGoodsByGoodsName,
+		getGoodsList
 	} from '../../api/getGoodsByGoodsName.js';
+
 	export default {
 		data() {
 			return {
@@ -88,6 +81,7 @@
 				isAscend: false,
 				isMore: true,
 				data: [],
+				tempData: [],
 				tab: ["综合", "新品", "销量", "价格"]
 			};
 		},
@@ -95,17 +89,20 @@
 
 			/* 切换数据 */
 			async selected(index) {
-	
+				
+				
 				switch (index) {
 					case 0:
-						this.data = await getGoodsByGoodsName(this.value);
-						console.log(this.data);
+						this.data = JSON.parse(JSON.stringify(this.tempData));
+						console.log(this.tempData);
 						break;
 					case 1:
-						this.data = await getGoodsByGoodsName(this.value);
+						this.data = this.data.sort(function(v1, v2) {
+							return new Date(v1.add_time).getTime() - new Date(v2.add_time).getTime()
+						})
 						break;
 					case 2:
-						this.data = this.data.sort(function(v1,v2){
+						this.data = this.data.sort(function(v1, v2) {
 							return Number(v1.sales) - Number(v2.sales)
 						})
 						break;
@@ -119,23 +116,46 @@
 				/* 导航栏切换 */
 				this.action = index;
 			},
-
+			
+			// 按下事件
 			async search() {
-				this.data = await getGoodsByGoodsName(this.value)
+				if(!this.value.trim()){
+					this.data = await getGoodsList();
+					return;
+				}
+				this.data = await getGoodsByGoodsName(this.value);
+				this.tempData = this.data;
 				console.log(this.data);
-			}
+			},
+			
+			
+		},
+		// 初始化页面
+		async onLoad(){
+			this.data = await getGoodsList();
+			this.tempData = JSON.parse(JSON.stringify(this.data));
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.header {
+	page {
+		background: #f5f5f5;
+	}
+
+	page,
+	view,
+	image,
+	input {
+		display: block;
+		box-sizing: border-box;
+	}
+
+	.header{
 		padding: 32rpx;
 		background: #fff;
 		display: flex;
 		align-items: center;
-
-
 
 		.search {
 			position: relative;
@@ -252,7 +272,6 @@
 
 				}
 
-
 				.price {
 					display: flex;
 					color: #f44;
@@ -261,7 +280,6 @@
 
 					.price-icon {
 						margin-right: 4rpx;
-
 					}
 				}
 
@@ -270,20 +288,19 @@
 					font-size: 30rpx;
 
 					.sales-icon {
-
 						color: gray;
 					}
 				}
 
 				.cart {
-
 					display: flex;
 					align-items: center;
 					justify-content: flex-end;
+					padding-bottom: 20px;
 
 					.cart-icon {
-						width: 46rpx;
-						height: 46rpx;
+						width: 50rpx;
+						height: 50rpx;
 					}
 				}
 			}
@@ -315,4 +332,8 @@
 			font-size: 26rpx;
 		}
 	}
+
+
+	// 两张图片
+	
 </style>
