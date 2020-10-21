@@ -121,7 +121,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 	.footer {
 		padding: 20rpx;
 		.btn {
@@ -136,22 +136,22 @@ export default {
 	
 .login{
     padding: 10% 0 0 0;
-    &__title{
+    .login__title{
       color: #FDBB0D;
       font-size: 25px;
       text-align: center
     }
-    &__m1{
+    .login__m1{
       color: #282828;
       font-size: 20px;
       margin: 4% 0 0 4%;
     }
-    &__m2{
+    .login__m2{
       color: #9d9d9d;
       font-size: 20px;
       margin: 4% 0 0 4%;
     }
-    &__btn{
+    .login__btn{
       width: 94%;
       background-color: #FDBB0D;
       margin-top: 5%;
