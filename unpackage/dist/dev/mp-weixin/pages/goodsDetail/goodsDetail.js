@@ -230,7 +230,7 @@ var _goodsDetailApi = __webpack_require__(/*! ../../api/goodsDetailApi.js */ 73)
       } };
 
   },
-  onLoad: function onLoad(options) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var id, res, res2, imgArr, specifications, tempArr, _tempArr, tempArr2, i, j, tempStr, token, checkCollection, _this, _res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+  onLoad: function onLoad(options) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var id, res, res2, imgArr, specifications, tempArr, _tempArr, tempArr2, i, j, tempStr, token, checkCollection, _this, _res, ress;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
               id = options.goodsId;
               _this2.currentGoodsId = id;
               if (!id) {
@@ -314,7 +314,13 @@ var _goodsDetailApi = __webpack_require__(/*! ../../api/goodsDetailApi.js */ 73)
                     _this.isCollect = true;
                   }
                 });
-              }case 24:case "end":return _context.stop();}}}, _callee);}))();
+              }_context.next = 26;return (
+                (0, _goodsDetailApi.getShoppingCarByCarContent)(token));case 26:ress = _context.sent;
+              if (ress.status == 201) {
+                _this2.shoppingCarNum = 0;
+              } else {
+                _this2.shoppingCarNum = ress.message.result2.length;
+              }case 28:case "end":return _context.stop();}}}, _callee);}))();
   },
   methods: {
     //打开预览e

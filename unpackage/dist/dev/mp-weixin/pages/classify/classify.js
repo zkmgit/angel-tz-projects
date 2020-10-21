@@ -193,7 +193,7 @@ var _classifiedGoodsApi = __webpack_require__(/*! ../../api/classifiedGoodsApi.j
     change: function change() {
       // 跳转到的地址
       uni.navigateTo({
-        url: "../goodsList/goodsList" });
+        url: "/pages/goodsList/goodsList" });
 
     } },
 

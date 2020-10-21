@@ -112,7 +112,8 @@
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/collect/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",
