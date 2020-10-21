@@ -51,7 +51,7 @@
 			"style": {
 				"navigationBarTitleText": "分类",
 				"usingComponents": {
-				  "van-search": "/wxcomponents/vant/dist/search/index"
+					"van-search": "/wxcomponents/vant/dist/search/index"
 				}
 			}
 		},
@@ -130,15 +130,11 @@
 			"style": {
 				"navigationBarTitleText": "领卷中心",
 				"usingComponents": {
-<<<<<<< HEAD
-				  "van-tag": "/wxcomponents/vant/dist/tag/index"
-				  }
-=======
 					"van-tag": "/wxcomponents/vant/dist/tag/index"
 				}
->>>>>>> c15373f495be60851dbaa23e606d22b0da68d08d
 			}
 		},
+
 		{
 			"path": "pages/liveStreaming/liveStreaming",
 			"style": {
@@ -147,7 +143,8 @@
 					"van-button": "/wxcomponents/vant/dist/button/index"
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/integral/integral",
 			"style": {
 				"navigationBarTitleText": "积分兑换成长值",
@@ -158,68 +155,60 @@
 			}
 		},
 		{
-<<<<<<< HEAD
-            "path" : "pages/announcementDatas/announcementDatas",
-            "style" : {}
-        },
-		{
-		    "path" : "pages/goodsList/goodsList",
-		    "style" : {}
-		}
-		
-    ],
-		"globalStyle": {
-			"navigationBarTextStyle": "black",
-			"navigationBarTitleText": "uni-app",
-			"navigationBarBackgroundColor": "#FFFFFF",
-			"backgroundColor": "#FFFFFF"
-=======
 			"path": "pages/announcementDatas/announcementDatas",
-			"style": {
-				"navigationBarTitleText": "公告"
-			}
->>>>>>> c15373f495be60851dbaa23e606d22b0da68d08d
+			"style": {}
 		},
 		{
-			"path": "pages/announcementDetail/announcementDetail",
-			"style": {
-				"navigationBarTitleText": "公告详情"
-			}
+			"path": "pages/goodsList/goodsList",
+			"style": {}
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF"
+		"backgroundColor": "#FFFFFF",
+
+		"path": "pages/announcementDatas/announcementDatas",
+		"style": {
+			"navigationBarTitleText": "公告"
+		}
 	},
-	"tabBar": {
-		"color": "#7A7E83",
-		"selectedColor": "#FF0000",
-		"borderStyle": "black",
-		"backgroundColor": "#ffffff",
-		"list": [{
-				"pagePath": "pages/index/index",
-				"iconPath": "static/images/nav/home-off.png",
-				"selectedIconPath": "static/images/nav/home-on.png",
-				"text": "首页"
-			}, {
-				"pagePath": "pages/classify/classify",
-				"iconPath": "static/images/nav/ic_catefory_normal.png",
-				"selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
-				"text": "分类"
-			},
-			{
-				"pagePath": "pages/shopingCar/shopingCar",
-				"iconPath": "static/images/nav/cart-off.png",
-				"selectedIconPath": "static/images/nav/cart-on.png",
-				"text": "购物车"
-			}, {
-				"pagePath": "pages/user/user",
-				"iconPath": "static/images/nav/my-off.png",
-				"selectedIconPath": "static/images/nav/my-on.png",
-				"text": "我的"
-			}
-		]
-	}
+	
+"globalStyle": {
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "uni-app",
+	"navigationBarBackgroundColor": "#FFFFFF",
+	"backgroundColor": "#FFFFFF"
+},
+"tabBar": {
+	"color": "#7A7E83",
+	"selectedColor": "#FF0000",
+	"borderStyle": "black",
+	"backgroundColor": "#ffffff",
+	"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/images/nav/home-off.png",
+			"selectedIconPath": "static/images/nav/home-on.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/classify/classify",
+			"iconPath": "static/images/nav/ic_catefory_normal.png",
+			"selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
+			"text": "分类"
+		},
+		{
+			"pagePath": "pages/shopingCar/shopingCar",
+			"iconPath": "static/images/nav/cart-off.png",
+			"selectedIconPath": "static/images/nav/cart-on.png",
+			"text": "购物车"
+		}, {
+			"pagePath": "pages/user/user",
+			"iconPath": "static/images/nav/my-off.png",
+			"selectedIconPath": "static/images/nav/my-on.png",
+			"text": "我的"
+		}
+	]
+}
 }
