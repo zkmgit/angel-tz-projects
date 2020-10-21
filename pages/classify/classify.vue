@@ -61,7 +61,7 @@
 			change() {
 				// 跳转到的地址
 				uni.navigateTo({
-					url: `/pages/goodsList/goodsList`
+					url: `../goodsList/goodsList`
 				})
 			}
 		},

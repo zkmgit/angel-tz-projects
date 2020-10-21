@@ -157,12 +157,15 @@
 			"style": {
 				"navigationBarTitleText": "公告"
 			}
+<<<<<<< HEAD
 		},
 		{
 			"path": "pages/goodsList/goodsList",
 			"style": {
 				"navigationBarTitleText": "商品列表"
 			}
+=======
+>>>>>>> e1a4e8fe9fc4d7b7387218d5a3bb316e84166215
 		},
 		{
 			"path": "pages/announcementDetail/announcementDetail",
