@@ -130,8 +130,13 @@
 			"style": {
 				"navigationBarTitleText": "领卷中心",
 				"usingComponents": {
+<<<<<<< HEAD
+				  "van-tag": "/wxcomponents/vant/dist/tag/index"
+				  }
+=======
 					"van-tag": "/wxcomponents/vant/dist/tag/index"
 				}
+>>>>>>> c15373f495be60851dbaa23e606d22b0da68d08d
 			}
 		},
 		{
@@ -153,10 +158,27 @@
 			}
 		},
 		{
+<<<<<<< HEAD
+            "path" : "pages/announcementDatas/announcementDatas",
+            "style" : {}
+        },
+		{
+		    "path" : "pages/goodsList/goodsList",
+		    "style" : {}
+		}
+		
+    ],
+		"globalStyle": {
+			"navigationBarTextStyle": "black",
+			"navigationBarTitleText": "uni-app",
+			"navigationBarBackgroundColor": "#FFFFFF",
+			"backgroundColor": "#FFFFFF"
+=======
 			"path": "pages/announcementDatas/announcementDatas",
 			"style": {
 				"navigationBarTitleText": "公告"
 			}
+>>>>>>> c15373f495be60851dbaa23e606d22b0da68d08d
 		},
 		{
 			"path": "pages/announcementDetail/announcementDetail",
