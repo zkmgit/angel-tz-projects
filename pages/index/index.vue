@@ -9,7 +9,7 @@
 			</swiper>
 		</view>
 		<!-- 搜索输入框 -->
-		<view class="search" @click="goodsList()">
+		<view class="search" @click="goodsList">
 			<input type="text" placeholder="输入搜索关键词" value=""/>
 			<image src="/static/images/home/search.svg"></image>
 		</view>
@@ -22,7 +22,7 @@
 						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
 					</swiper-item>
 				</swiper>
-			</view>
+			</view>想·
 			<view class="more">
 				<navigator url="/pages/announcementDatas/announcementDatas">更多 ></navigator>
 			</view>
@@ -158,10 +158,9 @@
 		methods: {
 			// 搜索
 			goodsList(){
-				uni.switchTab({
+				uni.navigateTo({
 					// goodsList
 					url:`/pages/goodsList/goodsList`
-		
 				})
 			},
 			
@@ -222,7 +221,6 @@
 					url: `/pages/announcementDetail/announcementDetail?title=${title}`
 				});
 			},
-		
 		},
 		// onLoad:function(option){				//opthin为object类型，会序列化上页面传递的参数
 		// 	console.log(option.title);			//打印出上页面传递的参数

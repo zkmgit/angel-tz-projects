@@ -179,6 +179,12 @@
 					}
 				});
 			}
+			let ress = await getShoppingCarByCarContent(token);
+			if(ress.status == 201){
+				this.shoppingCarNum = 0;
+			}else{
+				this.shoppingCarNum = ress.message.result2.length;
+			}
 		},
 		methods: {
 			//打开预览e

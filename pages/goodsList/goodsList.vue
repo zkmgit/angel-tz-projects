@@ -4,12 +4,12 @@
 		<view class="header">
 			<view class="search">
 				<input type="text" placeholder="输入搜索关键词" @confirm="search" v-model="value" bgColor="#fff"></input>
-				<image class="search-icon" src="/static/images/icon/search.svg"></image>
+				<!-- <image class="search-icon" src="/static/images/icon/search.svg"></image> -->
 			</view>
 
 			<view>
 				<!-- 切换图标 -->
-				<image class="show-type" src="/static/images/icon/list1.svg"></image>
+				<!-- <image class="show-type" src="/static/images/icon/list1.svg"></image> -->
 			</view>
 		</view>
 
@@ -47,7 +47,7 @@
 
 							<!-- 切换一张图片上购物车图标 -->
 							<view class="cart">
-								<view class="cart-icon" style="background-image: url(../../../static/images/goodlist/car-2.png);background-size: cover;"></view>
+								<!-- <view class="cart-icon" style="background-image: url(../../../static/images/goodlist/car-2.png);background-size: cover;"></view> -->
 							</view>
 						</view>
 					</view>

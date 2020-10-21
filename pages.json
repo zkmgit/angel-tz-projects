@@ -51,7 +51,7 @@
 			"style": {
 				"navigationBarTitleText": "分类",
 				"usingComponents": {
-				  "van-search": "/wxcomponents/vant/dist/search/index"
+					"van-search": "/wxcomponents/vant/dist/search/index"
 				}
 			}
 		},
@@ -112,7 +112,8 @@
 					"van-cell": "/wxcomponents/vant/dist/cell/index"
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/collect/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",
@@ -172,6 +173,12 @@
 		}
 
 	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
