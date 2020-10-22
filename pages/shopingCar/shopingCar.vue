@@ -6,42 +6,23 @@
 		<view class="carList">
 			
 			<van-checkbox-group :value="result" @change="onChange">
-				<view class="car-item">
+				<view class="car-item" v-for="item in carData" :key="item.id">
 					<view class="radio">
-						<van-checkbox name="a"></van-checkbox>
+						<van-checkbox :name="item.id"></van-checkbox>
 					</view>
 					<view class="img">
-						<image src="/static/images/nav/微信图片_202007111331035.png" mode=""></image>
+						<image :src="item.showImg" mode=""></image>
 					</view>
 					<view class="info">
 						<view class="title">
-							工装裤男士秋季款韩版潮流11111111
+							{{ item.goods_name }}
 						</view>
 						<view class="price">
-							￥78
+							￥{{ item.goods_price }}
 						</view>
 					</view>
 					<view class="stepper">
-						<van-stepper value="5" min="1" max="10" disable-input />
-					</view>
-				</view>
-				<view class="car-item">
-					<view class="radio">
-						<van-checkbox name="b"></van-checkbox>
-					</view>
-					<view class="img">
-						<image src="/static/images/nav/微信图片_202007111331035.png" mode=""></image>
-					</view>
-					<view class="info">
-						<view class="title">
-							工装裤男士秋季款韩版潮流
-						</view>
-						<view class="price">
-							￥78
-						</view>
-					</view>
-					<view class="stepper">
-						<van-stepper value="5" min="1" max="10" disable-input />
+						<van-stepper @plus="add(item.id,item.num)" @minus="sub(item.id,item.num)" :value="item.num" min="1" max="10" disable-input />
 					</view>
 				</view>
 		
@@ -54,7 +35,7 @@
 				<van-checkbox :value="checked" @change="setCheck">全选</van-checkbox>
 				<view class="right" v-if="isShow">
 					<view class="price">
-						<text class="fs">合计</text>:￥1111
+						<text class="fs">合计</text>:￥{{ totalPrice }}
 					</view>
 					<view class="btn" @click="settlementCar">
 						结算
@@ -70,35 +51,75 @@
 
 <script>
 	import isUserInfo from '../../util/isarzt.js';
-	import { getShopingCarByUser } from '../../api/shopingCar.js';
+	import { getShopingCarByUser,updateShoppingCarNumByCarId,delShoppingCar } from '../../api/shopingCar.js';
 	export default {
 		data() {
 			return {
 				result: [],
 				isShow: true,
 				checked:false,
-				first:true
+				first:true,
+				carData:[],
+				// 总金额
+				totalPrice: 0
 			};
 		},
-		onLoad() {
+		async onLoad() {
 			let pages = getCurrentPages();
 			let route = pages[pages.length - 1].route;
-			if(isUserInfo() == false) {
+			let res = await isUserInfo();
+			
+			if(res == false) {
 				uni.redirectTo({					
 					url: `../authorization/authorization?route=${route}`
 				})
 			}
 		},
+		created() {
+			this.getAllCar();
+		},
 		methods:{
-			async getAllCar(){
-				// let token = uni.getStorage({
-					
-				// })
-				// let res = await getShopingCarByUser();
+			async add(carId,num){
+				console.log(carId,num+1);
+				// 购物车商品数量增加
+				await updateShoppingCarNumByCarId(carId,num+1);
+				await this.getAllCar();
+			},
+			async sub(carId,num){
+				console.log(carId,num-1);
+				// 购物车商品数量减少
+				await updateShoppingCarNumByCarId(carId,num-1);
+				await this.getAllCar();
+			},
+			// 计算总价格
+			calculation(){
+				let price = 0;
+				if(this.carData.length > 0){
+					this.carData.map(v=>{
+						if(this.result.includes(v.id+"")) price += v.goods_price*100*v.num;
+					})
+				}
 				
+				this.totalPrice = price / 100;
+			},
+			getAllCarIds(){
+				let ids = [];
+				this.carData.map(v=>{
+					ids.push(v.id + '');
+				})
+				return ids;
+			},
+			async getAllCar(){
+				let { token } = uni.getStorageSync('token');
+				let res = await getShopingCarByUser(token);
+				// 获取授权用户的所有购物车
+				this.carData = res.result2;
+				// 用于计算所有购物车的价格
+				this.calculation();
 			},
 			onChange(event) {
 			    this.result = event.detail;
+				this.calculation();
 				
 				if(this.first){ 
 					this.checked = !this.checked;
@@ -120,11 +141,14 @@
 				this.checked = !this.checked;
 				this.first = !this.first;
 				if(this.checked){
-					this.result.push('a');
-					this.result.push('b');
+					this.getAllCarIds().map(v=>{
+						this.result.push(v);
+					})
+					// this.result.push('b');
 				}else {
 					this.result.length = 0;
 				}
+				this.calculation();
 			},
 			settlementCar(){
 				// 结算购物车
@@ -134,13 +158,20 @@
 					    duration: 2000
 					});
 				}else {
+					let carList = [];
+					this.carData.map(v=>{
+						if(this.result.includes(v.id+"")){
+							carList.push(v);
+						}
+					});
+					let list = JSON.stringify(carList);
 					uni.navigateTo({
-						url:'../confirmOrder/confirmOrder'
+						url:`../confirmOrder/confirmOrder?carList=${list}&total=${this.totalPrice}`
 					})
 				}
 				console.log("结算",this.result);
 			},
-			delCar(){
+			async delCar(){
 				// 删除购物车
 				if(this.result.length == 0){
 					uni.showToast({
@@ -148,7 +179,16 @@
 					    duration: 2000
 					});
 				}
+				let { token } = uni.getStorageSync('token');
+				// 删除购物车
+				await delShoppingCar({token,ids:this.result.join(',')});
+				console.log(this.result.join(','));
+				// 获取所有的购物车
+				this.getAllCar();
 				console.log('删除',this.result);
+				this.checked = false;
+				this.result.length = 0;
+				this.first = true;
 			}
 		}
 	}

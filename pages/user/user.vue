@@ -42,35 +42,35 @@
 			</view>
 		</view>
 			
-		<van-cell size="large" title-style="color:#000000" title="我的订单" is-link />
+		<van-cell size="large" title-style="color:#000000" title="我的订单" is-link @click="goOrderList('0')"/>
 		<view class="wire"></view>
 		<!-- 订单状态 -->
 		<view class="order-status">
-			<view class="item">
+			<view class="item" @click="goOrderList('1')">
 				<view class="img">
 					<image src="/static/images/order/topay.png" mode=""></image>
 				</view>
 				<text>待付款</text>
 			</view>
-			<view class="item">
+			<view class="item" @click="goOrderList('2')">
 				<view class="img">
 					<image src="/static/images/order/fahuo.png" mode=""></image>
 				</view>
 				<text>待发货</text>
 			</view>
-			<view class="item">
+			<view class="item" @click="goOrderList('3')">
 				<view class="img">
 					<image src="/static/images/order/shouhuo.png" mode=""></image>
 				</view>
 				<text>待收货</text>
 			</view>
-			<view class="item">
+			<view class="item" @click="goOrderList('4')">
 				<view class="img">
 					<image src="/static/images/order/pj.png" mode=""></image>
 				</view>
 				<text>待评价</text>
 			</view>
-			<view class="item">
+			<view class="item" @click="goOrderList('5')">
 				<view class="img">
 					<image src="/static/images/order/shouhou.png" mode=""></image>
 				</view>
@@ -130,6 +130,12 @@
 			};
 		},
 		methods:{
+			goOrderList(status){
+				// 前往订单列表
+				uni.navigateTo({
+					url:`../orderList/orderList?status=${status}`
+				})
+			},
 			goUserAddr(){
 				// 前往我的地址
 				uni.navigateTo({
@@ -164,14 +170,12 @@
 		created(){
 			
 		},
-		onLoad() {
+		async onLoad() {
 			let pages = getCurrentPages();
 			let route = pages[pages.length - 1].route;
+			let res = await isUserInfo();
 			
-			// console.log('pages',pages);
-			// console.log('route',route);
-			
-			if(isUserInfo() == false) {
+			if(res == false) {
 				uni.redirectTo({					
 					url: `../authorization/authorization?route=${route}`
 				})

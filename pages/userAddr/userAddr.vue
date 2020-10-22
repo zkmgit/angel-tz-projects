@@ -1,47 +1,20 @@
 <template>
 	<view class="userAddr-container">
-		<view class="addr-container">
-			<view class="addr-item">
+		<view class="addr-container" v-if="isShow">
+			<view class="addr-item" v-for="item in addrData" :key="item.id">
 				<view class="addr-info">
 					<view class="name">
-						杀猪饲料
+						<view class="size">{{ item.receiver }}</view><view class="">{{ item.phone }}</view> 
 					</view>
 					<view class="street">
-						沙陇
+						{{ item.address }}
 					</view>
 				</view>
-				<view class="img" @click="goEditAddr">
+				<view class="img" @click="goEditAddr(item)">
 					<image src="../../static/images/userAddr/edit.png" mode=""></image>
 				</view>
 			</view>
 			
-			<view class="addr-item">
-				<view class="addr-info">
-					<view class="name">
-						杀猪饲料
-					</view>
-					<view class="street">
-						沙陇
-					</view>
-				</view>
-				<view class="img" @click="goEditAddr">
-					<image src="../../static/images/userAddr/edit.png" mode=""></image>
-				</view>
-			</view>
-			
-			<view class="addr-item">
-				<view class="addr-info">
-					<view class="name">
-						杀猪饲料
-					</view>
-					<view class="street">
-						沙陇
-					</view>
-				</view>
-				<view class="img" @click="goEditAddr">
-					<image src="../../static/images/userAddr/edit.png" mode=""></image>
-				</view>
-			</view>
 		</view>
 	
 		<view class="fiexd">
@@ -57,23 +30,41 @@
 </template>
 
 <script>
+	import { allAddr } from '../../api/addr.js';
 	export default {
 		data() {
 			return {
-				
+				isShow:false,
+				// 获取用户所有的地址
+				addrData: []
 			};
 		},
+		created() {
+			this.getAllAddr();
+		},
 		methods:{
-			goEditAddr(){
+			async getAllAddr(){
+				// 获取所有的地址
+				let { token } = uni.getStorageSync('token');
+				let res = await allAddr(token);
+				if(res.status == 200){
+					this.addrData = res.message;
+					this.isShow = true;
+				}
+				
+				console.log(res);
+			},
+			goEditAddr(item){
 				// 回显，编辑地址
+				let str = JSON.stringify(item);
 				uni.navigateTo({
-					url:'../editAddr/editAddr'
+					url:`../editAddr/editAddr?item=${str}&switch=edit`
 				})
 			},
 			goAddAddr(){
 				// 新增地址
 				uni.navigateTo({
-					url:'../editAddr/editAddr'
+					url:'../editAddr/editAddr?switch=add'
 				})
 			}
 		}
@@ -98,6 +89,18 @@
 				padding: 30rpx 0;
 				
 				.addr-info {
+					
+					.name {
+						display: flex;
+						align-items: flex-end;
+						
+						
+						.size {
+							font-size: 24rpx;
+							margin-right: 20rpx;
+						}
+					}
+					
 					.street {
 						margin-top: 10rpx;
 						font-size: 24rpx;

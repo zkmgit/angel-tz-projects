@@ -134,8 +134,8 @@
 			subCategoryList(newValue, oldValue) {
 
 			},
-			categoryActive(newValue, oldValue) {
-				this.defaultActive = newValue
+			defaultActive(newValue, oldValue) {
+				this.categoryActive = this.defaultActive
 			}
 		},
 	}
