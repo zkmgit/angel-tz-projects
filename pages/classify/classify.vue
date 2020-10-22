@@ -31,10 +31,11 @@
 			var id = uni.getStorageSync('sell')
 			var index = uni.getStorageSync('index')
 			console.log(index)
+			console.log(id)
 			if(!id == false){
-				this.activeIndex = index
+				this.activeId = id
 			}
-			
+			this.activeIndex = index
 			console.log("接收index:" + this.activeIndex)
 			console.log(id)
 			this.getClassifiedGoodsData(this.activeId)
