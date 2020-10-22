@@ -8886,273 +8886,32 @@ function request(url) {var method = arguments.length > 1 && arguments[1] !== und
 
 /***/ }),
 
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 30:
-/*!****************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/order.js ***!
-  \****************************************************************************/
+/***/ 228:
+/*!******************************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/getGoodsByGoodsName.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.addOrder = addOrder;exports.allOrder = allOrder;exports.allCarByOrderId = allCarByOrderId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsByGoodsName = getGoodsByGoodsName;exports.getGoodsList = getGoodsList;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
-//生成订单
-function addOrder(_x) {return _addOrder.apply(this, arguments);}
-
-
-
-
-
-// 获取用户所有的订单
-function _addOrder() {_addOrder = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(data) {var url, method, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "addOrder";method = "POST";_context.next = 4;return (0, _request.default)(url, method, data);case 4:res = _context.sent;return _context.abrupt("return", res.data);case 6:case "end":return _context.stop();}}}, _callee);}));return _addOrder.apply(this, arguments);}function allOrder(_x2) {return _allOrder.apply(this, arguments);}
+// 搜索 
+function getGoodsByGoodsName(_x) {return _getGoodsByGoodsName.apply(this, arguments);}
 
 
 
 
 
-// 获取用户指定的订单的所有购物车
-function _allOrder() {_allOrder = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(token) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "allOrder?token=".concat(token);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _allOrder.apply(this, arguments);}function allCarByOrderId(_x3, _x4) {return _allCarByOrderId.apply(this, arguments);}function _allCarByOrderId() {_allCarByOrderId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(token, id) {var url, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
-            url = "allCarByOrderId?token=".concat(token, "&id=").concat(id);_context3.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context3.sent;return _context3.abrupt("return",
-            res.data);case 5:case "end":return _context3.stop();}}}, _callee3);}));return _allCarByOrderId.apply(this, arguments);}
+// 商品列表
+function _getGoodsByGoodsName() {_getGoodsByGoodsName = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsName) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsByGoodsName?goodsName=".concat(goodsName);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;console.log(res);return _context.abrupt("return", res.data.message);case 6:case "end":return _context.stop();}}}, _callee);}));return _getGoodsByGoodsName.apply(this, arguments);}function getGoodsList() {return _getGoodsList.apply(this, arguments);}function _getGoodsList() {_getGoodsList = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            url = "getGoodsList";_context2.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
+            res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsList.apply(this, arguments);}
 
 /***/ }),
 
-/***/ 39:
-/*!******************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/util/isarzt.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = isUserInfo;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ../api/request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function
-
-isUserInfo() {return _isUserInfo.apply(this, arguments);}function _isUserInfo() {_isUserInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var userInfo, data, url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-            // 判断用户是否授权
-            userInfo = uni.getStorageSync('user');
-            data = uni.getStorageSync('token');if (!(
-            userInfo && data)) {_context.next = 14;break;}
-            url = "checktoken?token=" + data.token;_context.next = 6;return (
-              (0, _request.default)(url));case 6:res = _context.sent;if (!(
-            res.data.status == 200)) {_context.next = 11;break;}return _context.abrupt("return",
-            res.data.message[0]);case 11:return _context.abrupt("return",
-
-            false);case 12:_context.next = 15;break;case 14:return _context.abrupt("return",
-
-
-            false);case 15:case "end":return _context.stop();}}}, _callee);}));return _isUserInfo.apply(this, arguments);}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 4:
-/*!**************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/pages.json ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 48:
-/*!*********************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/shopingCar.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getShopingCarByUser = getShopingCarByUser;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;exports.delShoppingCar = delShoppingCar;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-
-//获取授权用户的所有的购物车
-function getShopingCarByUser(_x) {return _getShopingCarByUser.apply(this, arguments);}
-
-
-
-
-
-// 
-//修改购物车的数量
-function _getShopingCarByUser() {_getShopingCarByUser = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(token) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getShoppingCarByCarContent?token=".concat(token);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getShopingCarByUser.apply(this, arguments);}function updateShoppingCarNumByCarId(_x2, _x3) {return _updateShoppingCarNumByCarId.apply(this, arguments);}
-
-
-
-
-
-// 删除购物车
-function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(carId, num) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}function delShoppingCar(_x4) {return _delShoppingCar.apply(this, arguments);}function _delShoppingCar() {_delShoppingCar = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {var url, method, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
-            url = "delShoppingCar";
-            method = "POST";_context3.next = 4;return (
-              (0, _request.default)(url, method, data));case 4:res = _context3.sent;return _context3.abrupt("return",
-            res.data.message);case 6:case "end":return _context3.stop();}}}, _callee3);}));return _delShoppingCar.apply(this, arguments);}
-
-/***/ }),
-
-/***/ 57:
-/*!*************************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/goodsDetailApi.js ***!
-  \*************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;exports.addToShoppingCar = addToShoppingCar;exports.getShoppingCarByCarContent = getShoppingCarByCarContent;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;exports.addCollection = addCollection;exports.delCollection = delCollection;exports.getCollectionByOpenid = getCollectionByOpenid;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-
-//根据商品id获取对应的商品详情
-function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
-
-
-
-
-
-//根据商品id获取对应的商品信息
-function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsDetailByGoodsId?goodsId=".concat(goodsId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message[0]);case 5:case "end":return _context.stop();}}}, _callee);}));return _getGoodsDetailByGoodsId.apply(this, arguments);}function getGoodsByGoodsId(_x2) {return _getGoodsByGoodsId.apply(this, arguments);}
-
-
-
-
-
-//添加购物车
-function _getGoodsByGoodsId() {_getGoodsByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(goodsId) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "getGoodsByGoodsId?goodsId=".concat(goodsId);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsByGoodsId.apply(this, arguments);}function addToShoppingCar(_x3) {return _addToShoppingCar.apply(this, arguments);}
-
-
-
-
-
-
-
-
-//根据购物车内容查询购物车中是否有匹配的数据信息
-function _addToShoppingCar() {_addToShoppingCar = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(goods) {var url, method, data, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "addToShoppingCar";method = "POST";data = goods;console.log("goods", goods);_context3.next = 6;return (0, _request.default)(url, method, data);case 6:res = _context3.sent;return _context3.abrupt("return", res.data.message);case 8:case "end":return _context3.stop();}}}, _callee3);}));return _addToShoppingCar.apply(this, arguments);}function getShoppingCarByCarContent(_x4) {return _getShoppingCarByCarContent.apply(this, arguments);}
-
-
-
-
-
-//修改购物车中的商品购买数量
-function _getShoppingCarByCarContent() {_getShoppingCarByCarContent = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(token) {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getShoppingCarByCarContent?token=".concat(token);_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getShoppingCarByCarContent.apply(this, arguments);}function updateShoppingCarNumByCarId(_x5, _x6) {return _updateShoppingCarNumByCarId.apply(this, arguments);}
-
-
-
-
-
-//添加收藏
-function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(carId, num) {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context5.next = 3;return (0, _request.default)(url);case 3:res = _context5.sent;return _context5.abrupt("return", res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}function addCollection(_x7) {return _addCollection.apply(this, arguments);}
-
-
-
-
-
-
-
-//删除收藏
-function _addCollection() {_addCollection = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(obj) {var url, method, data, res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:url = "addCollection";method = "POST";data = obj;_context6.next = 5;return (0, _request.default)(url, method, data);case 5:res = _context6.sent;return _context6.abrupt("return", res.data);case 7:case "end":return _context6.stop();}}}, _callee6);}));return _addCollection.apply(this, arguments);}function delCollection(_x8) {return _delCollection.apply(this, arguments);}
-
-
-
-
-
-//根据openid查询对应的收藏数据信息
-function _delCollection() {_delCollection = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7(token) {var url, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:url = "delCollection?token=".concat(token);_context7.next = 3;return (0, _request.default)(url);case 3:res = _context7.sent;return _context7.abrupt("return", res.data);case 5:case "end":return _context7.stop();}}}, _callee7);}));return _delCollection.apply(this, arguments);}function getCollectionByOpenid(_x9) {return _getCollectionByOpenid.apply(this, arguments);}function _getCollectionByOpenid() {_getCollectionByOpenid = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8(token) {var url, res;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:
-            url = "getCollectionByOpenid?token=".concat(token);_context8.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context8.sent;return _context8.abrupt("return",
-            res.data);case 5:case "end":return _context8.stop();}}}, _callee8);}));return _getCollectionByOpenid.apply(this, arguments);}
-
-/***/ }),
-
-/***/ 64:
-/*!*****************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/coupon.js ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getPreferentialDatas = getPreferentialDatas;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-
-//获取所有的优惠卷
-function getPreferentialDatas() {return _getPreferentialDatas.apply(this, arguments);}function _getPreferentialDatas() {_getPreferentialDatas = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-            url = "getPreferentialDatas";_context.next = 3;return (
-              (0, _request.default)(url));case 3:res = _context.sent;return _context.abrupt("return",
-            res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getPreferentialDatas.apply(this, arguments);}
-
-/***/ }),
-
-/***/ 65:
-/*!***************************************************************************!*\
-  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/addr.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.allAddr = allAddr;exports.delAddr = delAddr;exports.addAddr = addAddr;exports.editAddr = editAddr;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
-
-//获取授权用户的所有地址
-function allAddr(_x) {return _allAddr.apply(this, arguments);}
-
-
-
-
-
-// 
-//删除指定的地址
-function _allAddr() {_allAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(token) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "allAddr?token=".concat(token);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data);case 5:case "end":return _context.stop();}}}, _callee);}));return _allAddr.apply(this, arguments);}function delAddr(_x2, _x3) {return _delAddr.apply(this, arguments);}
-
-
-
-
-//新增地址
-function _delAddr() {_delAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(token, id) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "delAddr?token=".concat(token, "&id=").concat(id);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _delAddr.apply(this, arguments);}function addAddr(_x4) {return _addAddr.apply(this, arguments);}
-
-
-
-
-
-//编辑地址
-function _addAddr() {_addAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {var url, method, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "addAddr";method = "POST";_context3.next = 4;return (0, _request.default)(url, method, data);case 4:res = _context3.sent;return _context3.abrupt("return", res.data);case 6:case "end":return _context3.stop();}}}, _callee3);}));return _addAddr.apply(this, arguments);}function editAddr(_x5) {return _editAddr.apply(this, arguments);}function _editAddr() {_editAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(data) {var url, method, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
-            url = "editAddr";
-            method = "POST";_context4.next = 4;return (
-              (0, _request.default)(url, method, data));case 4:res = _context4.sent;return _context4.abrupt("return",
-            res.data);case 6:case "end":return _context4.stop();}}}, _callee4);}));return _editAddr.apply(this, arguments);}
-
-/***/ }),
-
-/***/ 82:
+/***/ 231:
 /*!****************************************************************************!*\
   !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/util/area.js ***!
   \****************************************************************************/
@@ -13206,6 +12965,298 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     820202: '嘉模堂区',
     820203: '路氹填海区',
     820204: '圣方济各堂区' } };exports.default = _default;
+
+/***/ }),
+
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 30:
+/*!****************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/order.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.addOrder = addOrder;exports.allOrder = allOrder;exports.allCarByOrderId = allCarByOrderId;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//生成订单
+function addOrder(_x) {return _addOrder.apply(this, arguments);}
+
+
+
+
+
+// 获取用户所有的订单
+function _addOrder() {_addOrder = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(data) {var url, method, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "addOrder";method = "POST";_context.next = 4;return (0, _request.default)(url, method, data);case 4:res = _context.sent;return _context.abrupt("return", res.data);case 6:case "end":return _context.stop();}}}, _callee);}));return _addOrder.apply(this, arguments);}function allOrder(_x2) {return _allOrder.apply(this, arguments);}
+
+
+
+
+
+// 获取用户指定的订单的所有购物车
+function _allOrder() {_allOrder = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(token) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "allOrder?token=".concat(token);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _allOrder.apply(this, arguments);}function allCarByOrderId(_x3, _x4) {return _allCarByOrderId.apply(this, arguments);}function _allCarByOrderId() {_allCarByOrderId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(token, id) {var url, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+            url = "allCarByOrderId?token=".concat(token, "&id=").concat(id);_context3.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context3.sent;return _context3.abrupt("return",
+            res.data);case 5:case "end":return _context3.stop();}}}, _callee3);}));return _allCarByOrderId.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 39:
+/*!******************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/util/isarzt.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = isUserInfo;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ../api/request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function
+
+isUserInfo() {return _isUserInfo.apply(this, arguments);}function _isUserInfo() {_isUserInfo = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var userInfo, data, url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+            // 判断用户是否授权
+            userInfo = uni.getStorageSync('user');
+            data = uni.getStorageSync('token');if (!(
+            userInfo && data)) {_context.next = 14;break;}
+            url = "checktoken?token=" + data.token;_context.next = 6;return (
+              (0, _request.default)(url));case 6:res = _context.sent;if (!(
+            res.data.status == 200)) {_context.next = 11;break;}return _context.abrupt("return",
+            res.data.message[0]);case 11:return _context.abrupt("return",
+
+            false);case 12:_context.next = 15;break;case 14:return _context.abrupt("return",
+
+
+            false);case 15:case "end":return _context.stop();}}}, _callee);}));return _isUserInfo.apply(this, arguments);}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 4:
+/*!**************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/pages.json ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 48:
+/*!*********************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/shopingCar.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getShopingCarByUser = getShopingCarByUser;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;exports.delShoppingCar = delShoppingCar;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//获取授权用户的所有的购物车
+function getShopingCarByUser(_x) {return _getShopingCarByUser.apply(this, arguments);}
+
+
+
+
+
+// 
+//修改购物车的数量
+function _getShopingCarByUser() {_getShopingCarByUser = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(token) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getShoppingCarByCarContent?token=".concat(token);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getShopingCarByUser.apply(this, arguments);}function updateShoppingCarNumByCarId(_x2, _x3) {return _updateShoppingCarNumByCarId.apply(this, arguments);}
+
+
+
+
+
+// 删除购物车
+function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(carId, num) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}function delShoppingCar(_x4) {return _delShoppingCar.apply(this, arguments);}function _delShoppingCar() {_delShoppingCar = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {var url, method, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+            url = "delShoppingCar";
+            method = "POST";_context3.next = 4;return (
+              (0, _request.default)(url, method, data));case 4:res = _context3.sent;return _context3.abrupt("return",
+            res.data.message);case 6:case "end":return _context3.stop();}}}, _callee3);}));return _delShoppingCar.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 57:
+/*!*************************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/goodsDetailApi.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getGoodsDetailByGoodsId = getGoodsDetailByGoodsId;exports.getGoodsByGoodsId = getGoodsByGoodsId;exports.addToShoppingCar = addToShoppingCar;exports.getShoppingCarByCarContent = getShoppingCarByCarContent;exports.updateShoppingCarNumByCarId = updateShoppingCarNumByCarId;exports.addCollection = addCollection;exports.delCollection = delCollection;exports.getCollectionByOpenid = getCollectionByOpenid;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//根据商品id获取对应的商品详情
+function getGoodsDetailByGoodsId(_x) {return _getGoodsDetailByGoodsId.apply(this, arguments);}
+
+
+
+
+
+//根据商品id获取对应的商品信息
+function _getGoodsDetailByGoodsId() {_getGoodsDetailByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(goodsId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getGoodsDetailByGoodsId?goodsId=".concat(goodsId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message[0]);case 5:case "end":return _context.stop();}}}, _callee);}));return _getGoodsDetailByGoodsId.apply(this, arguments);}function getGoodsByGoodsId(_x2) {return _getGoodsByGoodsId.apply(this, arguments);}
+
+
+
+
+
+//添加购物车
+function _getGoodsByGoodsId() {_getGoodsByGoodsId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(goodsId) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "getGoodsByGoodsId?goodsId=".concat(goodsId);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data.message[0]);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getGoodsByGoodsId.apply(this, arguments);}function addToShoppingCar(_x3) {return _addToShoppingCar.apply(this, arguments);}
+
+
+
+
+
+
+
+
+//根据购物车内容查询购物车中是否有匹配的数据信息
+function _addToShoppingCar() {_addToShoppingCar = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(goods) {var url, method, data, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "addToShoppingCar";method = "POST";data = goods;console.log("goods", goods);_context3.next = 6;return (0, _request.default)(url, method, data);case 6:res = _context3.sent;return _context3.abrupt("return", res.data.message);case 8:case "end":return _context3.stop();}}}, _callee3);}));return _addToShoppingCar.apply(this, arguments);}function getShoppingCarByCarContent(_x4) {return _getShoppingCarByCarContent.apply(this, arguments);}
+
+
+
+
+
+//修改购物车中的商品购买数量
+function _getShoppingCarByCarContent() {_getShoppingCarByCarContent = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(token) {var url, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:url = "getShoppingCarByCarContent?token=".concat(token);_context4.next = 3;return (0, _request.default)(url);case 3:res = _context4.sent;return _context4.abrupt("return", res.data);case 5:case "end":return _context4.stop();}}}, _callee4);}));return _getShoppingCarByCarContent.apply(this, arguments);}function updateShoppingCarNumByCarId(_x5, _x6) {return _updateShoppingCarNumByCarId.apply(this, arguments);}
+
+
+
+
+
+//添加收藏
+function _updateShoppingCarNumByCarId() {_updateShoppingCarNumByCarId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(carId, num) {var url, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:url = "updateShoppingCarNumByCarId?carId=".concat(carId, "&num=").concat(num);_context5.next = 3;return (0, _request.default)(url);case 3:res = _context5.sent;return _context5.abrupt("return", res.data.message);case 5:case "end":return _context5.stop();}}}, _callee5);}));return _updateShoppingCarNumByCarId.apply(this, arguments);}function addCollection(_x7) {return _addCollection.apply(this, arguments);}
+
+
+
+
+
+
+
+//删除收藏
+function _addCollection() {_addCollection = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(obj) {var url, method, data, res;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:url = "addCollection";method = "POST";data = obj;_context6.next = 5;return (0, _request.default)(url, method, data);case 5:res = _context6.sent;return _context6.abrupt("return", res.data);case 7:case "end":return _context6.stop();}}}, _callee6);}));return _addCollection.apply(this, arguments);}function delCollection(_x8) {return _delCollection.apply(this, arguments);}
+
+
+
+
+
+//根据openid查询对应的收藏数据信息
+function _delCollection() {_delCollection = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7(token) {var url, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:url = "delCollection?token=".concat(token);_context7.next = 3;return (0, _request.default)(url);case 3:res = _context7.sent;return _context7.abrupt("return", res.data);case 5:case "end":return _context7.stop();}}}, _callee7);}));return _delCollection.apply(this, arguments);}function getCollectionByOpenid(_x9) {return _getCollectionByOpenid.apply(this, arguments);}function _getCollectionByOpenid() {_getCollectionByOpenid = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8(token) {var url, res;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:
+            url = "getCollectionByOpenid?token=".concat(token);_context8.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context8.sent;return _context8.abrupt("return",
+            res.data);case 5:case "end":return _context8.stop();}}}, _callee8);}));return _getCollectionByOpenid.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 64:
+/*!*****************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/coupon.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getPreferentialDatas = getPreferentialDatas;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//获取所有的优惠卷
+function getPreferentialDatas() {return _getPreferentialDatas.apply(this, arguments);}function _getPreferentialDatas() {_getPreferentialDatas = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+            url = "getPreferentialDatas";_context.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context.sent;return _context.abrupt("return",
+            res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getPreferentialDatas.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 65:
+/*!***************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/addr.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.allAddr = allAddr;exports.delAddr = delAddr;exports.addAddr = addAddr;exports.editAddr = editAddr;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//获取授权用户的所有地址
+function allAddr(_x) {return _allAddr.apply(this, arguments);}
+
+
+
+
+
+// 
+//删除指定的地址
+function _allAddr() {_allAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(token) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "allAddr?token=".concat(token);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data);case 5:case "end":return _context.stop();}}}, _callee);}));return _allAddr.apply(this, arguments);}function delAddr(_x2, _x3) {return _delAddr.apply(this, arguments);}
+
+
+
+
+//新增地址
+function _delAddr() {_delAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(token, id) {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:url = "delAddr?token=".concat(token, "&id=").concat(id);_context2.next = 3;return (0, _request.default)(url);case 3:res = _context2.sent;return _context2.abrupt("return", res.data);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _delAddr.apply(this, arguments);}function addAddr(_x4) {return _addAddr.apply(this, arguments);}
+
+
+
+
+
+//编辑地址
+function _addAddr() {_addAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {var url, method, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:url = "addAddr";method = "POST";_context3.next = 4;return (0, _request.default)(url, method, data);case 4:res = _context3.sent;return _context3.abrupt("return", res.data);case 6:case "end":return _context3.stop();}}}, _callee3);}));return _addAddr.apply(this, arguments);}function editAddr(_x5) {return _editAddr.apply(this, arguments);}function _editAddr() {_editAddr = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(data) {var url, method, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+            url = "editAddr";
+            method = "POST";_context4.next = 4;return (
+              (0, _request.default)(url, method, data));case 4:res = _context4.sent;return _context4.abrupt("return",
+            res.data);case 6:case "end":return _context4.stop();}}}, _callee4);}));return _editAddr.apply(this, arguments);}
+
+/***/ }),
+
+/***/ 82:
+/*!*****************************************************************************************!*\
+  !*** D:/daywork/9月/新建文件夹/angel-tz-projects/angel-tz-projects/api/classifiedGoodsApi.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getClassifiedGoods = getClassifiedGoods;exports.getMenuDatasByHome = getMenuDatasByHome;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 17));var _request = _interopRequireDefault(__webpack_require__(/*! ./request.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+//根据分类id获取对应的分类商品信息
+function getClassifiedGoods(_x) {return _getClassifiedGoods.apply(this, arguments);}
+
+
+
+
+
+
+//获取首页八宫格数据信息
+function _getClassifiedGoods() {_getClassifiedGoods = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(classificationId) {var url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:url = "getClassifiedGoods?classificationId=".concat(classificationId);_context.next = 3;return (0, _request.default)(url);case 3:res = _context.sent;return _context.abrupt("return", res.data.message);case 5:case "end":return _context.stop();}}}, _callee);}));return _getClassifiedGoods.apply(this, arguments);}function getMenuDatasByHome() {return _getMenuDatasByHome.apply(this, arguments);}function _getMenuDatasByHome() {_getMenuDatasByHome = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var url, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            url = "getMenuDatasByHome";_context2.next = 3;return (
+              (0, _request.default)(url));case 3:res = _context2.sent;return _context2.abrupt("return",
+            res.data.message);case 5:case "end":return _context2.stop();}}}, _callee2);}));return _getMenuDatasByHome.apply(this, arguments);}
 
 /***/ })
 

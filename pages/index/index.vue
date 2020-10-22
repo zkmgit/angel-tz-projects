@@ -9,7 +9,7 @@
 			</swiper>
 		</view>
 		<!-- 搜索输入框 -->
-		<view class="search" @click="goodsList()">
+		<view class="search" @click="goodsList">
 			<input type="text" placeholder="输入搜索关键词" value=""/>
 			<image src="/static/images/home/search.svg"></image>
 		</view>
@@ -18,16 +18,9 @@
 			<view class="notice">
 				<image class="notice_icon" src="/static/images/home/notice.png"></image>
 				<swiper class="notice_swiper" vertical autoplay circular>
-					<!-- <navigator v-for="item in Announcement" :key="item.id" url="/pages/announcementDetail/announcementDetail?title=">
-						<swiper-item>
-							<view class="notice_itemr">{{item.title}}</view>
-						</swiper-item>
-					</navigator> -->
-					<view>
-						<swiper-item>
-							<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
-						</swiper-item>
-					</view>
+					<swiper-item>
+						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
+					</swiper-item>
 				</swiper>
 			</view>
 			<view class="more">
@@ -36,8 +29,8 @@
 		</view>
 		<!-- 宫格分类 -->
 		<view class="category-box">
-			<view class="category-list" v-for="item in MenuDatasByHome" :key="item.id">
-				<view class="category-column" @click="switchToCate(item.id)">
+			<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
+				<view class="category-column" @click="switchToCate(index)">
 					<image class="category-imgbox" :src="item.img"></image>
 					<view class="category-title">{{item.name}}</view>
 				</view>
@@ -115,7 +108,7 @@
 			<view class="goods-container">
 				<view class="goods-box" v-for="item in GoodsList" :key="item.id">
 					<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-						<view class="img-box" @click="switchToCate(cateItem.id)">
+						<view class="img-box">
 							<image :src="item.show_img" class="image" />
 						</view>
 						<view class="goods-title">{{item.name}}</view>
@@ -143,6 +136,7 @@
 		getIndexLunbo,
 		getAnnouncementDatas,
 		getMenuDatasByHome,
+		getClassifiedGoods,
 		getSeckillGoods,
 		getRecommendedGoods,
 		getGoodsList,
@@ -164,21 +158,21 @@
 		methods: {
 			// 搜索
 			goodsList(){
-				uni.switchTab({
+				uni.navigateTo({
 					// goodsList
 					url:`/pages/goodsList/goodsList`
-		
 				})
 			},
 			
-			// 宫格
-			switchToCate(id){
-				// this.$store.commit('changeCategoryId',{id:id});
+			// 宫格分类id 
+			switchToCate:function(index){
+				console.log("点击index:"+index)
+				var data =  index
+				uni.setStorageSync('sell',data)
 				uni.switchTab({
-					url:`/pages/classify/classify?id=`+ id
+					url:`/pages/classify/classify`
 				})
 			},
-			
 			// 轮播图
 			async getLunboData() {
 				var res = await getIndexLunbo();
@@ -227,7 +221,6 @@
 					url: `/pages/announcementDetail/announcementDetail?title=${title}`
 				});
 			},
-		
 		},
 		// onLoad:function(option){				//opthin为object类型，会序列化上页面传递的参数
 		// 	console.log(option.title);			//打印出上页面传递的参数

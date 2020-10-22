@@ -1,6 +1,5 @@
 {
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "天使童装",
@@ -52,7 +51,10 @@
 		{
 			"path": "pages/classify/classify",
 			"style": {
-				"navigationBarTitleText": "分类"
+				"navigationBarTitleText": "分类",
+				"usingComponents": {
+					"van-search": "/wxcomponents/vant/dist/search/index"
+				}
 			}
 		},
 		{
@@ -83,7 +85,6 @@
 				}
 			}
 		},
-
 		{
 			"path": "pages/editAddr/editAddr",
 			"style": {
@@ -100,14 +101,12 @@
 		{
 			"path": "pages/authorization/authorization",
 			"style": {}
-		},
-		{
+		}, {
 			"path": "pages/orderDetails/orderDetails",
 			"style": {
 				"navigationBarTitleText": "订单详情"
 			}
-		},
-		{
+		}, {
 			"path": "pages/userAddr/userAddr",
 			"style": {
 				"navigationBarTitleText": "选择收货地址",
@@ -116,7 +115,8 @@
 				}
 			}
 		},
-		 {
+
+		{
 			"path": "pages/collect/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",
@@ -124,14 +124,12 @@
 					"van-divider": "/wxcomponents/vant/dist/divider/index"
 				}
 			}
-		},
-		{
+		}, {
 			"path": "pages/signin/signin",
 			"style": {
 				"navigationBarTitleText": "每日签到"
 			}
-		},
-		{
+		}, {
 			"path": "pages/coupon/coupon",
 			"style": {
 				"navigationBarTitleText": "领卷中心",
@@ -140,12 +138,14 @@
 				}
 			}
 		},
+
 		{
 			"path": "pages/liveStreaming/liveStreaming",
 			"style": {
 				"navigationBarTitleText": "直播特卖",
 				"usingComponents": {
-					"van-button": "/wxcomponents/vant/dist/button/index"
+					"van-button": "/wxcomponents/vant/dist/button/index",
+					"van-icon": "/wxcomponents/vant/dist/icon/index"
 				}
 			}
 		},
@@ -164,9 +164,18 @@
 			"style": {
 				"navigationBarTitleText": "公告"
 			}
+		},
+		{
+			"path": "pages/goodsList/goodsList",
+			"style": {
+				"navigationBarTitleText": "商品列表"
+			}
 		}
+		
 
 	],
+	
+
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
@@ -202,4 +211,5 @@
 			}
 		]
 	}
+	
 }
