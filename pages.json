@@ -163,6 +163,12 @@
 			}
 		},
 		{
+			"path": "pages/announcementDetail/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
+		},
+		{
 			"path": "pages/goodsList/goodsList",
 			"style": {
 				"navigationBarTitleText": "商品列表"
