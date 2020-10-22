@@ -26,16 +26,14 @@
 			return {
 				categoryList: [],
 				subCategoryList: [],
-				activeIndex:0
+				activeIndex:1
 			};
 		},
-		onLoad(options){
+		onShow(){
 			var res = uni.getStorageSync('sell')
 				this.activeIndex = res
 			// console.log("接收index:" + this.activeIndex)
 			// this.getAnnouncementDetailsByIdData(classificationId);
-		},
-		onShow(){
 		},
 		methods: {
 			categoryMainClick(category) {
@@ -44,8 +42,6 @@
 				// this.subCategoryList = this.getClassifiedGoodsData(category.id);
 			},
 			categorySubClick(category) {
-				
-				console.log(category);
 				uni.navigateTo({
 					url: `../goodsDetail/goodsDetail?goodsId=`+category.id
 				})
@@ -65,7 +61,7 @@
 				})
 			}
 		},
-		mounted() {
+		created() {
 			this.getClassifiedGoodsData(1)
 			this.getMenuDatasByHomeData();
 		}

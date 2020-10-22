@@ -3,13 +3,14 @@
 		<!-- 搜索栏 -->
 		<view class="header">
 			<view class="search">
-				<input type="text" placeholder="输入搜索关键词" @confirm="search" v-model="value" bgColor="#fff"></input>
-				<!-- <image class="search-icon" src="/static/images/icon/search.svg"></image> -->
+				<input type="text" placeholder="输入搜索关键词" @confirm="search"    v-model="value" ></input>
+				<view  @click="search">
+					<image class="search-icon" src="/static/images/icon/search.svg"></image>
+				</view>
 			</view>
-
 			<view>
-				<!-- 切换图标 -->
-				<!-- <image class="show-type" src="/static/images/icon/list1.svg"></image> -->
+				<!-- 切换 图标 -->
+				<image class="show-type" src="/static/images/icon/list1.svg" @tap="changeShowType"></image>
 			</view>
 		</view>
 
@@ -18,41 +19,38 @@
 
 		<!-- 导航栏 -->
 		<view class="tab">
-			<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)" v-model="value">
-				{{ item }}
+			<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
+			 v-model="value">{{ item }}
 			</view>
 		</view>
 		<!-- 切换成显示一张图片页面 -->
 		<view class="list">
 			<view v-for="item in data" :key="item.id">
 				<!-- 跳入商品详情 -->
-				<navigator class="goods">
-					<!-- :url="'../../details/goodsDetails/goodsDetails?goodsId='+item.id"-->
-					<!-- 切换一张图片 -->
+				<view class="goods">
+					{{ item.id }}
 					<view class="image">
-						<!-- 第一张图片页面图片地址 -->
-						<image :src="item.show_img" class="img" />
+						<image :src="item.show_img" class="img"  />
 					</view>
-
 					<view class="info">
-						<view class="title">
-							{{item.name}}
+						<view class="title">{{item.name}}</view>
+						<!-- 价格 -->
+						<view class="price">
+							<view class="price-icon">&yen;{{item.original_price}}</view>
 						</view>
-
-						<view class="buy">
-							<!-- 切换一张图片上价格 -->
-							<view class="price">
-								<view class="icon">&yen;</view>{{item.original_price}}
-							</view>
-
-							<!-- 切换一张图片上购物车图标 -->
-							<view class="cart">
-								<!-- <view class="cart-icon" style="background-image: url(../../../static/images/goodlist/car-2.png);background-size: cover;"></view> -->
-							</view>
+						<!-- 已出售件数 -->
+						<view class="sales">
+							<view class="sales-icon">已售出{{item.sales}}件</view>
 						</view>
+						<!-- 购物车图标 -->
+						<navigator class="cart" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<image class="cart-icon" src="../../static/images/goodslist/car.svg" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id"></image>
+						</navigator>
+
 					</view>
-				</navigator>
+				</view>
 			</view>
+		
 
 			<!-- 搜索 -->
 			<view class="empty" v-show="data.length === 0">
@@ -71,8 +69,10 @@
 
 <script>
 	import {
-		getGoodsByGoodsName
+		getGoodsByGoodsName,
+		getGoodsList
 	} from '../../api/getGoodsByGoodsName.js';
+
 	export default {
 		data() {
 			return {
@@ -83,28 +83,35 @@
 				isAscend: false,
 				isMore: true,
 				data: [],
+				tempData: [],
 				tab: ["综合", "新品", "销量", "价格"]
 			};
 		},
 		methods: {
-				
+
 			/* 切换数据 */
 			async selected(index) {
-				// console.log(index)
-				// console.log(isSearch)
 				switch (index) {
 					case 0:
-						this.data = await getGoodsByGoodsName(this.value);
-						console.log(this.data);
+						/* 综合 */ 
+						this.data = JSON.parse(JSON.stringify(this.tempData));
+						console.log(this.tempData);
 						break;
 					case 1:
-						this.data = await getGoodsByGoodsName(this.value);
+						/* 新品上市时间排序 */ 
+						this.data = this.data.sort(function(v1, v2) {
+							return new Date(v1.add_time).getTime() - new Date(v2.add_time).getTime()
+						})
 						break;
 					case 2:
-						this.data = await getGoodsByGoodsName(this.value);
+						/* 已出售排序 */ 
+						this.data = this.data.sort(function(v1, v2) {
+							return Number(v1.sales) - Number(v2.sales)
+						})
 						break;
 					default:
-						this.data = this.data.sort(function(v1, v2){
+						/* 价格排序 */ 
+						this.data = this.data.sort(function(v1, v2) {
 							return Number(v1.original_price) - Number(v2.original_price)
 						})
 						console.log(this.data);
@@ -113,23 +120,46 @@
 				/* 导航栏切换 */
 				this.action = index;
 			},
-
+			
+			// 按下事件
 			async search() {
-				this.data = await getGoodsByGoodsName(this.value)
+				if(!this.value.trim()){
+					this.data = await getGoodsList();
+					return;
+				}
+				this.data = await getGoodsByGoodsName(this.value);
+				this.tempData = this.data;
 				console.log(this.data);
-			}
+			},
+			
+			
+		},
+		// 初始化页面
+		async onLoad(){
+			this.data = await getGoodsList();
+			this.tempData = JSON.parse(JSON.stringify(this.data));
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.header {
+	page {
+		background: #f5f5f5;
+	}
+
+	page,
+	view,
+	image,
+	input {
+		display: block;
+		box-sizing: border-box;
+	}
+
+	.header{
 		padding: 32rpx;
 		background: #fff;
 		display: flex;
 		align-items: center;
-
-
 
 		.search {
 			position: relative;
@@ -141,7 +171,7 @@
 				width: 100%;
 				height: 100%;
 				border-radius: 30rpx;
-				padding-left: 60rpx; 
+				padding-left: 60rpx;
 			}
 
 			.search-icon {
@@ -177,10 +207,10 @@
 		justify-content: space-around;
 
 		.option {
-			 line-height: 88rpx;
+			line-height: 88rpx;
 
 			.filter {
-				color:#fa1e26;
+				color: #fa1e26;
 
 				.rank {
 					margin: 16rpx;
@@ -194,19 +224,14 @@
 				}
 
 				.ascend {
-				width: 220rpx;
-				height: 220rpx;
-				flex-shrink: 0;
+					width: 220rpx;
+					height: 220rpx;
+					flex-shrink: 0;
 				}
 
 				.descend {
 					padding: 16rpx 32rpx 0 24rpx;
 					width: 100%;
-				}
-
-				.sel {
-					color: #333;
-					font-size: 30rpx;
 				}
 			}
 		}
@@ -243,47 +268,44 @@
 				flex-direction: column;
 				justify-content: space-between;
 				padding-right: 24rpx;
+				font-size: 30rpx;
 
 				.title {
 					margin: 24rpx 0 8rpx;
 					color: #323233;
-					font-size: 28rpx;
+
 				}
 
-				.buy {
+				.price {
 					display: flex;
-					justify-content: space-around;
-					height: 88rpx;
+					color: #f44;
+					font-size: 30rpx;
 					align-items: center;
 
-					.price {
-						display: flex;
-						color: #f44;
-						font-size: 36rpx;
-						align-items: center;
+					.price-icon {
+						margin-right: 4rpx;
+					}
+				}
 
-						.icon {
-							margin-right: 4rpx;
-							font-size: 24rpx;
-						}
+				.sales {
+					display: flex;
+					font-size: 30rpx;
+
+					.sales-icon {
+						color: gray;
 					}
-					
-					
-					.cart{
-						width: 100rpx;
-						height: 100rpx;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						
-						
-						.cart-icon {
-							width: 50rpx;
-							height: 50rpx;
-							
-						}
+				}
+
+				.cart {
+					display: flex;
+					align-items: center;
+					justify-content: flex-end;
+					padding-bottom: 20px;
+
+					.cart-icon {
+						width: 50rpx;
+						height: 50rpx;
 					}
-					
 				}
 			}
 		}
@@ -314,4 +336,8 @@
 			font-size: 26rpx;
 		}
 	}
+
+
+	// 两张图片
+	
 </style>

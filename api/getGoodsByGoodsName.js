@@ -7,4 +7,9 @@ export async function getGoodsByGoodsName(goodsName){
 	console.log(res);
 	return res.data.message;
 }
-
+// 商品列表
+export async function getGoodsList(){
+	let url = `getGoodsList`;
+	let res = await request(url);
+	return res.data.message;
+}
