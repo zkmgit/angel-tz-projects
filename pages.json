@@ -135,6 +135,7 @@
 				}
 			}
 		},
+
 		{
 			"path": "pages/liveStreaming/liveStreaming",
 			"style": {
@@ -144,7 +145,8 @@
 					"van-icon": "/wxcomponents/vant/dist/icon/index"
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/integral/integral",
 			"style": {
 				"navigationBarTitleText": "积分兑换成长值",
@@ -165,12 +167,6 @@
 			"style": {
 				"navigationBarTitleText": "商品列表"
 			}
-		},
-		{
-			"path": "pages/announcementDetail/announcementDetail",
-			"style": {
-				"navigationBarTitleText": "公告详情"
-			}
 		}
 
 	],
@@ -178,7 +174,48 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+
+		"path": "pages/announcementDatas/announcementDatas",
+		"style": {
+			"navigationBarTitleText": "公告"
+		}
+	},
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#FF0000",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/images/nav/home-off.png",
+				"selectedIconPath": "static/images/nav/home-on.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/classify/classify",
+				"iconPath": "static/images/nav/ic_catefory_normal.png",
+				"selectedIconPath": "static/images/nav/ic_catefory_pressed.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/shopingCar/shopingCar",
+				"iconPath": "static/images/nav/cart-off.png",
+				"selectedIconPath": "static/images/nav/cart-on.png",
+				"text": "购物车"
+			}, {
+				"pagePath": "pages/user/user",
+				"iconPath": "static/images/nav/my-off.png",
+				"selectedIconPath": "static/images/nav/my-on.png",
+				"text": "我的"
+			}
+		]
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

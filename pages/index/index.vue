@@ -128,6 +128,10 @@
 				<image src="/static/images/home/gift.png"/>
 			</navigator>
 		</view>
+		<!-- 上拉刷新 hidden="{{loadingMoreHidden ? true : false}}" -->
+		<view class="no-more">
+			没有更多了
+		</view>
 	</view>
 </template>
 
@@ -549,5 +553,14 @@
 	    height:60rpx;
 	    margin-top: 10rpx;
 	  }
+	}
+
+	// 上拉刷新
+	.no-more {
+		height: 120rpx;
+		line-height: 120rpx;
+		text-align: center;
+		color: #999;
+		font-size: 26rpx;
 	}
 </style>
