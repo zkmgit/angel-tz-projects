@@ -10,7 +10,7 @@
 		</view>
 		<!-- 搜索输入框 -->
 		<view class="search" @click="goodsList">
-			<input type="text" placeholder="输入搜索关键词" value=""/>
+			<input type="text" placeholder="输入搜索关键词" value="" />
 			<image src="/static/images/home/search.svg"></image>
 		</view>
 		<!-- 公告 跳转页面-->
@@ -30,7 +30,7 @@
 		<!-- 宫格分类 -->
 		<view class="category-box">
 			<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
-				<view class="category-column" @click="switchToCate(index)">
+				<view class="category-column" @click="switchToCate(item.id,index)">
 					<image class="category-imgbox" :src="item.img"></image>
 					<view class="category-title">{{item.name}}</view>
 				</view>
@@ -77,7 +77,7 @@
 						</view>
 					</navigator>
 				</view>
-			
+
 			</view>
 		</block>
 		<!-- 拼团 -->
@@ -111,6 +111,7 @@
 						<view class="img-box">
 							<image :src="item.show_img" class="image" />
 						</view>
+
 						<view class="goods-title">{{item.name}}</view>
 						<view style='display:flex;'>
 							<view class="goods-price">¥ {{item.now_price}}</view>
@@ -125,8 +126,12 @@
 		<!-- 优惠价 -->
 		<view class='coupons-float'>
 			<navigator url="/pages/coupon/coupon">
-				<image src="/static/images/home/gift.png"/>
+				<image src="/static/images/home/gift.png" />
 			</navigator>
+		</view>
+		<!-- 上拉刷新 hidden="{{loadingMoreHidden ? true : false}}" -->
+		<view class="no-more">
+			没有更多了
 		</view>
 	</view>
 </template>
@@ -145,32 +150,32 @@
 	export default {
 		data() {
 			return {
-				LunboData: [], 			// 轮播图
-				Announcement: [], 		// 公告
-				MenuDatasByHome: [],	// 宫格分类
-				SeckillGoods: [], 		// 限时秒杀
-				RecommendedGoods: [], 	// 爆品推荐
+				LunboData: [], // 轮播图
+				Announcement: [], // 公告
+				MenuDatasByHome: [], // 宫格分类
+				SeckillGoods: [], // 限时秒杀
+				RecommendedGoods: [], // 爆品推荐
 				time: 30 * 60 * 60 * 1000, // 倒计时
-				GoodsList: [],			 // 商品列表
-				SpellAGroupGoods: [],	 // 拼团
+				GoodsList: [], // 商品列表
+				SpellAGroupGoods: [], // 拼团
 			}
 		},
 		methods: {
 			// 搜索
-			goodsList(){
+			goodsList() {
 				uni.navigateTo({
 					// goodsList
-					url:`/pages/goodsList/goodsList`
+					url: `/pages/goodsList/goodsList`
 				})
 			},
-			
+
 			// 宫格分类id 
-			switchToCate:function(index){
-				console.log("点击index:"+index)
-				var data =  index
-				uni.setStorageSync('sell',data)
+			switchToCate(id, index) {
+				console.log("点击index:" + index)
+				uni.setStorageSync('sell', id)
+				uni.setStorageSync('index', index)
 				uni.switchTab({
-					url:`/pages/classify/classify`
+					url: `/pages/classify/classify`
 				})
 			},
 			// 轮播图
@@ -216,7 +221,7 @@
 				this.SpellAGroupGoods = res;
 			},
 			// 公告详情
-			comment:function(title){
+			comment: function(title) {
 				uni.navigateTo({
 					url: `/pages/announcementDetail/announcementDetail?title=${title}`
 				});
@@ -372,10 +377,11 @@
 	// 秒杀商品
 	.miaosha-goods-list {
 		margin: 20rpx;
-		background: #f6f6f6;
+		background-color: #f6f6f6;
 		border-radius: 16rpx;
 		display: flex;
 		padding: 20rpx;
+
 		.image {
 			width: 260rpx;
 			height: 260rpx;
@@ -392,13 +398,12 @@
 			}
 
 			.count-down {
-				background: #e64340;
+				background-color: #e64340;
 				padding: 8rpx 16rpx;
 				border-radius: 16rpx;
 				margin-top: 12rpx;
-				color: #f6f6f6;
-				van-count-down {
-					background-color: #f6f6f6;
+
+				.van-count-down {
 					color: #f6f6f6;
 				}
 			}
@@ -535,19 +540,29 @@
 
 	// 优惠卷
 	.coupons-float {
-	  position: fixed;
-	  right:15rpx;
-	  bottom:80rpx;
-	  width:80rpx;
-	  height:80rpx;
-	  background-color: #fff;
-	  text-align: center;
-	  border-radius:50%;
-	  border: 1rpx solid #ddd;
-	  image {
-	    width:60rpx;
-	    height:60rpx;
-	    margin-top: 10rpx;
-	  }
+		position: fixed;
+		right: 15rpx;
+		bottom: 80rpx;
+		width: 80rpx;
+		height: 80rpx;
+		background-color: #fff;
+		text-align: center;
+		border-radius: 50%;
+		border: 1rpx solid #ddd;
+
+		image {
+			width: 60rpx;
+			height: 60rpx;
+			margin-top: 10rpx;
+		}
+	}
+
+	// 上拉刷新
+	.no-more {
+		height: 120rpx;
+		line-height: 120rpx;
+		text-align: center;
+		color: #999;
+		font-size: 26rpx;
 	}
 </style>
