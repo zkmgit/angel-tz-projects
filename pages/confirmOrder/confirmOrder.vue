@@ -20,62 +20,25 @@
 		</van-popup>
 		<!-- 购物车 -->
 		<view class="car-container">
-			<view class="item">
+			<view class="item" v-for="item in carList" :key="item.id">
 				<view class="img">
-					<image src="/static/images/nav/微信图片_202007111331035.png" mode=""></image>
+					<image :src="item.showImg" mode=""></image>
 				</view>
 				<view class="info">
 					<view class="title">
-						幼儿园园服韩版男女童装春秋季班服英伦学院分白色衬衫小学生校服1
+						{{ item.goods_name }}
 					</view>
 					<view class="price">
 						<view class="totalPrice">
-							￥236
+							￥{{ item.goods_price }}
 						</view>
 						<view class="count">
-							x 1
+							x {{ item.num }}
 						</view>
 					</view>
 				</view>
 			</view>
 			
-			<view class="item">
-				<view class="img">
-					<image src="/static/images/nav/微信图片_202007111331035.png" mode=""></image>
-				</view>
-				<view class="info">
-					<view class="title">
-						幼儿园园服韩版男女童装春秋季班服英伦学院分白色衬衫小学生校服1
-					</view>
-					<view class="price">
-						<view class="totalPrice">
-							￥236
-						</view>
-						<view class="count">
-							x 1
-						</view>
-					</view>
-				</view>
-			</view>
-			
-			<view class="item">
-				<view class="img">
-					<image src="/static/images/nav/微信图片_202007111331035.png" mode=""></image>
-				</view>
-				<view class="info">
-					<view class="title">
-						幼儿园园服韩版男女童装春秋季班服英伦学院分白色衬衫小学生校服1555555555555555555555555555
-					</view>
-					<view class="price">
-						<view class="totalPrice">
-							￥236
-						</view>
-						<view class="count">
-							x 1
-						</view>
-					</view>
-				</view>
-			</view>
 		</view>
 	
 		<!-- 配送方式 -->
@@ -95,10 +58,24 @@
 			<view class="line">
 				
 			</view>
-			<view class="addr" @click="goAddAddr">
+			<view class="addr" @click="goAddAddr" v-if="isShow">
 				<image class="img" src="/static/images/confirmOrder/add.png" mode=""></image>
 				<text>新增收货地址</text>
 			</view>
+			<view class="addr-item" @click="goUserAddr" v-else>
+				<view class="addr-info">
+					<view class="name">
+						<view class="size">{{ item.receiver }}</view><view class="">{{ item.phone }}</view> 
+					</view>
+					<view class="street">
+						{{ item.address }}
+					</view>
+				</view>
+				<view class="img">
+					<image src="../../static/images/userAddr/right.png" mode=""></image>
+				</view>
+			</view>
+			
 			<view class="line">
 				
 			</view>
@@ -123,18 +100,18 @@
 		
 		<!-- info -->
 		<view class="info">
-			<van-cell title="商品小计" value="2846" />
+			<van-cell title="商品小计" :value="total" />
 			<van-cell title="运费"  value="0" />
-			<van-cell title="优惠金额"  value="0" />
+			<van-cell title="优惠金额"  :value="discountMoney" />
 		</view>
 		<!-- footer -->
 		<view class="footer">
 			<text class="total">合计：</text>
 			<view class="red">
-				￥<text class="size">2843</text> 
+				￥<text class="size">{{ num }}</text> 
 			</view>
 			<text>+0 积分</text>
-			<view class="btn">
+			<view class="btn" @click="generateOrders">
 				提交订单
 			</view>
 		</view>
@@ -142,17 +119,126 @@
 </template>
 
 <script>
+	import { getPreferentialDatas } from '../../api/coupon.js';
+	import { allAddr } from '../../api/addr.js';
+	import { addOrder } from '../../api/order.js';
+	import { delShoppingCar } from '../../api/shopingCar.js';
 	export default {
 		data() {
 			return {
+				isShow: true,
+				// 默认使用倒序的地址
+				item: {},
+				// 合计
+				num:0,
+				// 保存当前优惠的数组
+				discountArr: [],
+				// 优惠金额使用优惠卷后
+				discountMoney:0,
+				total:'',
+				// 获取要结算的购物车数据
+				carList: [],
 				checked:true,
 				discount:'请选择使用优惠卷',
 				title:'请选择使用优惠卷',
 				show:false,
-				columns: ['一人一份[满0元可减1元]', '新店优惠[满2000元可减25元]', '新店优惠[满2000元可减25元]', '新店优惠[满1000元可减25元]'],
+				columns: [],
+				// 当前优惠的价钱
 			};
 		},
+		onLoad(e){
+			console.log('list',e);
+			console.log(JSON.parse(e.carList));
+			this.total = e.total;
+			this.num = e.total;
+			this.carList = JSON.parse(e.carList);
+		},
+		created() {
+			this.getAllCoupon();
+			this.getDefaultAddr();
+		},
 		methods:{
+			async delCar(ids){
+				let { token } = uni.getStorageSync('token');
+				let data = {
+					token,
+					ids
+				}
+				await delShoppingCar(data);
+			},
+			async getDefaultAddr(){
+				let { token } = uni.getStorageSync('token');
+				let res = await allAddr(token);
+				console.log('地址',res.status);
+				if(res.status == 200){
+					this.item = res.message[0];
+					this.isShow = false;
+				}
+			},
+			goUserAddr(){
+				// 前往用户地址
+				uni.navigateTo({
+					url:'../userAddr/userAddr'
+				})
+			},
+			async generateOrders(){
+				// 提交订单
+				// 订单号
+				let { token } = uni.getStorageSync('token');
+				let order_number = new Date().getTime();
+				// 商品总金额，实付金额，商品数量，所有购物车id，收件人，详细地址,地区
+				let goods_total,total_price,goods_ids,recipient,addr,area;
+				let total_count = 0;
+				let arr = [];
+				// 实付金额
+				total_price = this.num;
+				// 商品总金额
+				goods_total = this.total;
+				// 所有的购物车
+				this.carList.map(v=>{
+					// 拼接购物车ids
+					arr.push(v.id);
+					// 商品数量
+					console.log(v)
+					total_count += parseInt(v.num);
+				})
+				goods_ids = arr.join(',');
+				// 收件人
+				recipient = this.item.receiver;
+				// 详细地址
+				addr = this.item.address;
+				// 地区
+				area = this.item.area;
+				// 生成订单
+				let order = {
+					order_number,
+					goods_total,
+					total_price,
+					total_count,
+					goods_ids,
+					recipient,
+					addr,
+					area,
+					token
+				}
+				// console.log(order);
+				let res = await addOrder(order);
+				if(res.status == 200){
+					// 删除购物车
+					await this.delCar(goods_ids);
+					// delShoppingCar
+					uni.navigateTo({
+						url:'../orderList/orderList?status=all'
+					})
+				}
+			},
+			async getAllCoupon(){
+				// 获取所有优惠卷
+				let res = await getPreferentialDatas();
+				res.map(v=>{
+					this.columns.push(`${v.title}[${v.condition}元可减${v.money}元]`)
+				})
+			},
 			goAddAddr(){
 				uni.navigateTo({
 					url:'../editAddr/editAddr'
@@ -162,7 +248,22 @@
 				// 选中优惠并退出
 				this.onClose();
 				this.title = this.discount;
-			},
+				// 清空当前保存优惠的数组
+				this.discountArr.length = 0;
+				
+				var reg = /(\d+)+/gi;
+				let r;
+				while (r = reg.exec(this.title)) {
+					this.discountArr.push(r[1])
+				}
+				// 若当前总价钱大于优惠卷金额，则进行满减
+				if(parseInt(this.total) > parseInt(this.discountArr[0])){
+					// 合计重新赋值，重新计算
+					this.num = this.total;
+					this.num = parseInt(this.total) - parseInt(this.discountArr[1]);
+					this.discountMoney = parseInt(this.discountArr[1]);
+				}
+				// discountMoney			},
 			cancel(){
 				// 取消并退出
 				this.onClose();
@@ -243,6 +344,45 @@
 			background-color: #FFFFFF;
 			margin-top: 20rpx;
 			margin-bottom: 20rpx;
+			
+			.addr-item {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-bottom: 1rpx solid #F0F0F0;
+				padding: 30rpx 20rpx;
+				
+				.addr-info {
+					
+					.name {
+						display: flex;
+						align-items: flex-end;
+						
+						
+						.size {
+							font-size: 24rpx;
+							margin-right: 20rpx;
+						}
+					}
+					
+					.street {
+						margin-top: 10rpx;
+						font-size: 24rpx;
+						color: #CBCBCB;
+					}
+				}
+				
+				.img {
+					width: 35rpx;
+					height: 35rpx;
+					margin-right: 30rpx;
+					
+					image {
+						width: 100%;
+						height: 100%;
+					}
+				}
+			}
 			
 			.line {
 				border-top: 2rpx solid #EEEEEE;

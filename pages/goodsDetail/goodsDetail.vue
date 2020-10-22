@@ -105,11 +105,12 @@
 			//根据商品id获取对应的商品数据信息
 			let res2 = await getGoodsByGoodsId(id);
 			//将获取出来的图片转换成数组的形式，以便循环展示
-			let imgArr = res.show__img.split(",");
+			let imgArr = res.show_img.split(",");
 			this.imgList = imgArr;
 			res.sales = res2.sales;
 			res.nowPrice = res2.now_price;
-			this.currentGoods = res;
+			this.currentGoods = res;	
+			let content = res.goods_content.split(",");
 			this.content = res.goods_content.split(",");
 			this.imgs = res.goods_content.split(",");
 			//获取出所有的商品规格数据信息
