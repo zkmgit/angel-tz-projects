@@ -31,19 +31,19 @@
 		},
 		onShow(){
 			var res = uni.getStorageSync('sell')
-			this.activeIndex = res
-			console.log("接收index:" + this.activeIndex)
+				this.activeIndex = res
+			// console.log("接收index:" + this.activeIndex)
 			// this.getAnnouncementDetailsByIdData(classificationId);
 		},
 		methods: {
 			categoryMainClick(category) {
-				this.subCategoryList = this.getClassifiedGoodsData(category.id) ;
-				console.log("接收id:"+category.id)
+				this.subCategoryList = this.getClassifiedGoodsData(category.id);
+				// console.log("接收id:"+category.id)
 				// this.subCategoryList = this.getClassifiedGoodsData(category.id);
 			},
 			categorySubClick(category) {
 				uni.navigateTo({
-					url: `/pages/goodsDetail/goodsDetail?goodsId=`+category.id
+					url: `../goodsDetail/goodsDetail?goodsId=`+category.id
 				})
 			},
 			async getClassifiedGoodsData(classificationId) {
@@ -57,7 +57,7 @@
 			change() {
 				// 跳转到的地址
 				uni.navigateTo({
-					url: `/pages/goodsList/goodsList`
+					url: `../goodsList/goodsList`
 				})
 			}
 		},
