@@ -1,6 +1,6 @@
 import request from "./request.js"
 
-// 搜索 
+// 搜索商品
 export async function getGoodsByGoodsName(goodsName){
 	let url = `getGoodsByGoodsName?goodsName=${goodsName}`;
 	let res = await request(url);
