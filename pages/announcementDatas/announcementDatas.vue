@@ -1,7 +1,7 @@
 <template>
 	<!-- 公告列表 -->
-	<view @click="comment(Announcement[0].title)">
-		<view class='cashlogs' v-for="item in Announcement" :key="item.id">
+	<view>
+		<view class='cashlogs' v-for="item in Announcement" :key="item.id" @click="comment(item.title)">
 			<view class='profile'>
 				<view class='typeStr'>{{item.title}}</view>
 				<view class='dateAdd'>{{item.add_time}}</view>
@@ -27,7 +27,6 @@
 				var res = await getAnnouncementDatas();
 				this.Announcement = res;
 			},
-			
 			
 			comment:function(title){
 				uni.navigateTo({

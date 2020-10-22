@@ -13,7 +13,8 @@
 							<van-icon size="30rpx" name="user-o" /><text>{{item.anchor_name}}</text></view>
 						<view class="label">
 							<!-- 直播时间 -->
-							<van-icon size="30rpx" name="underway" /><text>{{item.start_time}}</text></view>
+							<van-icon size="30rpx" name="underway" /><text>{{item.start_time}}</text>
+						</view>
 						<view class="miaosha-price-btn">
 							<van-button type="primary" size="small" block round>正在直播</van-button>
 						</view>
@@ -25,17 +26,19 @@
 </template>
 
 <script>
-	import {getRooms} from "../../api/homeApi.js"
+	import {
+		getRooms
+	} from "../../api/homeApi.js"
 	export default {
-		
+
 		data() {
 			return {
-				RoomsData:[]
+				RoomsData: []
 			}
 		},
 		methods: {
 			// 直播特卖
-			async getRoomsData(){
+			async getRoomsData() {
 				var res = await getRooms();
 				// console.log(res);
 				this.RoomsData = res;

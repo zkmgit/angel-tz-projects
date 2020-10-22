@@ -26,7 +26,7 @@
 			return {
 				categoryList: [],
 				subCategoryList: [],
-				activeIndex:0
+				activeIndex:1
 			};
 		},
 		onShow(){
@@ -57,7 +57,7 @@
 			change() {
 				// 跳转到的地址
 				uni.navigateTo({
-					url: `../goodsList/goodsList`
+					url: `/pages/goodsList/goodsList`
 				})
 			}
 		},
