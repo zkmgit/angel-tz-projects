@@ -22,7 +22,7 @@
 						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
 					</swiper-item>
 				</swiper>
-			</view>想·
+			</view>
 			<view class="more">
 				<navigator url="/pages/announcementDatas/announcementDatas">更多 ></navigator>
 			</view>
