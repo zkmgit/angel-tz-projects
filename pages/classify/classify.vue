@@ -39,7 +39,7 @@
 		},
 		methods: {
 			categoryMainClick(category) {
-				this.subCategoryList = this.getClassifiedGoodsData(category.id) ;
+				this.subCategoryList = this.getClassifiedGoodsData(category.id);
 				// console.log("接收id:"+category.id)
 				// this.subCategoryList = this.getClassifiedGoodsData(category.id);
 			},
