@@ -18,7 +18,9 @@
 				"usingComponents": {
 					"van-tab": "/wxcomponents/vant/dist/tab/index",
 					"van-icon": "/wxcomponents/vant/dist/icon/index",
-					"van-tabs": "/wxcomponents/vant/dist/tabs/index"
+					"van-tabs": "/wxcomponents/vant/dist/tabs/index",
+					"van-empty": "/wxcomponents/vant/dist/empty/index"
+
 				}
 			}
 		},
@@ -114,12 +116,7 @@
 				}
 			}
 		},
-		{
-			"path": "pages/collect/collect",
-			"style": {
-				"navigationBarTitleText": "我的收藏"
-			}
-		}, {
+		 {
 			"path": "pages/collect/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",

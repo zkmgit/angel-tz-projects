@@ -1,14 +1,14 @@
 <template>
 	<view class="collect-container">
 		<view class="collect-list" v-if="isShow">
-			<view class="good-item">
+			<view class="good-item" v-for="item in collectData" :key="item.id">
 				<view class="img">
-					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+					<image :src="item.goods_showImg" mode=""></image>
 				</view>
 				
 				<view class="title">
 					<view class="text">
-						幼儿园幼儿园韩版男女童装春秋季班服英伦学院风白色sadfasdfasfasdf
+						{{ item.goods_name }}
 					</view>
 				</view>
 				
@@ -16,22 +16,7 @@
 					<image src="../../static/images/collect/del.png" mode=""></image>
 				</view>
 			</view>
-			
-			<view class="good-item">
-				<view class="img">
-					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-				</view>
-				
-				<view class="title">
-					<view class="text">
-						幼儿园幼儿园韩版男女童装春秋季班服英伦学院风白色asdfsdfsdf
-					</view>
-				</view>
-				
-				<view class="del-img">
-					<image src="../../static/images/collect/del.png" mode=""></image>
-				</view>
-			</view>
+		
 		</view>
 		<view class="empty" v-else>
 			<van-divider
@@ -45,16 +30,28 @@
 </template>
 
 <script>
-	
+	import { getCollectionByOpenid } from '../../api/collect.js';
 	export default {
 		data() {
 			return {
-				isShow:true
+				isShow:true,
+				collectData: []
 			};
 		},
 		methods:{
-			
+			async getCollectData(){
+				let { token } = uni.getStorageSync('token');
+				let res = await getCollectionByOpenid(token);
+				this.collectData = res;
+				if(this.collectData.length == 0){
+					console.log('123');
+					this.isShow = false;
+				}
+			}
 		},
+		created() {
+			this.getCollectData();
+		}
 		
 	}
 </script>
@@ -67,16 +64,19 @@
 		
 		.collect-list {
 			display: flex;
-			justify-content: space-around;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			padding: 0 20rpx;
 			
 			.good-item {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				width: 46%;
+				width: 48%;
 				background-color: #FFFFFF;
 				border-radius: 20rpx;
 				overflow: hidden;
+				margin-bottom: 20rpx;
 				
 				.img {
 					width: 100%;

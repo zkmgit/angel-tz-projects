@@ -16,7 +16,7 @@
 			<van-picker :columns="columns" @change="onChange" />
 		</van-popup>
 		
-		<view class="shoping-addr" @click="getAddr">
+		<view class="shoping-addr" @click="getAddr" v-if="choose != 'edit'">
 			<view class="text">
 				获取微信收货地址
 			</view>
@@ -38,7 +38,7 @@
 				</view>
 			</view>
 			
-			<view class="city common" @click="showPopup('city')">
+			<view class="city common" @click="showPopup('city')" v-if="city != ''">
 				<view class="text">
 					城市
 				</view>
@@ -50,7 +50,7 @@
 				</view>
 			</view>
 			
-			<view class="area common" @click="showPopup('district')">
+			<view class="area common" @click="showPopup('district')" v-if="district != ''">
 				<view class="text">
 					区县
 				</view>
@@ -69,31 +69,31 @@
 		  <van-field
 		    class='color'
 			label="姓名"
-		    value=""
+		    :value="name"
 		    placeholder="填写收货人"
-		    @change="onChange"
+		    @change="setName"
 		  />
 		  <van-field
 		    class='color'
 			label="手机号码"
-		    value=""
+		    :value="phone"
 			type="number"
 		    placeholder="填写手机号码"
-		    @change="onChange"
+		    @change="setPhone"
 		  />
 		  <van-field
 		    class='color'
 		    label="详细地址"
-		    value=""
+		    :value="address"
 		    placeholder="街道门牌信息"
-		    @change="onChange"
+		    @change="setAddress"
 		  />
 		</van-cell-group>
 		<view class="footer">
 			<view class="btn" @click="save">
 				保存
 			</view>
-			<view class="del-btn">
+			<view class="del-btn" @click="del(addrItem.id)" v-if="choose != 'add'">
 				删除该地址
 			</view>
 		</view>
@@ -103,13 +103,21 @@
 
 <script>
 	import area from '../../util/area.js';
+	import { delAddr,addAddr,editAddr } from '../../api/addr.js';
 	export default {
 		data(){
 			return {
+				// 用于隐藏
+				choose:'',
+				// 用于编辑的地址回显
+				addrItem:{},
 				areaList: area,
 				province: '请选择',
-				city: '请选择',
-				district: '请选择',
+				city: '',
+				name: '',
+				address: '',
+				phone: '',
+				district: '',
 				checked:true,
 				show:false,
 				// 判断当前的省市区
@@ -120,7 +128,41 @@
 				columns: [],
 			}
 		},
+		onLoad(e){
+			this.choose = e.switch;
+			if(e.item != undefined) {
+				this.addrItem = JSON.parse(e.item);
+				console.log(this.addrItem);
+				this.name = this.addrItem.receiver;
+				this.address = this.addrItem.address;
+				this.phone = this.addrItem.phone;
+				var arr = this.addrItem.area.split(',');
+				this.province = arr[0];
+				this.city = arr[1];
+				this.district = arr[2];
+			}
+		},
 		methods:{
+			setAddress(e){
+				this.address = e.detail;
+			},
+			setName(e){
+				this.name = e.detail;
+			},
+			setPhone(e){
+				this.phone = e.detail;
+			},
+			async del(id){
+				// 删除地址
+				let { token } = uni.getStorageSync('token');
+				let res = await delAddr(token,id);
+				if(res.status == 200){
+					// 删除成功
+					uni.navigateTo({
+						url:'../userAddr/userAddr'
+					})
+				}
+			},
 			determine(){
 				// 选中优惠并退出
 				this.onClose();
@@ -201,8 +243,35 @@
 				 const { picker, value, index } = event.detail;
 				this.value = value;
 			},
-			save(){
-				// 注册地址
+			async save(){
+				// token,receiver,phone,address,area,id
+				let { token } = uni.getStorageSync('token');
+				let item = {
+					token,
+					phone:this.phone,
+					receiver:this.name,
+					address:this.address,
+					area:this.province + ',' + this.city + ',' + this.district,
+					id:this.addrItem.id
+				}
+				console.log('item',item);
+				// 注册地址 编辑地址
+				let res;
+				if(this.choose == 'add'){
+					res = await addAddr(item);
+				}else {
+					res = await editAddr(item);
+				}
+				
+				if(res.status == 200){
+					uni.navigateTo({
+						url:'../userAddr/userAddr'
+					})
+				}else {
+					uni.showToast({
+						title:res.message
+					})
+				}
 			},
 			getAddr(){
 				// 获取微信地址
@@ -295,6 +364,7 @@
 		.addr-list {
 			background-color: #FFFFFF;
 			padding: 0 30rpx;
+			margin-top: 20rpx;
 			
 			.common {
 				display: flex;

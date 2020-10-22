@@ -18,7 +18,7 @@
 				</view>
 				<view class="info">
 					<view class="tracking-num">
-						快递单号：23454235346234636
+						快递单号：
 					</view>
 					<view class="tackinfo">
 						暂无物流信息
@@ -33,10 +33,10 @@
 				</view>
 				<view class="addr-info">
 					<view class="recipient">
-						杀猪饲料
+						{{ orderDetail.recipient }}
 					</view>
 					<view class="addr">
-						广东省 汕头市 潮南区 沙陇
+						{{ orderDetail.area }} {{ orderDetail.addr }}
 					</view>
 				</view>
 			</view>
@@ -48,17 +48,17 @@
 				商品信息
 			</view>
 			
-			<view class="shop-item" v-for="item in list">
+			<view class="shop-item" v-for="item in carList" :key='item.id'>
 				<view class="shop-img">
-					<image src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+					<image :src="item.showImg" mode=""></image>
 				</view>
 				
 				<view class="shop-name">
-					幼儿园园服韩版男女童装春幼儿园
+					{{ item.goods_name }}
 				</view>
 				<view class="total">
-					<text class="price">￥1652</text>
-					<text class="count">X 7</text>
+					<text class="price">￥{{ item.goods_price }}</text>
+					<text class="count">X {{ item.num }}</text>
 				</view>
 			</view>
 		</view>
@@ -69,7 +69,7 @@
 					商品金额
 				</view>
 				<view class="">
-					￥2892
+					￥{{ orderDetail.goods_total }}
 				</view>
 			</view>
 			<view class="cell">
@@ -85,7 +85,7 @@
 					应付总额
 				</view>
 				<view class="">
-					￥2892
+					￥{{ orderDetail.total_price }}
 				</view>
 			</view>
 		</view>
@@ -93,11 +93,34 @@
 </template>
 
 <script>
+	import { allCarByOrderId } from '../../api/order.js';
 	export default {
 		data() {
 			return {
-				list:[1,2,3]
+				orderDetail: {},
+				carList: []
 			};
+		},
+		methods:{
+			async getAllCar(){
+				console.log('id',this.orderDetail)
+				let { token } = uni.getStorageSync('token');
+				let res = await allCarByOrderId(token,this.orderDetail.id);
+				this.carList = res.message;
+				console.log(this.carList);
+			}
+		},
+		onLoad(e) {
+			let order = JSON.parse(e.order);
+			console.log(order);
+			this.orderDetail = order;
+			this.orderDetail.area = order.area.split(",").join(" ");
+		},
+		onShow() {
+			this.getAllCar();
+		},
+		created() {
+			
 		}
 	}
 </script>
