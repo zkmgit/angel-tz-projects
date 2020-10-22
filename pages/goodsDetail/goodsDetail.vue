@@ -416,7 +416,7 @@
 
 			image {
 				width: 100vw;
-				height: 880rpx;
+				height: 818rpx;
 				margin: 0rpx auto;
 				margin-top: -12rpx;
 			}
