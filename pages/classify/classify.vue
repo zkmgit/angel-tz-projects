@@ -53,8 +53,6 @@
 				this.subCategoryList = this.getClassifiedGoodsData(category.id);
 				console.log("接收id:" + category.id)
 				this.activeId = category.id
-				
-				// this.subCategoryList = this.getClassifiedGoodsData(category.id) ;
 			},
 			categorySubClick(category) {
 				
@@ -62,7 +60,6 @@
 				
 				uni.navigateTo({
 					url: `/pages/goodsDetail/goodsDetail?goodsId=` + category.id
-					// url: `../goodsDetail/goodsDetail?goodsId=`+category.id
 				})
 			},
 			async getClassifiedGoodsData(classificationId) {
