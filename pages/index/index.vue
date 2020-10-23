@@ -60,7 +60,6 @@
 			</view>
 		</block>
 		<!-- 爆品推荐 -->
-		<block>
 			<van-divider contentPosition="center">爆品推荐</van-divider>
 			<view class="goods-container">
 				<view class="goods-box" v-for="item in RecommendedGoods" :key="item.id">
@@ -83,7 +82,7 @@
 		<!-- 拼团 -->
 		<block>
 			<van-divider contentPosition="center">全民拼团</van-divider>
-			<view class='tuan'>
+			<view class='tuan' >
 				<view class='tuan-item' v-for="item in SpellAGroupGoods" :key="item.id">
 					<view class='tuan-goods-pic'>
 						<image :src="item.show_img" />
@@ -164,7 +163,6 @@
 			// 搜索
 			goodsList() {
 				uni.navigateTo({
-					// goodsList
 					url: `/pages/goodsList/goodsList`
 				})
 			},
@@ -427,7 +425,7 @@
 			}
 		}
 	}
-
+	
 	// 爆品推荐		商品列表
 	.goods-container {
 		display: flex;
@@ -436,7 +434,6 @@
 		box-sizing: content-box;
 		padding: 24rpx;
 		background-color: #F2f2f2;
-
 		.goods-box {
 			width: 339rpx;
 			height: 472rpx;
@@ -483,7 +480,7 @@
 		width: 750rpx;
 		background-color: #F2f2f2;
 		padding-top: 10rpx;
-
+		padding-bottom: 20rpx;
 		.tuan-item {
 			width: 720rpx;
 			margin: auto;

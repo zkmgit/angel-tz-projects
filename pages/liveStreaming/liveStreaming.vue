@@ -13,10 +13,13 @@
 							<van-icon size="30rpx" name="user-o" /><text>{{item.anchor_name}}</text></view>
 						<view class="label">
 							<!-- 直播时间 -->
-							<van-icon size="30rpx" name="underway" /><text>{{item.start_time}}</text>
+							<van-icon size="30rpx" name="underway" /><text>{{item.end_time}}</text>
 						</view>
 						<view class="miaosha-price-btn">
-							<van-button type="primary" size="small" block round>正在直播</van-button>
+							<van-button type="default" size="small" block round plain>已过期</van-button>
+<!-- 							<van-button type="danger" size="small" block round>即将开播</van-button>
+							<van-button type="warning" size="small" block round>直播结束</van-button>
+							<van-button type="primary" size="small" block round>正在直播</van-button> -->
 						</view>
 					</view>
 				</view>
@@ -40,8 +43,16 @@
 			// 直播特卖
 			async getRoomsData() {
 				var res = await getRooms();
-				// console.log(res);
-				this.RoomsData = res;
+				var x = Math.round(new Date() / 1000)
+				 function getLocalTime(nS) { 
+				       return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " "); 
+				    } 
+				var time = getLocalTime(res[0].end_time)
+				res.map(v=>{
+					v.end_time = time
+				})
+				console.log(res)
+				this.RoomsData = res
 			},
 		},
 		created() {
