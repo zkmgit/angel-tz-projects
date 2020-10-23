@@ -60,3 +60,10 @@ export async function getCollectionByOpenid(token){
 	let res = await request(url);
 	return res.data;
 }
+
+//根据openid查询对应的收藏数据信息
+export async function getEvaluationByGoodsId(id){
+	let url = `getEvaluationByGoodsId?goodsId=${id}`;
+	let res = await request(url);
+	return res.data;
+}

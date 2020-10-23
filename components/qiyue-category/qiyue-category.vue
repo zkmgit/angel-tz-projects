@@ -2,15 +2,15 @@
 	<view>
 		<view class="nav">
 			<view class="nav-left">
-				<scroll-view scroll-y style="height:100vh">
+				<scroll-view scroll-y style="height:87vh">
 					<view class="nav-left-item" v-for="(item,index) in categoryList" @click="categoryClickMain(item,index)" :key="index"
-					 :style="index==categoryActive?'color:'+activeTextColor+';background-color:'+activeBackgroundColor:''">
+					 :style="index==categoryActive?'color:'+activeTextColor+';background-color:'+activeBackgroundColor+';border-left: 4rpx solid #d81e06;':''">
 						{{item.name}}
 					</view>
 				</scroll-view>
 			</view>
 			<view class="nav-right">
-				<scroll-view scroll-y :scroll-top="scrollTop" @scroll="scroll" style="height:100vh" scroll-with-animation>
+				<scroll-view scroll-y :scroll-top="scrollTop" @scroll="scroll" style="height:87vh" scroll-with-animation>
 					<view class="line" v-if="subCategoryList.length == 0">
 						<text class="x"></text>
 						<text>暂无商品</text>
@@ -160,7 +160,7 @@
 		align-items: center;
 		justify-content: center;
 		background: #fff;
-		border-left: 4rpx solid #d81e06;
+		/* border-left: 4rpx solid #d81e06; */
 	}
 
 	.nav-right {

@@ -24,28 +24,31 @@
 				categoryList: [],
 				subCategoryList: [],
 				activeIndex: 0,
-				activeId:0
+				activeId:1
 			};
 		},
 		onShow() {
 			var id = uni.getStorageSync('sell')
 			var index = uni.getStorageSync('index')
-			console.log(index)
-			console.log(id)
+			// console.log(index)
+			// console.log(id)
 			if(!id == false){
 				this.activeId = id
+				this.activeIndex = index
 			}
-			this.activeIndex = index
-			console.log("接收index:" + this.activeIndex)
-			console.log(id)
+			// console.log("接收index:" + this.activeIndex)
+			// console.log(id)
 			this.getClassifiedGoodsData(this.activeId)
 			uni.clearStorage("sell")
-			// uni.clearStorage("index")
 		},
 		onLoad(options){
 			var id = uni.getStorageSync('sell')
 			var index = uni.getStorageInfoSync('index')
 			this.activeIndex = index;
+			if(id ==false){
+				id = 1
+			}
+			this.getClassifiedGoodsData(id)
 			// console.log("接收index:" + this.activeIndex)
 			// this.getAnnouncementDetailsByIdData(classificationId);
 		},
@@ -77,11 +80,6 @@
 					url: `../goodsList/goodsList`
 				})
 			}
-		},
-		created() {
-			var id = uni.getStorageSync('sell')
-			this.getClassifiedGoodsData(id)
-			
 		},
 		mounted() {
 			// this.getClassifiedGoodsData(id)

@@ -27,6 +27,38 @@
 			</view>
 			<previewImage ref="previewImage" :opacity="0.8" :imgs="imgs" :descs="descs"></previewImage>
 		</view>
+		<view class="bink"></view>
+		<view class="evaluation">
+			<view class="evaluation-head">
+				大家好评	<text class="levaluationNum">({{ evaluationDatas.length }})</text>
+			</view>
+			<view class="noEvaluation" v-if="evaluationDatas.length == 0">
+				暂无评论
+			</view>
+			<view class="evaluction-item">
+				 <k-scroll-view ref="k-scroll-view" :refreshType="refreshType" :refreshTip="refreshTip" :loadTip="loadTip" :loadingTip="loadingTip"
+				      :emptyTip="emptyTip" :touchHeight="touchHeight" :height="height" :bottom="bottom" :autoPullUp="autoPullUp"
+				      :stopPullDown="stopPullDown" @onPullUp="handleLoadMore">
+				         <!-- 数据列表 -->
+					 <view class="item" v-for="(item,index) in list" :key="index">
+						<image :src="item.userImg" mode=""></image>
+						<view class="info">
+							<view class="info-content">
+								{{item.content}}
+							</view>
+							<view class="time-property">
+								<view class="info-time">
+									{{ item.add_time }}
+								</view>
+								<view class="info-property">
+									{{item.property}}
+								</view>
+							</view>
+						</view>
+					 </view>
+				 </k-scroll-view>
+			</view>
+		</view>
 		<van-goods-action>
 			<van-goods-action-icon icon="chat-o" text="客服" @click="clickCustomerService" />
 			<van-goods-action-icon icon="cart-o" text="购物车" @click="clickShoppingCar" :info="shoppingCarNum" />
@@ -43,6 +75,7 @@
 <script>
 	import imgsBanner from '../../components/imgsBanner-tag/imgsBanner-tag.vue';
 	import echoneSku from '@/components/echone-sku/echone-sku.vue';
+	import kScrollView from '@/components/k-scroll-view/k-scroll-view.vue';
 	import isUserInfo from '../../util/isarzt.js';
 	import {
 		getGoodsDetailByGoodsId,
@@ -52,17 +85,31 @@
 		updateShoppingCarNumByCarId,
 		addCollection,
 		delCollection,
-		getCollectionByOpenid
+		getCollectionByOpenid,
+		getEvaluationByGoodsId
 	} from "../../api/goodsDetailApi.js";
 	import previewImage from '@/components/kxj-previewImage/kxj-previewImage.vue';
 	export default {
 		components: {
 			imgsBanner,
 			previewImage,
-			echoneSku
+			echoneSku,
+			kScrollView
 		},
 		data() {
 			return {
+				//上拉插件所需属性
+				refreshType: 'custom',
+				loadTip: '获取更多数据',
+				loadingTip: '正在加载中...',
+				emptyTip: '--我是有底线的--',
+				touchHeight: 50,
+				height: 0,
+				bottom: 50,
+				autoPullUp: true,
+				stopPullDown:false, // 如果为 false 则不使用下拉刷新，只进行上拉加载
+				list: [],
+				
 				imgList: [], //当前展示图数据
 				currentImg: 0, //当前默认选中
 				currentGoods: {}, //当前商品数据信息
@@ -73,6 +120,7 @@
 				shoppingCarNum: 0,
 				currentGoodsId: "",
 				isCollect: false, //是否收藏
+				evaluationDatas :[],
 				specifications: [],
 				combinations: [],
 				popupShow: false,
@@ -186,8 +234,36 @@
 			}else{
 				this.shoppingCarNum = ress.message.result2.length;
 			}
+			
+			
+			//获取出该商品的所有评价
+			let evaluations = await getEvaluationByGoodsId(this.currentGoods.id);
+			this.evaluationDatas = evaluations.message;
+			let tempArr3 = [];
+			evaluations.message.map((e,index) => {
+				if(index < 2){
+					tempArr3.push(e)
+				}
+			});
+			this.list = tempArr3;
 		},
 		methods: {
+			//评论上拉加载更多
+			handleLoadMore(stopLoad) {
+				console.log(stopLoad);
+				const size = this.list.length;
+				let tempArr = []
+				this.evaluationDatas.map((e,index) => {
+					if(index < size + 2){
+						tempArr.push(e);
+					}
+				})
+				this.list = tempArr;
+				if(size == this.evaluationDatas.length){
+					stopLoad({isEnd:true});
+				}
+			},
+			
 			//打开预览e
 			previewOpen(e) {
 				var param = e.currentTarget.dataset.src;
@@ -323,7 +399,56 @@
 <style lang="scss" scoped>
 	.goodsDetail_container {
 		font-size: 32rpx;
-
+		
+		.evaluation{
+			font-size: 32rpx;
+			.evaluation-head{
+				padding: 32rpx;
+				border-bottom: 1px solid #ccc;
+				.levaluationNum{
+					color: red;
+					margin-left: 14rpx;
+				}
+			}
+			.noEvaluation{
+				text-align: center;
+				height: 100rpx;
+				line-height:100rpx;
+				color: #ccc;
+				width: 100vw;
+			}
+			.evaluction-item{
+				margin-top: 16rpx;
+				margin-bottom: 160rpx;
+				image{
+					margin-left: 10rpx;
+					width: 110rpx;
+					height: 110rpx;
+				}
+				.item{
+					display: flex;
+					margin-bottom: 26rpx;
+					.info{
+						flex: 1;
+						margin-left: 30rpx;
+						padding-bottom: 10rpx;
+						border-bottom: 1px solid #ccc;
+						display: flex;
+						justify-content: space-between;
+						flex-direction: column;
+						.info-content{
+							
+						}
+						.time-property{
+							display: flex;
+							font-size: 26rpx;
+							color: #CCCCCC;
+						}
+					}
+				}
+			}
+		}
+		
 		.bink {
 			width: 100vw;
 			height: 60rpx;
@@ -416,7 +541,7 @@
 
 			image {
 				width: 100vw;
-				height: 880rpx;
+				height: 818rpx;
 				margin: 0rpx auto;
 				margin-top: -12rpx;
 			}
