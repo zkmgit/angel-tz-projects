@@ -39,7 +39,8 @@
 			// console.log("接收index:" + this.activeIndex)
 			// console.log(id)
 			this.getClassifiedGoodsData(this.activeId)
-			uni.clearStorage("sell")
+			// uni.clearStorage("sell")
+			uni.removeStorageSync("sell");
 		},
 		onLoad(options){
 			var id = uni.getStorageSync('sell')
