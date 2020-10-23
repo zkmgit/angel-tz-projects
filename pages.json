@@ -17,7 +17,9 @@
 				"usingComponents": {
 					"van-tab": "/wxcomponents/vant/dist/tab/index",
 					"van-icon": "/wxcomponents/vant/dist/icon/index",
-					"van-tabs": "/wxcomponents/vant/dist/tabs/index"
+					"van-tabs": "/wxcomponents/vant/dist/tabs/index",
+					"van-empty": "/wxcomponents/vant/dist/empty/index"
+
 				}
 			}
 		},
@@ -113,6 +115,7 @@
 				}
 			}
 		},
+
 		{
 			"path": "pages/collect/collect",
 			"style": {
@@ -167,6 +170,12 @@
 			"style": {
 				"navigationBarTitleText": "商品列表"
 			}
+		},
+		{
+			"path": "pages/announcementDetail/announcementDetail",
+			"style": {
+				"navigationBarTitleText": "公告详情"
+			}
 		}
 	],
 	"globalStyle": {
@@ -204,4 +213,5 @@
 			}
 		]
 	}
+
 }

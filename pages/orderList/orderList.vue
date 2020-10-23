@@ -3,11 +3,14 @@
 		
 		<van-tabs :active="active" @change="onChange">
 		  <van-tab v-for="item in tabsList" :title="item.title" :key="item.status">
-			  <view class="order-item">
-				  <!-- top -->
-			  	<view class="order-num" @click="goOrderDetails">
+			<view class="empty" v-if="getOrdersByStatus(item.status).length == 0">
+				<van-empty description="暂无订单" />
+			</view>
+			<view class="order-item" v-for="(items,index) in getOrdersByStatus(item.status)">
+				  
+			  	<view class="order-num" @click="goOrderDetail(item.status,index)">
 			  		<view class="num">
-			  			2010147285734828
+			  			{{ items.order_number }}
 			  		</view>
 					<view class="emit">
 						<view class="text">
@@ -19,49 +22,45 @@
 					</view>
 			  	</view>
 				<view class="line"></view>
-				<!-- center -->
+				
 				<view class="goodInfo">
 					<view class="imgs">
 						<scroll-view scroll-x="true">
-							<block>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
-							<image class="img" src="../../static/images/nav/微信图片_202007111331035.png" mode=""></image>
+							
+							<block v-for="img in items.imgs">
+								<image class="img" :src="img" mode=""></image>
 							</block>
 						</scroll-view>
 						
 					</view>
 					<view class="total">
-						共18件商品 合计：<text class="color">￥2892</text>
+						<view class="">
+							
+						</view>
+						<view class="right">
+							共{{ items.total_count }}件商品 合计：<text class="color">￥{{ items.total_price }}</text>
+						</view>
 					</view>
 				</view>
 				<view class="line"></view>
-				<!-- footer -->
+				
 				<view class="time">
-					2020-10-14 14:26:05
+					{{ items.add_time }}
 				</view>
 			  </view>
 		  </van-tab>
+			
 		</van-tabs>
 	</view>
 </template>
 
 <script>
+	import { allOrder,allCarByOrderId } from '../../api/order.js';
 	export default {
 		data() {
 			return {
+				isShow: false,
+				orderData: [],
 				active: 0,
 				tabsList: [
 				  {"title": "全部",'status': "all"},
@@ -73,16 +72,42 @@
 			};
 		},
 		methods:{
+			getOrdersByStatus(status){
+				if(status == 'all') return this.orderData;
+				let arr = [];
+				this.orderData.map(v=>{
+					if(v.status == status) arr.push(v)
+				})
+				return arr;
+			},
+			async getAllOrder(){
+				// 获取所有的订单
+				let { token } = uni.getStorageSync('token');
+				let res = await allOrder(token);
+				if(res.status == 200){
+					this.orderData = res.message;
+				}
+			},
 			 onChange(event) {
 			    wx.showToast({
 			      title: `切换到标签 ${event.detail.name}`,
 			    });
 			  },
-			  goOrderDetails(){
+			  goOrderDetail(status,index){
+				  let order = JSON.stringify(this.getOrdersByStatus(status)[index]);
 				  uni.navigateTo({
-				  	url:'../orderDetails/orderDetails'
+				  	url:`../orderDetails/orderDetails?order=${order}`
 				  })
 			  }
+		},
+		created() {
+			this.getAllOrder();
+		},
+		onLoad(e){
+			if(e.status != 'all'){
+				this.active = parseInt(e.status);
+			}
+			
 		}
 	}
 </script>
@@ -90,7 +115,6 @@
 <style lang="scss">
 	.order-container {
 		background-color: #F4F5F9;
-		height: 100vh;
 		font-size: 26rpx;
 		
 		.order-item {
@@ -125,7 +149,7 @@
 					.img {
 						width: 30rpx;
 						height: 30rpx;
-						;
+						// ;
 						margin-right: 30rpx;
 						
 						image {
@@ -153,11 +177,17 @@
 					
 				}
 				.total {
-					margin-left: 48%;
-					.color {
-						font-size: 34rpx;
-						color: red;
+					display: flex;
+					justify-content: space-between;
+					padding: 0 30rpx;
+					
+					.right {
+						.color {
+							font-size: 34rpx;
+							color: red;
+						}
 					}
+					
 				}
 			}
 			

@@ -46,8 +46,6 @@
 						</view>
 					</view>
 				</scroll-view>
-
-
 			</view>
 		</view>
 	</view>
@@ -92,7 +90,6 @@
 			},
 			activeBackgroundColor: {
 				type: String,
-				// default: '#e5e5e5'
 			},
 			label: {
 				type: String,
@@ -106,9 +103,9 @@
 			categoryMainClick: {},
 			//子分类点击事件
 			categorySubClick: {},
-			
-			typeid:{
-				type:Number,
+
+			typeid: {
+				type: Number,
 			}
 		},
 		methods: {
@@ -132,14 +129,15 @@
 				}
 			})
 		},
+
 		watch: {
 			subCategoryList(newValue, oldValue) {
 
+			},
+			defaultActive(newValue, oldValue) {
+				this.categoryActive = this.defaultActive
 			}
 		},
-		onLoad(){
-			this.categoryActive = props.typeid
-		}
 	}
 </script>
 
