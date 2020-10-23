@@ -54,14 +54,14 @@
 				</view>
 			</view>
 			<!-- 没有更多搜索 -->
-			<view class="empty" v-show="data.length === 0">
+			<!-- <view class="empty" v-show="data.length === 0">
 				<image src="../../static/images/goodslist/nomore.png" mode="widthFix" class="empty-img"></image>
 				<view class="info-text">
 					<view class="text">亲，没有找到您想要的商品</view>
 					<view class="text">请换个相关的搜索词试试</view>
 				</view>
 			</view>
-			<view class="no-more" v-show="!isMore">没有更多了</view>
+			<view class="no-more" v-show="!isMore">没有更多了</view> -->
 		</view>
 
 		<!-- 2 切换成显示两张张图片页面 -->
@@ -94,14 +94,14 @@
 			</view>
 			
 			<!-- 没有更多搜索 -->
-			<view class="emptys" v-show="data.length === 0">
+		<!-- 	<view class="emptys" v-show="data.length === 0">
 				<image src="../../static/images/goodslist/nomore.png" mode="widthFix" class="empty-imgs"></image>
 				<view class="info-texts">
 					<view class="texts">亲，没有找到您想要的商品</view>
 					<view class="texts">请换个相关的搜索词试试</view>
 				</view>
 			</view>
-			<view class="no-mores" v-show="!isMore">没有更多了</view>
+			<view class="no-mores" v-show="!isMore">没有更多了</view> -->
 		</view>
 	</view>
 
