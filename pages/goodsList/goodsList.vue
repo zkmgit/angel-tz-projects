@@ -275,7 +275,7 @@
 		}
 	}
 
-	/* 第一张图片样式 */
+	/* 第一张图片页面样式 */
 	.list {
 		width: 750rpx;
 		display: flex;
@@ -300,6 +300,7 @@
 				}
 			}
 
+			/* 所有信心样式一 */  
 			.directioc {
 				display: flex;
 				flex-direction: column; //水平布局
@@ -307,7 +308,8 @@
 				width: 500rpx;
 				height: 220rpx;
 				margin-top: 20rpx;
-
+				margin-left: 30rpx;
+				
 				/* 标题 */
 				.title {
 					display: flex;
@@ -404,24 +406,27 @@
 			margin-top: 20rpx;
 
 			.goods-boxs {
-
+				
+				/* 图片 */ 
 				.img2-box {
 					width: 350rpx;
 					height: 350rpx;
-					overflow: hidden;
-
+					border-radius: 20rpx;
 					.image {
 						width: 350rpx;
 						height: 350rpx;
 					}
 				}
-
+				
+				/* 所有信心样式二 */ 
 				.detailsbox {
 					display: flex;
 					width: 350rpx;
 					height: 220rpx;
+					margin-left: 10rpx;
 					flex-direction: column; //水平布局
 					justify-content: space-between;
+					
 					/* 标题 */
 					.goods-title {
 						overflow: hidden;
@@ -429,13 +434,13 @@
 						display: -webkit-box;
 						-webkit-line-clamp: 2;
 						-webkit-box-orient: vertical;
-						
 						color: #333;
 						font-size: 26rpx;
 					}
 
 					.price2 {
-
+						display: flex;
+						
 						.price2-icon {
 							font-size: 30rpx;
 							color: #f44;
@@ -444,8 +449,8 @@
 
 					/* 已出售 */
 					.sales2 {
-						position: relative;
-
+						display: flex;
+						
 						.sales2-icon {
 							font-size: 30rpx;
 							color: gray;
