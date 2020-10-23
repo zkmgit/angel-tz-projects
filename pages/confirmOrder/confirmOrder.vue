@@ -241,7 +241,7 @@
 			},
 			goAddAddr(){
 				uni.navigateTo({
-					url:'../editAddr/editAddr'
+					url:'../editAddr/editAddr?switch=add'
 				})
 			},
 			determine(){

@@ -55,7 +55,6 @@
 	export default {
 		data() {
 			return {
-				
 				result: [],
 				isShow: true,
 				checked:false,
@@ -77,7 +76,11 @@
 			}
 		},
 		created() {
+			
+		},
+		onShow() {
 			this.getAllCar();
+			console.log('页面加载');
 		},
 		methods:{
 			async add(carId,num){
@@ -156,6 +159,7 @@
 				if(this.result.length == 0){
 					uni.showToast({
 					    title: '请选中购物车的商品',
+						icon:"none",
 					    duration: 2000
 					});
 				}else {
@@ -198,8 +202,8 @@
 <style lang="scss">
 	.car-container {
 		background-color: #F2F2F2;
-		height: 100vh;
 		font-size: 26rpx;
+		padding-bottom: 100rpx;
 		
 		.manager {
 			margin-left: 85vw;
