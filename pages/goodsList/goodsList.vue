@@ -24,14 +24,18 @@
 			 v-model="value">{{ item }}
 			</view>
 		</view>
-		<!-- 切换成显示一张图片页面 -->
+
+		<!--1 切换成显示一张图片页面 -->
 		<view class="list" v-if="show">
 			<view v-for="item in data" :key="item.id">
-				<view class="goods">
-					<view class="image">
-						<image :src="item.show_img" class="img" />
+				<view class="info">
+					<view class="img-box">
+						<!-- 图片 -->
+						<navigator :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<image :src="item.show_img" class="img"></image>
+						</navigator>
 					</view>
-					<view class="info">
+					<view class="directioc">
 						<!-- 标题 -->
 						<view class="title">{{item.name}}</view>
 						<!-- 价格 -->
@@ -44,9 +48,8 @@
 						</view>
 						<!-- 购物车图标 -->
 						<navigator class="cart" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-							<image class="cart-icon" src="../../static/images/goodslist/car.svg" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id"></image>
+							<image class="cart-icon" src="../../static/images/goodslist/car.svg" />
 						</navigator>
-
 					</view>
 				</view>
 			</view>
@@ -61,34 +64,37 @@
 			<view class="no-more" v-show="!isMore">没有更多了</view>
 		</view>
 
-		<!-- 切换成显示两张张图片页面 -->
+		<!-- 2 切换成显示两张张图片页面 -->
 		<view class="goods-container" v-if="!show">
 			<view class="goods-box" v-for="item in data" :key="item.id">
-			
-				<view class="img-box">
-					<image :src="item.show_img" class="image" />
-				</view>
-					
-				<view class="detailsbox">
-					<!-- 标题 -->
-					<view class="goods-title">{{item.name}}</view>
-					<!-- 价格 -->
-					<view class="price2">
-						<view class="price2-icon">&yen;{{item.original_price}}</view>
-					</view>
-					<!-- 已经出售件数 -->
-					<view class="sales2">
-						<view class="sales2-icon">已售出{{item.sales}}件</view>
-					
-					<!-- 购物车图标 -->
+				<view class="goods-boxs">
+					<!-- 图片 -->
+					<navigator class="img2-box" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+						<image :src="item.show_img" class="image" />
+					</navigator>
+
+					<view class="detailsbox">
+						<!-- 标题 -->
+						<view class="goods-title">{{item.name}}</view>
+						<!-- 价格 -->
+						<view class="price2">
+							<view class="price2-icon">&yen;{{item.original_price}}</view>
+						</view>
+						<!-- 已经出售件数 -->
+						<view class="sales2">
+							<view class="sales2-icon">已售出{{item.sales}}件</view>
+						</view>
+
+						<!-- 购物车图标 -->
 						<navigator class="cart2" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-							<image class="cart2-icon" src="../../static/images/goodslist/car.svg" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id"></image>
+							<image class="cart2-icon" src="../../static/images/goodslist/car.svg"></image>
 						</navigator>
 					</view>
 				</view>
 			</view>
 		</view>
-		
+	</view>
+
 	</view>
 </template>
 
@@ -231,7 +237,7 @@
 		width: 100vw;
 		height: 88rpx;
 		background: #fff;
-		position: sticky;
+		display: flex;
 		justify-content: space-around;
 
 		.option {
@@ -269,56 +275,63 @@
 		}
 	}
 
+	/* 第一张图片样式 */
 	.list {
-		padding: 0 30rpx;
+		width: 750rpx;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
 
-		.goods {
+		.info {
+			width: 720rpx;
+			height: 220rpx;
 			display: flex;
-			justify-content: space-between;
-			margin: 20rpx 0;
-			background-color: #fff;
+			margin: 16rpx;
+			background: #fff;
+			border-radius: 35rpx;
 
-			.image {
-				width: 290rpx;
-				height: 290rpx;
-				margin-right: 20rpx;
+			.img-box {
+				width: 220rpx;
+				height: 220rpx;
 
 				.img {
 					width: 220rpx;
 					height: 220rpx;
-					flex-shrink: 0;
+
+
 				}
 			}
 
-			.info {
-				flex: 1;
+			.directioc {
 				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				padding-right: 24rpx;
-				font-size: 30rpx;
+				flex-direction: column; //水平布局
+				// flex-direction: row;		//垂直布局
+				width: 500rpx;
+				height: 220rpx;
+				margin-top: 20rpx;
 
-				/* 标题 */ 
+				/* 标题 */
 				.title {
-					margin: 24rpx 0 8rpx;
-					color: #323233;
-
+					display: flex;
+					color: #333;
+					font-size: 26rpx;
+					padding-bottom: 10rpx;
 				}
-				
-				/* 价格 */ 
+
+				/* 价格 */
 				.price {
 					display: flex;
 					color: #f44;
 					font-size: 30rpx;
-					align-items: center;
+					padding-bottom: 10rpx;
 
 					.price-icon {
 						margin-right: 4rpx;
-						
+
 					}
 				}
 
-				/* 已经出售 */ 
+				/* 已经出售 */
 				.sales {
 					display: flex;
 					font-size: 30rpx;
@@ -331,119 +344,133 @@
 				/* 购物车*/
 				.cart {
 					display: flex;
-					align-items: center;
 					justify-content: flex-end;
-					padding-bottom: 20px;
+					padding-right: 50rpx;
 
 					.cart-icon {
 						width: 50rpx;
 						height: 50rpx;
+						//margin-left: 400rpx;
 					}
 				}
 			}
 		}
-
-		/* 没有搜索更多 */
-		.empty {
-			position: relative;
-
-			.empty-img {
-				margin: auto;
-				width: 400rpx;
-				height: 400rpx;
-			}
-
-			.info-text {
-				/* 文字居中 */
-				text-align: center;
-				margin-top: -50rpx;
-
-				.text {
-					color: #969799;
-					font-size: 32rpx;
-
-				}
-			}
-
-		}
-
-		.no-more {
-			height: 120rpx;
-			line-height: 120rpx;
-			text-align: center;
-			color: #999;
-			font-size: 26rpx;
-		}
 	}
 
+
+	/* 没有搜索更多 */
+	.empty {
+		position: relative;
+
+		.empty-img {
+			margin: auto;
+			width: 400rpx;
+			height: 400rpx;
+		}
+
+		.info-text {
+			/* 文字居中 */
+			text-align: center;
+			margin-top: -50rpx;
+
+			.text {
+				color: #969799;
+				font-size: 32rpx;
+
+			}
+		}
+
+	}
+
+	.no-more {
+		height: 120rpx;
+		line-height: 120rpx;
+		text-align: center;
+		color: #999;
+		font-size: 26rpx;
+	}
+
+
+
+	/* 第二张图片样式 */
 	.goods-container {
+		width: 720rpx;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		box-sizing: content-box;
-		padding: 24rpx;
-		background-color: #F2f2f2;
+		margin: 16rpx;
 
 		.goods-box {
-			width: 339rpx;
-			height: 472rpx;
+			width: 350rpx;
+			height: 570rpx;
 			background-color: #fff;
 			overflow: hidden;
-			margin-bottom: 24rpx;
-			border-radius: 5px;
+			border-radius: 20rpx;
+			margin-top: 20rpx;
 
-			.img-box {
-				width: 300rpx;
-				height: 300rpx;
-				overflow: hidden;
+			.goods-boxs {
 
-				image {
-				width: 300rpx;
-				height: 300rpx;
-				}
-			}
-			
-			.detailsbox{
-				width: 300rpx;
-				height: 180rpx;
-				/* 标题 */ 
-				.goods-title{
+
+				.img2-box {
+					width: 350rpx;
+					height: 350rpx;
 					overflow: hidden;
-					text-overflow: ellipsis;
-					display: -webkit-box;
-					-webkit-line-clamp: 1;
-					-webkit-box-orient: vertical;
-					font-size: 26rpx;
-				}
-				
-				.price2{
-					.price2-icon{
-						font-size: 26rpx;
-						color: #f44;
+
+					.image {
+						width: 350rpx;
+						height: 350rpx;
+
 					}
 				}
-				
-				
-				/* 已出售 */
-				.sales2{
-					position: relative;
-					.sales2-icon{
-						font-size: 26rpx;
-						color: gray;
+
+				.detailsbox {
+					display: flex;
+					width: 350rpx;
+					height: 220rpx;
+					flex-direction: column; //水平布局
+					justify-content: space-between;
+					/* 标题 */
+					.goods-title {
+						// overflow: hidden;
+						// text-overflow: ellipsis;
+						// display: -webkit-box;
+						// -webkit-line-clamp: 1;
+						// -webkit-box-orient: vertical;
+						font-size: 30rpx;
 					}
-					
+
+					.price2 {
+
+						.price2-icon {
+							font-size: 30rpx;
+							color: #f44;
+						}
+					}
+
+
+					/* 已出售 */
+					.sales2 {
+						position: relative;
+
+						.sales2-icon {
+							font-size: 30rpx;
+							color: gray;
+						}
+					}
+
 					/* 购物车 */
-					.cart2{
-						position: absolute;
-						right: 0rpx;
-						.cart2-icon{
-							width: 36rpx;	
-							height: 36rpx;
+					.cart2 {
+						display: flex;
+						justify-content: flex-end;
+						padding-right: 50rpx;
+
+						.cart2-icon {
+							width: 50rpx;
+							height: 50rpx;
 						}
 					}
 				}
-			
 			}
+		}
 	}
-}
 </style>
