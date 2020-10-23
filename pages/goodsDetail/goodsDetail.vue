@@ -146,7 +146,7 @@
 			let id = options.goodsId;
 			this.currentGoodsId = id;
 			if (!id) {
-				id = 1;
+				id = uni.getStorageSync("goodsId");
 			}
 			//根据商品id获取对应的商品数详情信息
 			let res = await getGoodsDetailByGoodsId(id);
@@ -330,6 +330,7 @@
 				let pages = getCurrentPages();
 				let route = pages[pages.length - 1].route;
 				let res = await isUserInfo();
+				uni.setStorageSync("goodsId",this.currentGoods.id);
 				if(res == false){
 					uni.redirectTo({
 						url: `../authorization/authorization?route=${route}`
@@ -379,6 +380,7 @@
 								title:"成功加入购物车",
 								icon:"none"
 							})
+							this.shoppingCarNum = this.shoppingCarNum + 1;
 						}
 					}
 				}else{
@@ -389,6 +391,7 @@
 							title:"成功加入购物车",
 							icon:"none"
 						})
+						this.shoppingCarNum = this.shoppingCarNum + 1;
 					}
 				}
 			}

@@ -160,9 +160,6 @@
 					//每类规格对应其列表的下标 并记录在属性sidx在mySpecifications的子对象中
 					const sIndex = item[this.speList].indexOf(selects[idx])
 					if(sIndex === -1) {
-						uni.showToast({
-							title:"默认规格值不存在"
-						})
 						return
 					}
 					this.$set(item,'sidx',sIndex)

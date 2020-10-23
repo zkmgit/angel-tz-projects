@@ -77,8 +77,8 @@ export default {
 						  	url: _this.prePage
 						  })
 					  }else{
-						  console.log("navigateTo");
-						  uni.navigateTo({
+						  console.log("redirectTo");
+						  uni.redirectTo({
 						  	url: _this.prePage
 						  })
 					  }
