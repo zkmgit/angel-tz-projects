@@ -297,8 +297,6 @@
 				.img {
 					width: 220rpx;
 					height: 220rpx;
-
-
 				}
 			}
 
@@ -327,7 +325,6 @@
 
 					.price-icon {
 						margin-right: 4rpx;
-
 					}
 				}
 
@@ -376,10 +373,8 @@
 			.text {
 				color: #969799;
 				font-size: 32rpx;
-
 			}
 		}
-
 	}
 
 	.no-more {
@@ -410,7 +405,6 @@
 
 			.goods-boxs {
 
-
 				.img2-box {
 					width: 350rpx;
 					height: 350rpx;
@@ -419,7 +413,6 @@
 					.image {
 						width: 350rpx;
 						height: 350rpx;
-
 					}
 				}
 
@@ -431,12 +424,14 @@
 					justify-content: space-between;
 					/* 标题 */
 					.goods-title {
-						// overflow: hidden;
-						// text-overflow: ellipsis;
-						// display: -webkit-box;
-						// -webkit-line-clamp: 1;
-						// -webkit-box-orient: vertical;
-						font-size: 30rpx;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						display: -webkit-box;
+						-webkit-line-clamp: 2;
+						-webkit-box-orient: vertical;
+						
+						color: #333;
+						font-size: 26rpx;
 					}
 
 					.price2 {
@@ -446,7 +441,6 @@
 							color: #f44;
 						}
 					}
-
 
 					/* 已出售 */
 					.sales2 {
