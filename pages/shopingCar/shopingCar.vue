@@ -56,7 +56,9 @@
 		data() {
 			return {
 				result: [],
+				// 切换删除或合计的按钮
 				isShow: true,
+				//全选
 				checked:false,
 				first:true,
 				carData:[],
