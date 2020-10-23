@@ -55,6 +55,7 @@
 	export default {
 		data() {
 			return {
+				
 				result: [],
 				isShow: true,
 				checked:false,
