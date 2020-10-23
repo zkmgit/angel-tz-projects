@@ -43,6 +43,7 @@
 					"van-submit-bar": "/wxcomponents/vant/dist/submit-bar/index",
 					"van-checkbox-group": "/wxcomponents/vant/dist/checkbox-group/index",
 					"van-checkbox": "/wxcomponents/vant/dist/checkbox/index",
+					"van-empty": "/wxcomponents/vant/dist/empty/index",
 					"van-stepper": "/wxcomponents/vant/dist/stepper/index"
 				}
 
