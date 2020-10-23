@@ -23,16 +23,24 @@
 			return {
 				categoryList: [],
 				subCategoryList: [],
-				activeIndex: 0
+				activeIndex: 0,
+				activeId:0
 			};
 		},
 		onShow() {
 			var id = uni.getStorageSync('sell')
 			var index = uni.getStorageSync('index')
 			console.log(index)
+			console.log(id)
+			if(!id == false){
+				this.activeId = id
+			}
 			this.activeIndex = index
 			console.log("接收index:" + this.activeIndex)
-			this.getClassifiedGoodsData(id)
+			console.log(id)
+			this.getClassifiedGoodsData(this.activeId)
+			uni.clearStorage("sell")
+			// uni.clearStorage("index")
 		},
 		onLoad(options){
 			var id = uni.getStorageSync('sell')
@@ -44,10 +52,13 @@
 		methods: {
 			categoryMainClick(category) {
 				this.subCategoryList = this.getClassifiedGoodsData(category.id);
+				console.log("接收id:" + category.id)
+				this.activeId = category.id
 			},
 			categorySubClick(category) {
 				
 				console.log(category);
+				
 				uni.navigateTo({
 					url: `/pages/goodsDetail/goodsDetail?goodsId=` + category.id
 				})
