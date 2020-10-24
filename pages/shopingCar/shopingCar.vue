@@ -1,5 +1,8 @@
 <template>
-	<view class="car-container">
+	<view class="container">
+		
+	
+	<view class="car-container" v-if="isEmpty">
 		<view class="manager" @click="switchBtn">
 			管理
 		</view>
@@ -47,6 +50,17 @@
 			</view>
 		</view>
 	</view>
+	<view class="empty" v-else>
+		<van-empty
+		  class="custom-image"
+		  image="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1603463108589&di=cd9735283a9e7e2b67556c398dbda2b5&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F05%2F23%2F0d2019a7ca7937adaf34a3b15fd7b92e.jpg"
+		  description="购物车空空"
+		/>
+		<view class="btn" @click="goIndex">
+			去逛逛
+		</view>
+	</view>
+	</view>
 </template>
 
 <script>
@@ -55,8 +69,12 @@
 	export default {
 		data() {
 			return {
+				// 当没有购物车时，友好提示
+				isEmpty: false,
 				result: [],
+				// 切换删除或合计的按钮
 				isShow: true,
+				//全选
 				checked:false,
 				first:true,
 				carData:[],
@@ -80,9 +98,15 @@
 		},
 		onShow() {
 			this.getAllCar();
-			console.log('页面加载');
+			
 		},
 		methods:{
+			goIndex(){
+				// 前往首页
+				uni.switchTab({
+					url:'../index/index'
+				})
+			},
 			async add(carId,num){
 				console.log(carId,num+1);
 				// 购物车商品数量增加
@@ -120,6 +144,14 @@
 				this.carData = res.result2;
 				// 用于计算所有购物车的价格
 				this.calculation();
+				if(this.carData.length == 0){
+					this.isEmpty = false;
+					console.log(this.isEmpty);
+				}else {
+					this.isEmpty = true;
+					console.log(this.isEmpty);
+				}
+				// console.log();
 			},
 			onChange(event) {
 			    this.result = event.detail;
@@ -181,6 +213,7 @@
 				if(this.result.length == 0){
 					uni.showToast({
 					    title: '请选中购物车的商品',
+						icon:'none',
 					    duration: 2000
 					});
 				}
@@ -314,6 +347,20 @@
 				text-align: center;
 				line-height: 80rpx;
 			}
+		}
+	}
+
+	.empty {
+		background-color: #F6F6F6;
+		.btn {
+			width: 200rpx;
+			height: 80rpx;
+			line-height: 80rpx;
+			text-align: center;
+			// background-color: red;
+			margin: 0 auto;
+			border-radius: 10rpx;
+			background-color: #E75653;
 		}
 	}
 </style>

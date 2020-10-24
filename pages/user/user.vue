@@ -3,14 +3,14 @@
 		<!-- head -->
 		<view class="head">
 			<view class="img">
-				<image src="/static/images/nav/微信图片_202007111331035.png" mode=""></image>
+				<image :src="userInfo.avatarUrl" mode=""></image>
 			</view>
 			<view class="userInfo">
 				<view class="id">
 					用户ID：1710221
 				</view>
 				<view class="name">
-					@杀猪饲料
+					{{ userInfo.nickName }}
 				</view>
 			</view>
 		</view>
@@ -126,7 +126,7 @@
 	export default {
 		data() {
 			return {
-				
+				userInfo:{}
 			};
 		},
 		methods:{
@@ -137,9 +137,11 @@
 				})
 			},
 			goUserAddr(){
+				let pages = getCurrentPages();
+				let route = pages[pages.length - 1].route;
 				// 前往我的地址
 				uni.navigateTo({
-					url:'../userAddr/userAddr'
+					url:`../userAddr/userAddr?route=${route}`
 				})
 			},
 			goCollect(){
@@ -167,8 +169,10 @@
 				})
 			}
 		},
-		created(){
-			
+		onShow(){
+			let { token } = uni.getStorageSync('token');
+			let user = uni.getStorageSync('user');
+			this.userInfo = user;
 		},
 		async onLoad() {
 			let pages = getCurrentPages();
@@ -214,7 +218,7 @@
 			.userInfo {
 				float: left;
 				font-size: 26rpx;
-				margin-left: 25rpx;
+				margin-left: 40rpx;
 				
 				color: #FFFFFF;
 				

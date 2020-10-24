@@ -121,7 +121,8 @@
 			"style": {
 				"navigationBarTitleText": "我的收藏",
 				"usingComponents": {
-					"van-divider": "/wxcomponents/vant/dist/divider/index"
+					"van-divider": "/wxcomponents/vant/dist/divider/index",
+					"van-empty": "/wxcomponents/vant/dist/empty/index"
 				}
 			}
 		},
