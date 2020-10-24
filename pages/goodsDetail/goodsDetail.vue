@@ -296,6 +296,7 @@
 				let route = pages[pages.length - 1].route;
 				let res = await isUserInfo();
 				if(res == false){
+					uni.setStorageSync("goodsId",this.currentGoods.id);
 					uni.redirectTo({
 						url: `../authorization/authorization?route=${route}`
 					})
@@ -330,8 +331,8 @@
 				let pages = getCurrentPages();
 				let route = pages[pages.length - 1].route;
 				let res = await isUserInfo();
-				uni.setStorageSync("goodsId",this.currentGoods.id);
 				if(res == false){
+					uni.setStorageSync("goodsId",this.currentGoods.id);
 					uni.redirectTo({
 						url: `../authorization/authorization?route=${route}`
 					})
@@ -356,6 +357,17 @@
 			handleClose(e) {
 				this.popupShow = false;
 			},
+			async addCart(){
+				let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
+				if(res2 == "成功"){
+					this.popupShow = false;
+					uni.showToast({
+						title:"成功加入购物车",
+						icon:"none"
+					})
+					this.shoppingCarNum = this.shoppingCarNum + 1;
+				}
+			},
 			//选择商品规格框中的立即购买按钮
 			async handleConfirm(e) {
 				let token = uni.getStorageSync('token').token;
@@ -373,26 +385,10 @@
 							})
 						}
 					}else{
-						let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
-						if(res2 == "成功"){
-							this.popupShow = false;
-							uni.showToast({
-								title:"成功加入购物车",
-								icon:"none"
-							})
-							this.shoppingCarNum = this.shoppingCarNum + 1;
-						}
+						this.addCart();
 					}
 				}else{
-					let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
-					if(res2 == "成功"){
-						this.popupShow = false;
-						uni.showToast({
-							title:"成功加入购物车",
-							icon:"none"
-						})
-						this.shoppingCarNum = this.shoppingCarNum + 1;
-					}
+					this.addCart();
 				}
 			}
 		}
@@ -546,7 +542,7 @@
 				width: 100vw;
 				height: 818rpx;
 				margin: 0rpx auto;
-				margin-top: -12rpx;
+				// margin-top: -12rpx;
 			}
 		}
 	}
