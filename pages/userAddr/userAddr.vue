@@ -34,12 +34,29 @@
 	export default {
 		data() {
 			return {
+				preRoute:'',
 				isShow:false,
 				// 获取用户所有的地址
 				addrData: []
 			};
 		},
-		created() {
+		onLoad(e) {
+			// 假设上一页时确认订单页面和用户页面
+			// console.log(e);
+			// if(e.route) this.preRoute = '..' + e.route.substring(5);
+			// if(e.route) this.$store.commit("increment",this.preRoute);
+			// console.log('this.preRoute',this.preRoute);
+		},
+		onUnload: function () {
+			// console.log(55555);
+			// console.log(this.$store.state.PreRoute);
+			// wx.reLaunch({
+			//   url: this.$store.state.PreRoute
+			// })
+			
+		},
+		onShow() {
+			console.log(5555)
 			this.getAllAddr();
 		},
 		methods:{
@@ -50,6 +67,8 @@
 				if(res.status == 200){
 					this.addrData = res.message;
 					this.isShow = true;
+				}else {
+					this.addrData = [];
 				}
 				
 				console.log(res);

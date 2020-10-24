@@ -154,8 +154,10 @@
 			this.carList = JSON.parse(e.carList);
 		},
 		created() {
-			this.getAllCoupon();
+		},
+		onShow() {
 			this.getDefaultAddr();
+			this.getAllCoupon();
 		},
 		methods:{
 			async delCar(ids){
@@ -178,10 +180,17 @@
 			goUserAddr(){
 				// 前往用户地址
 				uni.navigateTo({
-					url:'../userAddr/userAddr'
+					url:`../userAddr/userAddr`
 				})
 			},
 			async generateOrders(){
+				if(this.isShow){
+					uni.showToast({
+						title:'请填写收货地址',
+						icon:'none'
+					})
+					return;
+				}
 				// 提交订单
 				// 订单号
 				let { token } = uni.getStorageSync('token');
@@ -240,6 +249,7 @@
 				})
 			},
 			goAddAddr(){
+				// TODO 若没有地址，新增后跳往确认订单页面
 				uni.navigateTo({
 					url:'../editAddr/editAddr?switch=add'
 				})

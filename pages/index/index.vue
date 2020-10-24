@@ -237,6 +237,12 @@
 			this.getGoodsListData();
 			this.getSpellAGroupGoodsData();
 		},
+		// onShow() {
+		// 	uni.setTabBarBadge({
+		// 		index:2,
+		// 		text:'3'
+		// 	})
+		// }
 	}
 </script>
 

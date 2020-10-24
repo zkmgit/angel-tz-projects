@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/zkmgit/angel-tz-projects/issues"
   },
-  "homepage": "https://github.com/zkmgit/angel-tz-projects#readme"
+  "homepage": "https://github.com/zkmgit/angel-tz-projects#readme",
+  "dependencies": {
+    "vuex": "^3.5.1"
+  }
 }

@@ -12,25 +12,30 @@
 					</view>
 				</view>
 				
-				<view class="del-img">
+				<view class="del-img" @click="delCollect(item.id)">
 					<image src="../../static/images/collect/del.png" mode=""></image>
 				</view>
 			</view>
 		
 		</view>
 		<view class="empty" v-else>
-			<van-divider
+			<!-- <van-divider
 			  contentPosition="center"
 			  customStyle="color: #CCCCCC; border-color: #CCCCCC; font-size: 36rpx;"
 			>
 			  鏆傛棤鏀惰棌
-			</van-divider>
+			</van-divider> -->
+			<van-empty
+			  class="custom-image"
+			  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+			  description="鏆傛棤鏀惰棌"
+			/>
 		</view>
 	</view>
 </template>
 
 <script>
-	import { getCollectionByOpenid } from '../../api/collect.js';
+	import { getCollectionByOpenid,delCollection } from '../../api/collect.js';
 	export default {
 		data() {
 			return {
@@ -39,19 +44,29 @@
 			};
 		},
 		methods:{
+			async delCollect(id){
+				// 点击删除
+				let { token } = uni.getStorageSync('token');
+				let res = await delCollection(token,id);
+				if(res.status == 200){
+					// 删除成功重新渲染
+					this.getCollectData();
+				}
+				
+			},
 			async getCollectData(){
 				let { token } = uni.getStorageSync('token');
 				let res = await getCollectionByOpenid(token);
 				this.collectData = res;
 				if(this.collectData.length == 0){
-					console.log('123');
 					this.isShow = false;
 				}
 			}
 		},
-		created() {
+		onShow() {
 			this.getCollectData();
 		}
+		
 		
 	}
 </script>

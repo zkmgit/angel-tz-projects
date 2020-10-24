@@ -107,6 +107,7 @@
 	export default {
 		data(){
 			return {
+				
 				// 用于隐藏
 				choose:'',
 				// 用于编辑的地址回显
@@ -130,12 +131,13 @@
 		},
 		onLoad(e){
 			this.choose = e.switch;
+			
 			if(e.item != undefined) {
 				this.addrItem = JSON.parse(e.item);
 				console.log(this.addrItem);
 				this.name = this.addrItem.receiver;
 				this.address = this.addrItem.address;
-				this.phone = this.addrItem.phone;
+				this.phone = this.addrItem.phone; 
 				var arr = this.addrItem.area.split(',');
 				this.province = arr[0];
 				this.city = arr[1];
@@ -144,6 +146,7 @@
 		},
 		methods:{
 			setAddress(e){
+				console.log('address',e.detail);
 				this.address = e.detail;
 			},
 			setName(e){
@@ -158,8 +161,9 @@
 				let res = await delAddr(token,id);
 				if(res.status == 200){
 					// 删除成功
-					uni.navigateTo({
-						url:'../userAddr/userAddr'
+					uni.navigateBack({
+						delta: 1,
+						animationType:'slide-out-right'
 					})
 				}
 			},
@@ -244,6 +248,39 @@
 				this.value = value;
 			},
 			async save(){
+				if(this.name == ''){
+					uni.showToast({
+						icon:'none',
+						title:'姓名未填写'
+					})
+					return;
+				}
+				
+				if(this.province == '' || this.city == '' || this.district == ''){
+					uni.showToast({
+						icon:'none',
+						title:'地区未填写完整'
+					})
+					return;
+				}
+				
+				let str = this.phone;
+				if(str.length != 11){
+					uni.showToast({
+						title:'号码位数不正确',
+						icon:'none'
+					})
+				    return;
+				}
+				let reg = /^[1][0-9]{10}$/g;
+				console.log();
+				if(!reg.test(str)){
+					uni.showToast({
+						title:'号码格式错误',
+						icon:'none'
+					})
+					return;
+				}
 				// token,receiver,phone,address,area,id
 				let { token } = uni.getStorageSync('token');
 				let item = {
@@ -264,8 +301,10 @@
 				}
 				
 				if(res.status == 200){
-					uni.navigateTo({
-						url:'../userAddr/userAddr'
+					// 回退到上一页
+					uni.navigateBack({
+						delta: 1,
+						animationType:'slide-out-right'
 					})
 				}else {
 					uni.showToast({
