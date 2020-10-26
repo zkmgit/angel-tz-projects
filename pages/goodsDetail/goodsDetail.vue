@@ -317,7 +317,8 @@
 							})
 						}
 					}else{
-						let res2 = await delCollection(token,this.currentGoods.id);
+						let res2 = await delCollection(token,this.currentGoodsId);
+						console.log(res2);
 						if(res2.status == 200){
 							uni.showToast({
 								title:"取消收藏"

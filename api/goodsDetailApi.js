@@ -48,8 +48,8 @@ export async function addCollection(obj){
 }
 
 //删除收藏
-export async function delCollection(token){
-	let url = `delCollection?token=${token}`;
+export async function delCollection(token,id){
+	let url = `delCollection?token=${token}&id=${id}`;
 	let res = await request(url);
 	return res.data;
 }
