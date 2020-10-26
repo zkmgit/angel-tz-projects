@@ -256,7 +256,7 @@
 					return;
 				}
 				
-				if(this.province == '' || this.city == '' || this.district == ''){
+				if(this.province == '请选择' || this.city == '请选择' || this.district == '请选择'){
 					uni.showToast({
 						icon:'none',
 						title:'地区未填写完整'
@@ -272,11 +272,19 @@
 					})
 				    return;
 				}
-				let reg = /^[1][0-9]{10}$/g;
+				let reg = /^[1][3-9]\d{9}$/g;
 				console.log();
 				if(!reg.test(str)){
 					uni.showToast({
 						title:'号码格式错误',
+						icon:'none'
+					})
+					return;
+				}
+				// 
+				if(this.address == ''){
+					uni.showToast({
+						title:'请填写详细地址',
 						icon:'none'
 					})
 					return;
