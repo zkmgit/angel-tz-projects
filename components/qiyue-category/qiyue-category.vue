@@ -60,7 +60,7 @@
 				categoryActive: 0,
 				activeStyle: {
 					color: this.activeTextColor,
-					backgroundColor: this.activeBackgroundColor
+					backgroundColor: this.activeBackgroundColor,
 				}
 			}
 		},
