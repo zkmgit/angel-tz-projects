@@ -117,7 +117,7 @@
 				imgs: [], //当前商品图片
 				shareText: "", //保存分享标题
 				shareImgs: "", //保存分享图片
-				shoppingCarNum: 0,
+				shoppingCarNum: this.$store.state.cartNum,
 				currentGoodsId: "",
 				isCollect: false, //是否收藏
 				evaluationDatas :[],
@@ -230,11 +230,11 @@
 			}
 			let ress = await getShoppingCarByCarContent(token);
 			if(ress.status == 201){
-				this.shoppingCarNum = 0;
+				this.$store.commit('setCartNum', 0);
 			}else{
-				this.shoppingCarNum = ress.message.result2.length;
+				this.$store.commit('setCartNum', ress.message.result2.length);
 			}
-			
+			this.shoppingCarNum = this.$store.getters.getCartNum;
 			
 			//获取出该商品的所有评价
 			let evaluations = await getEvaluationByGoodsId(this.currentGoods.id);
@@ -296,6 +296,7 @@
 				let route = pages[pages.length - 1].route;
 				let res = await isUserInfo();
 				if(res == false){
+					uni.setStorageSync("goodsId",this.currentGoods.id);
 					uni.redirectTo({
 						url: `../authorization/authorization?route=${route}`
 					})
@@ -330,8 +331,8 @@
 				let pages = getCurrentPages();
 				let route = pages[pages.length - 1].route;
 				let res = await isUserInfo();
-				uni.setStorageSync("goodsId",this.currentGoods.id);
 				if(res == false){
+					uni.setStorageSync("goodsId",this.currentGoods.id);
 					uni.redirectTo({
 						url: `../authorization/authorization?route=${route}`
 					})
@@ -356,15 +357,39 @@
 			handleClose(e) {
 				this.popupShow = false;
 			},
+			async addCart(e){
+				let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":e.id,"content":e.value});
+				if(res2 == "成功"){
+					this.popupShow = false;
+					uni.showToast({
+						title:"成功加入购物车",
+						icon:"none"
+					})
+					this.$store.commit('setCartNum', this.$store.state.cartNum + 1);
+					this.shoppingCarNum = this.$store.getters.getCartNum;
+				}
+			},
 			//选择商品规格框中的立即购买按钮
 			async handleConfirm(e) {
 				let token = uni.getStorageSync('token').token;
 				let res = await getShoppingCarByCarContent(token);
+				let value;
+				let totalNum;
 				if(res.message.result2.length > 0){
-					let tempObj = res.message.result2.find(r => r.content == e.value);
+					if(!e){
+						value = "";
+					}else{
+						value = e.value;
+					}
+					let tempObj = res.message.result2.find(r => r.content == value);
+					let tempObj2 = {goodsPrice:this.currentGoods.nowPrice,count:1,content:"",id:res.message.id}
 					if(tempObj){
-						let num = Number(tempObj.num) + Number(e.count);
-						let temp = await updateShoppingCarNumByCarId(tempObj.id,num);
+						if(!e){
+							totalNum = Number(tempObj.num) + 1;
+						}else{
+							totalNum = Number(tempObj.num) + Number(e.count);
+						}
+						let temp = await updateShoppingCarNumByCarId(tempObj.id,totalNum);
 						if(temp == "成功"){
 							this.popupShow = false;
 							uni.showToast({
@@ -373,26 +398,10 @@
 							})
 						}
 					}else{
-						let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
-						if(res2 == "成功"){
-							this.popupShow = false;
-							uni.showToast({
-								title:"成功加入购物车",
-								icon:"none"
-							})
-							this.shoppingCarNum = this.shoppingCarNum + 1;
-						}
+						this.addCart(tempObj2);
 					}
 				}else{
-					let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":res.message.id,"content":e.value});
-					if(res2 == "成功"){
-						this.popupShow = false;
-						uni.showToast({
-							title:"成功加入购物车",
-							icon:"none"
-						})
-						this.shoppingCarNum = this.shoppingCarNum + 1;
-					}
+					this.addCart(tempObj2);
 				}
 			}
 		}
@@ -546,7 +555,7 @@
 				width: 100vw;
 				height: 818rpx;
 				margin: 0rpx auto;
-				margin-top: -12rpx;
+				// margin-top: -12rpx;
 			}
 		}
 	}
