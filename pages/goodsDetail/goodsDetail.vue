@@ -317,7 +317,8 @@
 							})
 						}
 					}else{
-						let res2 = await delCollection(token);
+						let res2 = await delCollection(token,this.currentGoodsId);
+						console.log(res2);
 						if(res2.status == 200){
 							uni.showToast({
 								title:"取消收藏"
@@ -358,7 +359,9 @@
 				this.popupShow = false;
 			},
 			async addCart(e){
-				let res2 = await addToShoppingCar({"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.price,"num":e.count,"showImg":this.imgList[0],"userId":e.id,"content":e.value});
+				let temp = {"goodsId":this.currentGoods.id,"goodsName":this.currentGoods.goods_name,"goodsPrice":e.goodsPrice,"num":e.count,"showImg":this.imgList[0],"userId":e.id,"content":e.value};
+				console.log("temptemptemp",temp);
+				let res2 = await addToShoppingCar(temp);
 				if(res2 == "成功"){
 					this.popupShow = false;
 					uni.showToast({
@@ -375,20 +378,23 @@
 				let res = await getShoppingCarByCarContent(token);
 				let value;
 				let totalNum;
+				console.log("resresres",res);
+				if(!e){
+					value = "";
+				}else{
+					value = e.value;
+				}
 				if(res.message.result2.length > 0){
-					if(!e){
-						value = "";
-					}else{
-						value = e.value;
-					}
+					console.log("value",value);
 					let tempObj = res.message.result2.find(r => r.content == value);
-					let tempObj2 = {goodsPrice:this.currentGoods.nowPrice,count:1,content:"",id:res.message.id}
+					console.log("tempObjtempObj",tempObj);
 					if(tempObj){
 						if(!e){
 							totalNum = Number(tempObj.num) + 1;
 						}else{
 							totalNum = Number(tempObj.num) + Number(e.count);
 						}
+						console.log("进来了");
 						let temp = await updateShoppingCarNumByCarId(tempObj.id,totalNum);
 						if(temp == "成功"){
 							this.popupShow = false;
@@ -398,9 +404,11 @@
 							})
 						}
 					}else{
+						let tempObj2 = {"goodsPrice":this.currentGoods.nowPrice,count:e.count,content:"",id:res.message.id,"value":value};
 						this.addCart(tempObj2);
 					}
 				}else{
+					let tempObj2 = {"goodsPrice":this.currentGoods.nowPrice,count:e.count,content:"",id:res.message.id,"value":value};
 					this.addCart(tempObj2);
 				}
 			}

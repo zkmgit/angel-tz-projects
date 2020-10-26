@@ -28,10 +28,12 @@
 			};
 		},
 		onShow() {
+			// 接收别的页面传进来的值
 			var id = uni.getStorageSync('sell')
 			var index = uni.getStorageSync('index')
 			// console.log(index)
 			// console.log(id)
+			// 判断有没有传值
 			if(!id == false){
 				this.activeId = id
 				this.activeIndex = index
@@ -39,7 +41,6 @@
 			// console.log("接收index:" + this.activeIndex)
 			// console.log(id)
 			this.getClassifiedGoodsData(this.activeId)
-			// uni.clearStorage("sell")
 			uni.removeStorageSync("sell");
 		},
 		onLoad(options){
