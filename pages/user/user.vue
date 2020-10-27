@@ -108,11 +108,11 @@
 			<view class="swire">
 				<view class="wire"></view>
 			</view>
-			<van-cell title-style="color:#000000" title="清楚缓存" is-link />
+			<van-cell title-style="color:#000000" title="清除缓存" is-link />
 			<view class="swire">
 				<view class="wire"></view>
 			</view>
-			<van-cell title-style="color:#000000" title="退出登录" is-link />
+			<van-cell title-style="color:#000000" title="退出登录" @click="outLogin" is-link />
 			<view class="swire">
 				<view class="wire"></view>
 			</view>
@@ -130,6 +130,20 @@
 			};
 		},
 		methods:{
+			async outLogin(){
+				console.log("清除")
+				// 退出登录,清除本地缓存
+				uni.clearStorageSync();
+				let pages = getCurrentPages();
+				let route = pages[pages.length - 1].route;
+				let res = await isUserInfo();
+				
+				if(res == false) {
+					uni.redirectTo({					
+						url: `../authorization/authorization?route=${route}`
+					})
+				}
+			},
 			goOrderList(status){
 				// 前往订单列表
 				uni.navigateTo({
@@ -169,12 +183,7 @@
 				})
 			}
 		},
-		onShow(){
-			let { token } = uni.getStorageSync('token');
-			let user = uni.getStorageSync('user');
-			this.userInfo = user;
-		},
-		async onLoad() {
+		async onShow(){
 			let pages = getCurrentPages();
 			let route = pages[pages.length - 1].route;
 			let res = await isUserInfo();
@@ -184,6 +193,21 @@
 					url: `../authorization/authorization?route=${route}`
 				})
 			}
+			
+			let { token } = uni.getStorageSync('token');
+			let user = uni.getStorageSync('user');
+			this.userInfo = user;
+		},
+		async onLoad() {
+			// let pages = getCurrentPages();
+			// let route = pages[pages.length - 1].route;
+			// let res = await isUserInfo();
+			
+			// if(res == false) {
+			// 	uni.redirectTo({					
+			// 		url: `../authorization/authorization?route=${route}`
+			// 	})
+			// }
 			console.log(222)
 		}
 	}

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-	import { getPreferentialDatas } from '../../api/coupon.js';
+	import { getPreferentialDatas,queryCollectVouchersById,collectVouchers } from '../../api/coupon.js';
 	export default {
 		data() {
 			return {
@@ -52,19 +52,23 @@
 					 {
 						 "index": 0,
 						 "title": "可领卷",
-						 "selected": "true"
+						 "selected": "true",
+						 "text": "立即领取"
 					 },
 					 {
 						"index": 1,
 					 	"title": "已领卷",
-					 	"selected": "false"
+					 	"selected": "false",
+						"text": "立即使用"
 					 },
 					 {
 						 "index": 2,
 					 	"title": "已失效",
-					 	"selected": "false"
+					 	"selected": "false",
+						"text": "过期/已结束"
 					 }
 				 ],
+				 // 优惠卷
 				 couponData:[]
 			};
 		},
@@ -86,12 +90,39 @@
 			},
 			// 获取优惠卷
 			async getCouponData(){
+				// 根据优惠卷状态进行处理
+				// 可领卷
+				let canVolume = [];
+				// 已领卷
+				let alreadyVolume = [];
+				// 失效
+				let Invalidation = [];
+				
 				let res = await getPreferentialDatas();
-				console.log(res);
+				canVolume = res;
+				
+				let { token } = uni.getStorageSync('token');
+				// 已领卷
+				let res2 = await queryCollectVouchersById(token);
+				if(res2.status != 201){
+					// 处理
+					// canVolume.filter(v=>{
+					// 	return v.id.includes()
+					// })
+					// 已失效
+					alreadyVolume = res2.message;
+					alreadyVolume.map()
+				}
+				// this.couponData.push(canVolume);
+				// this.couponData.push(alreadyVolume);
+				// this.couponData.push(Invalidation);
+				
+				console.log('res',res);
 				this.couponData = res;
 			}
 		},
-		created(){
+		onShow() {
+			// 获取优惠卷
 			this.getCouponData();
 		}
 	}

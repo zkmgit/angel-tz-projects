@@ -83,6 +83,20 @@
 			};
 		},
 		async onLoad() {
+			// let pages = getCurrentPages();
+			// let route = pages[pages.length - 1].route;
+			// let res = await isUserInfo();
+			
+			// if(res == false) {
+			// 	uni.redirectTo({					
+			// 		url: `../authorization/authorization?route=${route}`
+			// 	})
+			// }
+		},
+		created() {
+			
+		},
+		async onShow() {
 			let pages = getCurrentPages();
 			let route = pages[pages.length - 1].route;
 			let res = await isUserInfo();
@@ -92,13 +106,7 @@
 					url: `../authorization/authorization?route=${route}`
 				})
 			}
-		},
-		created() {
-			
-		},
-		onShow() {
 			this.getAllCar();
-			
 		},
 		methods:{
 			goIndex(){

@@ -12,7 +12,7 @@
 					</view>
 				</view>
 				
-				<view class="del-img" @click="delCollect(item.id)">
+				<view class="del-img" @click="delCollect(item.goods_id)">
 					<image src="../../static/images/collect/del.png" mode=""></image>
 				</view>
 			</view>
@@ -45,11 +45,11 @@
 		},
 		methods:{
 			async delCollect(id){
-				// µã»÷É¾³ý
+				// ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 				let { token } = uni.getStorageSync('token');
 				let res = await delCollection(token,id);
 				if(res.status == 200){
-					// É¾³ý³É¹¦ÖØÐÂäÖÈ¾
+					// É¾ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¾
 					this.getCollectData();
 				}
 				
