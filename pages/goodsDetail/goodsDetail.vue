@@ -60,7 +60,7 @@
 			</view>
 		</view>
 		<van-goods-action>
-			<van-goods-action-icon icon="chat-o" text="客服" @click="clickCustomerService" />
+			<van-goods-action-icon icon="chat-o" text="客服" open-type="contact" @contact="handleContact"/>
 			<van-goods-action-icon icon="cart-o" text="购物车" @click="clickShoppingCar" :info="shoppingCarNum" />
 			<van-goods-action-icon icon="like" text="收藏" @click="clickCollection" v-if="isCollect" />
 			<van-goods-action-icon icon="like-o" text="收藏" @click="clickCollection" v-else />
@@ -248,6 +248,10 @@
 			this.list = tempArr3;
 		},
 		methods: {
+			handleContact (e) {
+				console.log(e.detail.path)
+				console.log(e.detail.query)
+			},
 			//评论上拉加载更多
 			handleLoadMore(stopLoad) {
 				console.log(stopLoad);
