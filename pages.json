@@ -178,7 +178,14 @@
 				"navigationBarTitleText": "公告详情"
 			}
 		}
-	],
+	   
+        ,{
+            "path" : "pages/search/search",
+				"style" : {
+					"navigationBarTitleText": "商品搜索"
+				}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

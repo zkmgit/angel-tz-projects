@@ -1,30 +1,31 @@
 <template>
 	<view>
 		<!-- 搜索栏 -->
-		<view class="header">
-			<view class="search">
-				<input type="text" placeholder="输入搜索关键词" @confirm="search" v-model="value"></input>
-				<view @click="search">
-					<image class="search-icon" src="/static/images/icon/search.svg"></image>
+		<view class="ceiling">
+			<view class="header">
+				<view class="search">
+					<input type="text" placeholder="输入搜索关键词" @confirm="search" v-model="value"></input>
+					<view @click="search">
+						<image class="search-icon" src="/static/images/icon/search.svg"></image>
+					</view>
+				</view>
+				<view>
+					<!-- 切换 图标 -->
+					<image class="show-type" src="/static/images/icon/list1.svg" v-if="show" @click="changeShowType"></image>
+					<image class="show-type" src="/static/images/icon/list2.svg" v-if="!show" @click="changeShowType"></image>
 				</view>
 			</view>
-			<view>
-				<!-- 切换 图标 -->
-				<image class="show-type" src="/static/images/icon/list1.svg" v-if="show" @click="changeShowType"></image>
-				<image class="show-type" src="/static/images/icon/list2.svg" v-if="!show" @click="changeShowType"></image>
+
+			<!-- 分隔线 -->
+			<!-- <view class="line"></view> -->
+
+			<!-- 导航栏 -->
+			<view class="tab">
+				<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
+				 v-model="value">{{ item }}
+				</view>
 			</view>
 		</view>
-
-		<!-- 分隔线 -->
-		<view class="line"></view>
-
-		<!-- 导航栏 -->
-		<view class="tab">
-			<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
-			 v-model="value">{{ item }}
-			</view>
-		</view>
-
 		<!--1 切换成显示一张图片页面 -->
 		<view class="list" v-if="show">
 			<view v-for="item in data" :key="item.id">
@@ -92,16 +93,16 @@
 					</view>
 				</view>
 			</view>
-			
+
 			<!-- 没有更多搜索 -->
 		<!-- 	<view class="emptys" v-show="data.length === 0">
 				<image src="../../static/images/goodslist/nomore.png" mode="widthFix" class="empty-imgs"></image>
 				<view class="info-texts">
 					<view class="texts">亲，没有找到您想要的商品</view>
 					<view class="texts">请换个相关的搜索词试试</view>
-				</view>
+				</view> -->
 			</view>
-			<view class="no-mores" v-show="!isMore">没有更多了</view> -->
+			<!-- <view class="no-mores" v-show="!isMore">没有更多了</view> -->
 		</view>
 	</view>
 
@@ -176,13 +177,24 @@
 				this.tempData = this.data;
 				console.log(this.data);
 			},
-
-			// 初始化页面
-			async onLoad() {
+			// 获取所有商品数据
+			async getGoodsListData(){
 				this.data = await getGoodsList();
 				this.tempData = JSON.parse(JSON.stringify(this.data));
+			},
+
+			// 初始化页面
+			async init() {
+				this.getGoodsListData();
+				this.search();
 			}
-		}
+		},
+		 onLoad(option){
+			 this.value = option.keyword;
+			 // console.log(this.value,"333");
+			 this.init();
+		 }
+		
 	}
 </script>
 
@@ -199,89 +211,96 @@
 		box-sizing: border-box;
 	}
 
-	.header {
-		padding: 32rpx;
-		background: #fff;
-		display: flex;
-		align-items: center;
+	.ceiling {
+		position: sticky;
+		z-index: 999;
+		top: 0;
 
-		.search {
-			position: sticky;
-			width: 650rpx;
-			height: 66rpx;
+		// 头部
+		.header {
+			padding: 32rpx;
+			background: #fff;
+			display: flex;
+			align-items: center;
 
-			input {
-				border: 1rpx solid #e3e3e3;
-				width: 100%;
-				height: 100%;
-				border-radius: 30rpx;
-				padding-left: 60rpx;
-			}
+			.search {
+				position: sticky;
+				width: 650rpx;
+				height: 66rpx;
 
-			.search-icon {
-				width: 35rpx;
-				height: 35rpx;
-				position: absolute;
-				top: 16rpx;
-				right: 40rpx;
-			}
-		}
-
-		.show-type {
-			width: 40rpx;
-			height: 40rpx;
-			margin-left: 20rpx;
-		}
-	}
-
-	/* 分栏线 */
-	.line {
-		width: 100vw;
-		height: 2rpx;
-		background: #dfdfdf;
-	}
-
-
-	/* 商品搜索列表 */
-	.tab {
-		width: 100vw;
-		height: 88rpx;
-		background: #fff;
-		display: flex;
-		justify-content: space-around;
-
-		.option {
-			line-height: 88rpx;
-
-			.filter {
-				color: #fa1e26;
-
-				.rank {
-					margin: 16rpx;
-					width: 718rpx;
-					height: 220rpx;
-					display: flex;
-					background: #fff;
-					border-radius: 30rpx;
-					overflow: hidden;
-					position: relative;
-				}
-
-				.ascend {
-					width: 220rpx;
-					height: 220rpx;
-					flex-shrink: 0;
-				}
-
-				.descend {
-					padding: 16rpx 32rpx 0 24rpx;
+				input {
+					border: 1rpx solid #e3e3e3;
 					width: 100%;
+					height: 100%;
+					border-radius: 30rpx;
+					padding-left: 60rpx;
 				}
+
+				.search-icon {
+					width: 35rpx;
+					height: 35rpx;
+					position: absolute;
+					top: 16rpx;
+					right: 40rpx;
+				}
+			}
+
+			.show-type {
+				width: 40rpx;
+				height: 40rpx;
+				margin-left: 20rpx;
 			}
 		}
 
-		.action {
-			color: #f44;
+		/* 分栏线 */
+		// .line {
+		// 	width: 100vw;
+		// 	height: 2rpx;
+		// 	color: pink;
+		// }
+
+
+		/* 导航栏 */
+		.tab {
+			width: 100vw;
+			height: 88rpx;
+			background: #fff;
+			display: flex;
+			justify-content: space-around;
+
+			.option {
+				line-height: 88rpx;
+
+				.filter {
+					color: #fa1e26;
+
+					.rank {
+						margin: 16rpx;
+						width: 718rpx;
+						height: 220rpx;
+						display: flex;
+						background: #fff;
+						border-radius: 30rpx;
+						overflow: hidden;
+						position: relative;
+					}
+
+					.ascend {
+						width: 220rpx;
+						height: 220rpx;
+						flex-shrink: 0;
+					}
+
+					.descend {
+						padding: 16rpx 32rpx 0 24rpx;
+						width: 100%;
+					}
+				}
+			}
+
+			.action {
+				color: #f44;
+			}
 		}
 	}
 
@@ -310,7 +329,7 @@
 				}
 			}
 
-			/* 所有信心样式一 */  
+			/* 所有信心样式一 */
 			.directioc {
 				display: flex;
 				flex-direction: column; //水平布局
@@ -319,7 +338,7 @@
 				height: 220rpx;
 				margin-top: 20rpx;
 				margin-left: 30rpx;
-				
+
 				/* 标题 */
 				.title {
 					display: flex;
@@ -416,19 +435,20 @@
 			margin-top: 20rpx;
 
 			.goods-boxs {
-				
-				/* 图片 */ 
+
+				/* 图片 */
 				.img2-box {
 					width: 350rpx;
 					height: 350rpx;
 					border-radius: 20rpx;
+
 					.image {
 						width: 350rpx;
 						height: 350rpx;
 					}
 				}
-				
-				/* 所有信心样式二 */ 
+
+				/* 所有信心样式二 */
 				.detailsbox {
 					display: flex;
 					width: 350rpx;
@@ -436,7 +456,7 @@
 					margin-left: 10rpx;
 					flex-direction: column; //水平布局
 					justify-content: space-between;
-					
+
 					/* 标题 */
 					.goods-title {
 						overflow: hidden;
@@ -450,7 +470,7 @@
 
 					.price2 {
 						display: flex;
-						
+
 						.price2-icon {
 							font-size: 30rpx;
 							color: #f44;
@@ -460,7 +480,7 @@
 					/* 已出售 */
 					.sales2 {
 						display: flex;
-						
+
 						.sales2-icon {
 							font-size: 30rpx;
 							color: gray;
@@ -479,29 +499,32 @@
 						}
 					}
 				}
-			}	
-		}/* 没有搜索更多 */
+			}
+		}
+
+		/* 没有搜索更多 */
 		.emptys {
 			position: relative;
-		
+
 			.empty-imgs {
 				margin-left: 80px;
 				width: 400rpx;
 				height: 400rpx;
 			}
-		
+
 			.info-texts {
 				/* 文字居中 */
 				text-align: center;
 				margin-top: -50rpx;
-				 margin-right: -100px;
+				margin-right: -100px;
+
 				.texts {
 					color: #969799;
 					font-size: 32rpx;
 				}
 			}
 		}
-		
+
 		.no-mores {
 			margin-right: 150px;
 			height: 120rpx;
