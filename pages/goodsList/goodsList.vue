@@ -22,7 +22,13 @@
 			<!-- 导航栏 -->
 			<view class="tab">
 				<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
-				 v-model="value">{{ item }}
+						v-model="value">{{ item }}
+					<!-- 用于切换显示  两个切换小图标 -->
+					<view class="filter" v-if="index == 3">
+						<!-- 上升  升序 --><!-- 下降  降序 -->
+						<view :class="['rank', 'ascend', sel=='asc' ?'sel':'']"></view>
+						<view :class="['rank', 'descend', sel=='desc' ?'sel':'']"></view>
+					</view>	
 				</view>
 			</view>
 		</view>
@@ -136,7 +142,17 @@
 				this.show = !this.show
 			},
 			/* 切换数据 */
-			async selected(index) {
+			async selected(index , isSearch) {
+				/* 点亮价格排序小图标 */
+				this.page = 3;
+					this.isMore = true;
+					if( !isSearch && (this.action === index && index !== 3) ) return;
+					if( !isSearch && index === 3 ){
+						this.sel === 'asc' ?this.sel='desc' :this.sel='asc';
+					}else {
+						this.sel = "";
+					};
+				
 				switch (index) {
 					case 0:
 						/* 综合 */
@@ -157,9 +173,19 @@
 						break;
 					default:
 						/* 价格排序 */
-						this.data = this.data.sort(function(v1, v2) {
-							return Number(v1.original_price) - Number(v2.original_price)
-						})
+						if(this.isAscend == false){
+							this.data = this.data.sort(function(v1, v2) {
+								return Number(v1.original_price) - Number(v2.original_price)
+							});
+							this.isAscend = !this.isAscend;
+								
+						}else{
+							this.data = this.data.sort(function(v1, v2) {
+								return Number(v2.original_price) - Number(v1.original_price)
+							});
+							this.isAscend = !this.isAscend;
+						}
+						
 						console.log(this.data);
 						break;
 				}
@@ -269,31 +295,38 @@
 			justify-content: space-around;
 
 			.option {
-				line-height: 88rpx;
+				flex: 1;
+				height: 80rpx;
+				line-height: 80rpx;
+				color: #717171;
+				text-align: center;
+				font-size: 28rpx;
 
 				.filter {
-					color: #fa1e26;
-
+					position: relative;
+					display: inline-block;
+					
 					.rank {
-						margin: 16rpx;
-						width: 718rpx;
-						height: 220rpx;
-						display: flex;
-						background: #fff;
-						border-radius: 30rpx;
-						overflow: hidden;
-						position: relative;
+						position: absolute;
+						left: 20rpx;
+						width: 12rpx;
+						height: 12rpx;
+						transform: rotate(45deg);
 					}
 
 					.ascend {
-						width: 220rpx;
-						height: 220rpx;
-						flex-shrink: 0;
+						top: -20rpx;
+						border-left: 3rpx solid #bbb;
+						border-top: 3rpx solid #bbb;
 					}
 
 					.descend {
-						padding: 16rpx 32rpx 0 24rpx;
-						width: 100%;
+						bottom: -5rpx;
+						border-right: 3rpx solid #bbb;
+						border-bottom: 3rpx solid #bbb;
+					}
+					.sel {
+						border-color: #f44;
 					}
 				}
 			}
