@@ -19,3 +19,16 @@ export async function collectVouchers(data){
 	let res = await request(url,method,data);
 	return res.data;
 }
+
+// 根据id删除对应的优惠卷数据
+export async function delCollectVouchersById(id){
+	let url = `delCollectVouchersById?id=${id}`;
+	let res = await request(url);
+	return res.data;
+}
+// 根据id查询用户的优惠卷数据
+export async function getPreferentById (ids){
+	let url = `getPreferentById?ids=${ids}`;
+	let res = await request(url);
+	return res.data;
+}

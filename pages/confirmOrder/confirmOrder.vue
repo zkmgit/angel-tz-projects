@@ -119,7 +119,8 @@
 </template>
 
 <script>
-	import { getPreferentialDatas } from '../../api/coupon.js';
+	import UTC from '../../util/UTC.js';
+	import { getPreferentialDatas,queryCollectVouchersById,getPreferentById,delCollectVouchersById } from '../../api/coupon.js';
 	import { allAddr } from '../../api/addr.js';
 	import { addOrder } from '../../api/order.js';
 	import { delShoppingCar } from '../../api/shopingCar.js';
@@ -143,6 +144,8 @@
 				title:'请选择使用优惠卷',
 				show:false,
 				columns: [],
+				columnsIds:[],
+				delId: 0
 				// 当前优惠的价钱
 			};
 		},
@@ -157,7 +160,8 @@
 		},
 		onShow() {
 			this.getDefaultAddr();
-			this.getAllCoupon();
+			// this.getAllCoupon();
+			this.getCouponData();
 		},
 		methods:{
 			async delCar(ids){
@@ -235,6 +239,8 @@
 				if(res.status == 200){
 					// 删除购物车
 					await this.delCar(goods_ids);
+					// 删除优惠卷
+					if(this.delId != 0) await delCollectVouchersById(this.delId);
 					// delShoppingCar
 					uni.navigateTo({
 						url:'../orderList/orderList?status=all'
@@ -247,6 +253,41 @@
 				res.map(v=>{
 					this.columns.push(`${v.title}[${v.condition}元可减${v.money}元]`)
 				})
+			},
+			async getCouponData(){
+				// 根据优惠卷状态进行处理
+				// 可领卷
+				let canVolume = [];
+				
+				let res = await getPreferentialDatas();
+				canVolume = res;
+				
+				let { token } = uni.getStorageSync('token');
+				// 已领卷
+				let res2 = await queryCollectVouchersById(token);
+				if(res2.status != 201){
+					// 用户的优惠卷
+					let alreadyVolumeIds = [];
+					res2.message.map(v=>{
+						// 当前时间小于领卷时间+30天，未过期
+						let now = new Date().getTime();
+						let time = new Date(UTC(v.add_time)).getTime() + 1000*30*24*60*60;
+						
+						if(now < time) alreadyVolumeIds.push(v.id);
+					})
+					console.log(alreadyVolumeIds.join(','));
+					let ids = alreadyVolumeIds.join(',');
+					let { message } = await getPreferentById(ids);
+					console.log(res);
+					message.map(v=>{
+						this.columns.push(`${v.title}[${v.condition}元可减${v.money}元]`);
+						this.columnsIds.push(v.c_id);
+					})
+					
+				}else {
+					// 当前没有优惠卷
+					this.columns = [];
+				}
 			},
 			goAddAddr(){
 				// TODO 若没有地址，新增后跳往确认订单页面
@@ -272,6 +313,10 @@
 					this.num = this.total;
 					this.num = parseInt(this.total) - parseInt(this.discountArr[1]);
 					this.discountMoney = parseInt(this.discountArr[1]);
+				}else {
+					this.delId = 0;
+					this.num = this.total;
+					this.discountMoney = 0;
 				}
 				// discountMoney			},
 			cancel(){
@@ -292,6 +337,8 @@
 			     const { picker, value, index } = event.detail;
 			     console.log(`当前值：${value}, 当前索引：${index},${picker}`);
 				this.discount = value;
+				// 结算时要删除优惠卷
+				this.delId =  this.columnsIds[index];
 			   },
 		}
 	}
