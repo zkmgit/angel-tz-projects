@@ -7,7 +7,7 @@
 		</view>
 		
 		<view class="coupon-list" v-if="isShow">
-			<view class="coupon-item" v-for="item in couponData">
+			<view class="coupon-item" v-for="item in couponList">
 				<view class="img">
 					<image src="../../static/images/coupon/coupons-active.svg" mode=""></image>
 				</view>
@@ -25,8 +25,8 @@
 							<text class="small">{{ item.condition }}</text><text class="color">￥<text class="size">{{ item.money }}</text></text>
 						</view>
 					</view>
-					<view class="footer">
-						立即领取
+					<view class="footer" @click="useCoupon(item.id,index)">
+						{{ text }}
 					</view>
 				</view>
 			</view>
@@ -43,10 +43,14 @@
 </template>
 
 <script>
-	import { getPreferentialDatas } from '../../api/coupon.js';
+	import UTC from '../../util/UTC.js';
+	import { getPreferentialDatas,queryCollectVouchersById,collectVouchers } from '../../api/coupon.js';
 	export default {
 		data() {
 			return {
+				couponList:[],
+				index:0,
+				text:'立即领取',
 				isShow:true,
 				 tagList:[
 					 {
@@ -65,33 +69,139 @@
 					 	"selected": "false"
 					 }
 				 ],
+				 // 优惠卷
 				 couponData:[]
 			};
 		},
 		async onLoad(options) {
-			let id = options.id;
-			console.log(id)
+			// let id = options.id;
+			// console.log(id)
 		},
 		methods: {
+			async addCoupon(id){
+				// 领卷
+				let { token } = uni.getStorageSync('token');
+				let res = await collectVouchers({token,id});
+				
+				if(res.status == 200){
+					uni.showToast({
+						title:'领卷成功',
+						icon:'none'
+					})
+				}
+			},
+			useCoupon(id,index){
+				// 使用优惠卷
+				switch(index){
+					case 0:
+					// console.log(id);
+					// 领卷
+					this.addCoupon(id);
+					this.getCouponData();
+						break;
+					case 1:
+					uni.switchTab({
+						url:'../index/index'
+					})
+						break;
+					case 2:
+					uni.showToast({
+						title:'已过期',
+						icon:'none'
+					})
+						break;
+				}
+			},
 			setSelected(key){
+				
 				if(key == 0) {
-					this.isShow = true;
+					console.log(key)
+					this.text = "立即领取";
+				}else if(key == 1){
+					console.log(key)
+					this.text = "立即使用";
 				}else {
-					this.isShow = false;
+					console.log(key)
+					this.text = "过期/已结束";
 				}
 				this.tagList.map(v=>{
 					v.selected = "false"
 				})
 				this.tagList[key].selected = "true";
+				this.couponList = this.couponData[key];
+				if(this.couponList.length == 0){
+					this.isShow = false;
+				}else {
+					this.isShow = true;
+				}
+				this.index = key;
 			},
 			// 获取优惠卷
 			async getCouponData(){
+				console.log('test');
+				// 根据优惠卷状态进行处理
+				// 可领卷
+				let canVolume = [];
+				// 已领卷
+				let alreadyVolume = [];
+				// 失效
+				let Invalidation = [];
+				
+				let temp = [];
+				
 				let res = await getPreferentialDatas();
-				console.log(res);
-				this.couponData = res;
+				canVolume = res;
+				
+				let { token } = uni.getStorageSync('token');
+				// 已领卷
+				let res2 = await queryCollectVouchersById(token);
+				console.log('test',res2);
+				if(res2.status != 201){
+					// 用户的优惠卷
+					let invalidationIds = [];
+					let alreadyVolumeIds = [];
+					res2.message.map(v=>{
+						// 当前时间大于领卷时间+30天，则过期
+						let time = new Date(UTC(v.add_time)).getTime() + 1000*30*24*60*60;
+						if(new Date().getTime() > time){
+							invalidationIds.push(v.preferential_id);
+						}else {
+							alreadyVolumeIds.push(v.preferential_id);
+						}
+					})
+					
+					// 失效的卷
+					invalidationIds.map(v=>{
+						canVolume.map(c=>{
+							if(v == c.id) Invalidation.push(c);
+						})
+					})
+					// 已领卷
+					alreadyVolumeIds.map(v=>{
+						canVolume.map(c=>{
+							if(v == c.id) alreadyVolume.push(c);
+						})
+					})
+					//可领卷
+					canVolume.map(c=>{
+						if(!alreadyVolumeIds.includes(c.id)) temp.push(c);
+					})
+				}else {
+					temp = canVolume;
+				}
+				this.couponData = [];
+				this.couponData.push(temp);
+				this.couponData.push(alreadyVolume);
+				this.couponData.push(Invalidation);
+				this.couponList = this.couponData[0];
+				if(this.couponList.length == 0){
+					this.isShow = false;
+				}
+				console.log(this.couponData)
 			}
 		},
-		created(){
+		onShow() {
+			// 获取优惠卷
 			this.getCouponData();
 		}
 	}

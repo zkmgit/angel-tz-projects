@@ -134,7 +134,6 @@
 			
 			if(e.item != undefined) {
 				this.addrItem = JSON.parse(e.item);
-				console.log(this.addrItem);
 				this.name = this.addrItem.receiver;
 				this.address = this.addrItem.address;
 				this.phone = this.addrItem.phone; 
@@ -321,17 +320,26 @@
 				}
 			},
 			getAddr(){
+				let _this = this;
 				// 获取微信地址
 				uni.chooseAddress({
 				  success(res) {
-				    console.log(res.userName)
-				    console.log(res.postalCode)
-				    console.log(res.provinceName)
-				    console.log(res.cityName)
-				    console.log(res.countyName)
-				    console.log(res.detailInfo)
-				    console.log(res.nationalCode)
-				    console.log(res.telNumber)
+					console.log(res);
+					_this.name = res.userName;
+					_this.address = res.detailInfo;
+					_this.phone = res.telNumber; 
+					_this.province = res.provinceName;
+					_this.city = res.cityName;
+					_this.district = res.countyName;
+					
+				    // console.log()
+				    // console.log(res.postalCode)
+				    // console.log()
+				    // console.log(res.cityName)
+				    // console.log(res.countyName)
+				    // console.log(res.detailInfo)
+				    // console.log()
+				    // console.log(res.telNumber)
 				  }
 				})
 			},
