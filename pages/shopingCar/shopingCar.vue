@@ -82,21 +82,9 @@
 				totalPrice: 0
 			};
 		},
-		async onLoad() {
-			// let pages = getCurrentPages();
-			// let route = pages[pages.length - 1].route;
-			// let res = await isUserInfo();
-			
-			// if(res == false) {
-			// 	uni.redirectTo({					
-			// 		url: `../authorization/authorization?route=${route}`
-			// 	})
-			// }
-		},
-		created() {
-			
-		},
 		async onShow() {
+			this.checked = false;
+			this.result = [];
 			let pages = getCurrentPages();
 			let route = pages[pages.length - 1].route;
 			let res = await isUserInfo();
@@ -159,21 +147,24 @@
 					this.isEmpty = true;
 					console.log(this.isEmpty);
 				}
-				// console.log();
 			},
 			onChange(event) {
 			    this.result = event.detail;
 				this.calculation();
-				
-				if(this.first){ 
-					this.checked = !this.checked;
-					this.first = !this.first;
+				if(this.result.length != 0){
+					this.checked = true;
+				}else {
+					this.checked = false;
 				}
+				// if(this.first){ 
+				// 	this.checked = !this.checked;
+				// 	this.first = !this.first;
+				// }
 				
-				if(this.result.length == 0){
-					this.checked = !this.checked;
-					this.first = !this.first;
-				}
+				// if(this.result.length == 0){
+				// 	this.checked = !this.checked;
+				// 	this.first = !this.first;
+				// }
 				
 				
 			},
@@ -183,12 +174,11 @@
 			},
 			setCheck(){
 				this.checked = !this.checked;
-				this.first = !this.first;
+				// this.first = !this.first;
 				if(this.checked){
 					this.getAllCarIds().map(v=>{
 						this.result.push(v);
 					})
-					// this.result.push('b');
 				}else {
 					this.result.length = 0;
 				}
@@ -228,13 +218,11 @@
 				let { token } = uni.getStorageSync('token');
 				// 删除购物车
 				await delShoppingCar({token,ids:this.result.join(',')});
-				console.log(this.result.join(','));
 				// 获取所有的购物车
 				this.getAllCar();
-				console.log('删除',this.result);
 				this.checked = false;
 				this.result.length = 0;
-				this.first = true;
+				// this.first = true;
 			}
 		}
 	}

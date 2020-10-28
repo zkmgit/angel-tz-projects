@@ -308,7 +308,7 @@
 					this.discountArr.push(r[1])
 				}
 				// 若当前总价钱大于优惠卷金额，则进行满减
-				if(parseInt(this.total) > parseInt(this.discountArr[0])){
+				if(parseInt(this.total) >= parseInt(this.discountArr[0])){
 					// 合计重新赋值，重新计算
 					this.num = this.total;
 					this.num = parseInt(this.total) - parseInt(this.discountArr[1]);
