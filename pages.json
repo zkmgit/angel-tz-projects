@@ -130,6 +130,10 @@
 			"path": "pages/goodsList/goodsList",
 			"style": {
 				"navigationBarTitleText": "商品列表"
+				// "usingComponents": {
+				// 	"van-goods-action": "/wxcomponents/vant/dist/goods-action/index",
+				// 	// "van-goods-action-icon": "/wxcomponents/vant/dist/goods-action-icon/index",
+				// }
 			}
 		}, {
 			"path": "pages/signin/signin",

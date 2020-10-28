@@ -57,6 +57,11 @@
 						<navigator class="cart" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
 							<image class="cart-icon" src="../../static/images/goodslist/car.svg" />
 						</navigator>
+
+						<!-- 购物车图标 -->
+						<!-- <van-goods-action>
+							<van-goods-action-button text="加入购物车" type="warning" @click="addCar" />
+						</van-goods-action> -->
 					</view>
 				</view>
 			</view>
@@ -96,6 +101,8 @@
 						<navigator class="cart2" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
 							<image class="cart2-icon" src="../../static/images/goodslist/car.svg"></image>
 						</navigator>
+						
+						
 					</view>
 				</view>
 			</view>
