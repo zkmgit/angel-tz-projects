@@ -89,9 +89,9 @@
 				}
 			},
 			 onChange(event) {
-			    wx.showToast({
-			      title: `切换到标签 ${event.detail.name}`,
-			    });
+			    // wx.showToast({
+			    //   title: `切换到标签 ${event.detail.name}`,
+			    // });
 			  },
 			  goOrderDetail(status,index){
 				  let order = JSON.stringify(this.getOrdersByStatus(status)[index]);

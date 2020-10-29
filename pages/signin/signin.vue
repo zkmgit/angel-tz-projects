@@ -26,7 +26,8 @@
 					let res = await getSigninDatas(token);
 					console.log('获取',res);
 					if(res.status == 200){
-						this.markDays = JSON.parse(res.message[0].checkInTime);
+						console.log(res.message)
+						this.markDays = JSON.parse(res.message.checkInTime);
 					}
 				},
 	            async onDayClick(data){

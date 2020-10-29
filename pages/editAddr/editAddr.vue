@@ -90,12 +90,13 @@
 		  />
 		</van-cell-group>
 		<view class="Identify">
-			<textarea maxlength='60' value="" v-model="IdentifyValue" placeholder="请输入格式为收货地址,电话号码,收件人" />
+			<textarea maxlength='60' v-model="IdentifyValue" value="" placeholder="请输入格式为收货地址,电话号码,收件人" />
+			
+		</view>
+		<view class="footer">
 			<view class="IdentifyBtn" @click="IdentifyAddr">
 				智能识别
 			</view>
-		</view>
-		<view class="footer">
 			<view class="btn" @click="save">
 				保存
 			</view>
@@ -154,6 +155,7 @@
 		methods:{
 			IdentifyAddr(){
 				// 智能识别地址
+				// console.log(this.IdentifyValue);
 				let res = addrRecognition(this.IdentifyValue);
 				if(res != undefined){
 					console.log(res);
@@ -164,6 +166,7 @@
 					this.city = res.cityName;
 					this.district = res.countyName;
 				}
+				this.IdentifyValue = '';
 			},
 			setAddress(e){
 				console.log('address',e.detail);
@@ -378,20 +381,20 @@
 		font-size: 28rpx;
 		
 		.Identify {
-			display: flex;
-			justify-content: space-between;
+			// display: flex;
+			// justify-content: space-between;
 			padding: 0 20rpx;
 			background-color: #FFFFFF;
 			
-			.IdentifyBtn {
-				font-size: 25rpx;
-				background-color: #0ACE0A;
-				color: #FFFFFF;
-				height: 80rpx;
-				border-radius: 10rpx;
-				text-align: center;
-				line-height: 80rpx;
-			}
+			// .IdentifyBtn {
+			// 	font-size: 25rpx;
+			// 	background-color: #0ACE0A;
+			// 	color: #FFFFFF;
+			// 	height: 80rpx;
+			// 	border-radius: 10rpx;
+			// 	text-align: center;
+			// 	line-height: 80rpx;
+			// }
 			
 			textarea {
 				height: 80rpx;
@@ -494,13 +497,14 @@
 		.footer {
 			padding: 60rpx 20rpx 0rpx;
 			background-color: #FFFFFF;
-			.btn,.del-btn {
+			.btn,.del-btn,.IdentifyBtn {
 				background-color: #0ACE0A;
 				color: #FFFFFF;
 				height: 80rpx;
 				border-radius: 10rpx;
 				text-align: center;
 				line-height: 80rpx;
+				margin-bottom: 20rpx;
 			}
 			.del-btn {
 				margin-top: 20rpx;
