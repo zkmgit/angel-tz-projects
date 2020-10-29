@@ -89,6 +89,12 @@
 		    @change="setAddress"
 		  />
 		</van-cell-group>
+		<view class="Identify">
+			<textarea maxlength='60' value="" v-model="IdentifyValue" placeholder="请输入格式为收货地址,电话号码,收件人" />
+			<view class="IdentifyBtn" @click="IdentifyAddr">
+				智能识别
+			</view>
+		</view>
 		<view class="footer">
 			<view class="btn" @click="save">
 				保存
@@ -103,11 +109,11 @@
 
 <script>
 	import area from '../../util/area.js';
+	import { addrRecognition } from '../../util/addrRecognition.js';
 	import { delAddr,addAddr,editAddr } from '../../api/addr.js';
 	export default {
 		data(){
 			return {
-				
 				// 用于隐藏
 				choose:'',
 				// 用于编辑的地址回显
@@ -127,8 +133,10 @@
 				value: '',
 				// 存放省市区
 				columns: [],
+				IdentifyValue: ''
 			}
 		},
+		
 		onLoad(e){
 			this.choose = e.switch;
 			
@@ -144,6 +152,19 @@
 			}
 		},
 		methods:{
+			IdentifyAddr(){
+				// 智能识别地址
+				let res = addrRecognition(this.IdentifyValue);
+				if(res != undefined){
+					console.log(res);
+					this.name = res.name;
+					this.address = res.detailAddr;
+					this.phone = res.phone[0]; 
+					this.province = res.provinceName;
+					this.city = res.cityName;
+					this.district = res.countyName;
+				}
+			},
 			setAddress(e){
 				console.log('address',e.detail);
 				this.address = e.detail;
@@ -355,6 +376,27 @@
 		background-color: #F4F5F9;
 		height: 100vh;
 		font-size: 28rpx;
+		
+		.Identify {
+			display: flex;
+			justify-content: space-between;
+			padding: 0 20rpx;
+			background-color: #FFFFFF;
+			
+			.IdentifyBtn {
+				font-size: 25rpx;
+				background-color: #0ACE0A;
+				color: #FFFFFF;
+				height: 80rpx;
+				border-radius: 10rpx;
+				text-align: center;
+				line-height: 80rpx;
+			}
+			
+			textarea {
+				height: 80rpx;
+			}
+		}
 		
 		.van-popup {
 			// position: relative;

@@ -1,10 +1,11 @@
 <template>
 	<view class="content">
-	    <ren-calendar ref='ren' :markDays='markDays' disabledAfter="true" @onDayClick='onDayClick'></ren-calendar>
+	    <ren-calendar ref='ren' :markDays='markDays'  @onDayClick='onDayClick'></ren-calendar>
 	</view>
 </template>
 
 <script>
+	import { getSigninDatas,addSignin } from '../../api/signin.js';
 	 import RenCalendar from '@/components/ren-calendar/ren-calendar.vue'
 	    export default {
 	        components:{
@@ -12,24 +13,37 @@
 	        },
 	        data() {
 	            return {
-	                markDays:['2020-10-18','2020-10-19','2020-10-20']
+	                markDays:[]
 	            }
 	        },
 			onShow() {
 				// 获取当前用户的签到日期
+				this.getSigninDatas();
 			},
 	        methods: {
-				
-	            onDayClick(data){
+				async getSigninDatas(){
+					let { token } = uni.getStorageSync('token');
+					let res = await getSigninDatas(token);
+					console.log('获取',res);
+					if(res.status == 200){
+						this.markDays = JSON.parse(res.message[0].checkInTime);
+					}
+				},
+	            async onDayClick(data){
+					console.log('test',data);
 					let today = this.$refs.ren.getToday().date;
 					
 					if(today != data.date){
 						return;
 					}
-					
 					if(!this.markDays.includes(today)){
 						// 签到入库
 						this.markDays.push(data.date);
+						let { token } = uni.getStorageSync('token');
+						let checkInTime = JSON.stringify(this.markDays);
+						let res = await addSignin({token,checkInTime});
+						console.log('入库',res);
+						
 					}else {
 						uni.showToast({
 							title:'今日已签到',
