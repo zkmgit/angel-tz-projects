@@ -26,7 +26,10 @@
 					let res = await getSigninDatas(token);
 					console.log('获取',res);
 					if(res.status == 200){
+<<<<<<< HEAD
 						console.log(res.message)
+=======
+>>>>>>> 92b29b5527e0531d9f06293c5a1382f1d39ee5bb
 						this.markDays = JSON.parse(res.message.checkInTime);
 					}
 				},

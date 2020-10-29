@@ -1,12 +1,6 @@
 <template>
 	<view class="addr-container">
-		<van-popup
-		  round
-		  :show="show"
-		  position="bottom"
-		  custom-style="height: 50%;"
-		  @close="onClose"
-		>
+		<van-popup round :show="show" position="bottom" custom-style="height: 50%;" @close="onClose">
 			<view class="cancel" @click="cancel">
 				取消
 			</view>
@@ -15,7 +9,7 @@
 			</view>
 			<van-picker :columns="columns" @change="onChange" />
 		</van-popup>
-		
+
 		<view class="shoping-addr" @click="getAddr" v-if="choose != 'edit'">
 			<view class="text">
 				获取微信收货地址
@@ -24,7 +18,7 @@
 				<image src="../../static/images/userAddr/right.png" mode=""></image>
 			</view>
 		</view>
-		
+
 		<view class="addr-list">
 			<view class="province common" @click="showPopup('province')">
 				<view class="text">
@@ -37,7 +31,7 @@
 					<image src="../../static/images/userAddr/right.png" mode=""></image>
 				</view>
 			</view>
-			
+
 			<view class="city common" @click="showPopup('city')" v-if="city != ''">
 				<view class="text">
 					城市
@@ -49,7 +43,7 @@
 					<image src="../../static/images/userAddr/right.png" mode=""></image>
 				</view>
 			</view>
-			
+
 			<view class="area common" @click="showPopup('district')" v-if="district != ''">
 				<view class="text">
 					区县
@@ -61,33 +55,14 @@
 					<image src="../../static/images/userAddr/right.png" mode=""></image>
 				</view>
 			</view>
-			
+
 		</view>
-		
-		
+
+
 		<van-cell-group>
-		  <van-field
-		    class='color'
-			label="姓名"
-		    :value="name"
-		    placeholder="填写收货人"
-		    @change="setName"
-		  />
-		  <van-field
-		    class='color'
-			label="手机号码"
-		    :value="phone"
-			type="number"
-		    placeholder="填写手机号码"
-		    @change="setPhone"
-		  />
-		  <van-field
-		    class='color'
-		    label="详细地址"
-		    :value="address"
-		    placeholder="街道门牌信息"
-		    @change="setAddress"
-		  />
+			<van-field class='color' label="姓名" :value="name" placeholder="填写收货人" @change="setName" />
+			<van-field class='color' label="手机号码" :value="phone" type="number" placeholder="填写手机号码" @change="setPhone" />
+			<van-field class='color' label="详细地址" :value="address" placeholder="街道门牌信息" @change="setAddress" />
 		</van-cell-group>
 		<view class="Identify">
 			<textarea maxlength='60' v-model="IdentifyValue" value="" placeholder="请输入格式为收货地址,电话号码,收件人" />
@@ -287,14 +262,16 @@
 					return;
 				}
 				
-				let str = this.phone;
+				let str = this.phone;
+
 				if(str.length != 11){
 					uni.showToast({
 						title:'号码位数不正确',
 						icon:'none'
 					})
 				    return;
-				}
+				}
+
 				let reg = /^[1][3-9]\d{9}$/g;
 				console.log();
 				if(!reg.test(str)){
