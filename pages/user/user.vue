@@ -48,31 +48,31 @@
 		<view class="order-status">
 			<view class="item" @click="goOrderList('1')">
 				<view class="img">
-					<image src="/static/images/order/topay.png" mode=""></image>
+					<image src="http://xzebin.com/topay.png" mode=""></image>
 				</view>
 				<text>待付款</text>
 			</view>
 			<view class="item" @click="goOrderList('2')">
 				<view class="img">
-					<image src="/static/images/order/fahuo.png" mode=""></image>
+					<image src="http://xzebin.com/fahuo.png" mode=""></image>
 				</view>
 				<text>待发货</text>
 			</view>
 			<view class="item" @click="goOrderList('3')">
 				<view class="img">
-					<image src="/static/images/order/shouhuo.png" mode=""></image>
+					<image src="http://xzebin.com/shouhuo.png" mode=""></image>
 				</view>
 				<text>待收货</text>
 			</view>
 			<view class="item" @click="goOrderList('4')">
 				<view class="img">
-					<image src="/static/images/order/pj.png" mode=""></image>
+					<image src="http://xzebin.com/pj.png" mode=""></image>
 				</view>
 				<text>待评价</text>
 			</view>
 			<view class="item" @click="goOrderList('5')">
 				<view class="img">
-					<image src="/static/images/order/shouhou.png" mode=""></image>
+					<image src="http://xzebin.com/shouhou.png" mode=""></image>
 				</view>
 				<text>售后</text>
 			</view>
