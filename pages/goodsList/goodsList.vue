@@ -22,13 +22,14 @@
 			<!-- 导航栏 -->
 			<view class="tab">
 				<view :class="['option', action==index?'action':'']" v-for="(item, index) in tab" :key="index" @click="selected(index)"
-						v-model="value">{{ item }}
+				 v-model="value">{{ item }}
 					<!-- 用于切换显示  两个切换小图标 -->
 					<view class="filter" v-if="index == 3">
-						<!-- 上升  升序 --><!-- 下降  降序 -->
+						<!-- 上升  升序 -->
+						<!-- 下降  降序 -->
 						<view :class="['rank', 'ascend', sel=='asc' ?'sel':'']"></view>
 						<view :class="['rank', 'descend', sel=='desc' ?'sel':'']"></view>
-					</view>	
+					</view>
 				</view>
 			</view>
 		</view>
@@ -57,23 +58,9 @@
 						<navigator class="cart" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
 							<image class="cart-icon" src="../../static/images/goodslist/car.svg" />
 						</navigator>
-
-						<!-- 购物车图标 -->
-						<!-- <van-goods-action>
-							<van-goods-action-button text="加入购物车" type="warning" @click="addCar" />
-						</van-goods-action> -->
 					</view>
 				</view>
 			</view>
-			<!-- 没有更多搜索 -->
-			<!-- <view class="empty" v-show="data.length === 0">
-				<image src="../../static/images/goodslist/nomore.png" mode="widthFix" class="empty-img"></image>
-				<view class="info-text">
-					<view class="text">亲，没有找到您想要的商品</view>
-					<view class="text">请换个相关的搜索词试试</view>
-				</view>
-			</view>
-			<view class="no-more" v-show="!isMore">没有更多了</view> -->
 		</view>
 
 		<!-- 2 切换成显示两张张图片页面 -->
@@ -101,24 +88,19 @@
 						<navigator class="cart2" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
 							<image class="cart2-icon" src="../../static/images/goodslist/car.svg"></image>
 						</navigator>
-						
-						
 					</view>
 				</view>
 			</view>
-
-			<!-- 没有更多搜索 -->
-		<!-- 	<view class="emptys" v-show="data.length === 0">
-				<image src="../../static/images/goodslist/nomore.png" mode="widthFix" class="empty-imgs"></image>
-				<view class="info-texts">
-					<view class="texts">亲，没有找到您想要的商品</view>
-					<view class="texts">请换个相关的搜索词试试</view>
-				</view> -->
+		</view>
+		<!-- 没有更多搜索 -->
+		<view class="empty" v-if="data.length === 0">
+			<image class="empty-img" src="../../static/images/goodslist/nomore.png" mode="widthFix"></image>
+			<view class="info-text">
+				<view class="text">亲，没有找到您想要的商品</view>
+				<view class="text">请换个相关的搜索词试试</view>
 			</view>
-			<!-- <view class="no-mores" v-show="!isMore">没有更多了</view> -->
 		</view>
 	</view>
-
 	</view>
 </template>
 
@@ -149,17 +131,17 @@
 				this.show = !this.show
 			},
 			/* 切换数据 */
-			async selected(index , isSearch) {
+			async selected(index, isSearch) {
 				/* 点亮价格排序小图标 */
 				this.page = 3;
-					this.isMore = true;
-					if( !isSearch && (this.action === index && index !== 3) ) return;
-					if( !isSearch && index === 3 ){
-						this.sel === 'asc' ?this.sel='desc' :this.sel='asc';
-					}else {
-						this.sel = "";
-					};
-				
+				this.isMore = true;
+				if (!isSearch && (this.action === index && index !== 3)) return;
+				if (!isSearch && index === 3) {
+					this.sel === 'asc' ? this.sel = 'desc' : this.sel = 'asc';
+				} else {
+					this.sel = "";
+				};
+
 				switch (index) {
 					case 0:
 						/* 综合 */
@@ -180,19 +162,19 @@
 						break;
 					default:
 						/* 价格排序 */
-						if(this.isAscend == false){
+						if (this.isAscend == false) {
 							this.data = this.data.sort(function(v1, v2) {
 								return Number(v1.original_price) - Number(v2.original_price)
 							});
 							this.isAscend = !this.isAscend;
-								
-						}else{
+
+						} else {
 							this.data = this.data.sort(function(v1, v2) {
 								return Number(v2.original_price) - Number(v1.original_price)
 							});
 							this.isAscend = !this.isAscend;
 						}
-						
+
 						console.log(this.data);
 						break;
 				}
@@ -211,23 +193,29 @@
 				console.log(this.data);
 			},
 			// 获取所有商品数据
-			async getGoodsListData(){
+			async getGoodsListData() {
 				this.data = await getGoodsList();
 				this.tempData = JSON.parse(JSON.stringify(this.data));
 			},
 
 			// 初始化页面
 			async init() {
-				this.getGoodsListData();
+
 				this.search();
 			}
 		},
-		 onLoad(option){
-			 this.value = option.keyword;
-			 // console.log(this.value,"333");
-			 this.init();
-		 }
-		
+
+		onLoad(option) {
+			this.value = option.keyword;
+			console.log(this.value, "ssss");
+			// 判断进入列表闪烁问题 
+			if (!this.value.trim()) {
+				this.getGoodsListData();
+			}
+			// console.log(this.value,"333");
+			this.init();
+		}
+
 	}
 </script>
 
@@ -286,11 +274,11 @@
 		}
 
 		/* 分栏线 */
-		// .line {
-		// 	width: 100vw;
-		// 	height: 2rpx;
-		// 	color: pink;
-		// }
+		/* .line {
+			width: 100vw;
+			height: 2rpx;
+			color: pink;
+		} */
 
 
 		/* 导航栏 */
@@ -307,31 +295,35 @@
 				line-height: 80rpx;
 				color: #717171;
 				text-align: center;
-				font-size: 28rpx;
+				font-size: 34rpx;
 
+				/* 两个升序小图标 */
 				.filter {
 					position: relative;
 					display: inline-block;
-					
+
 					.rank {
 						position: absolute;
-						left: 20rpx;
-						width: 12rpx;
-						height: 12rpx;
+						left: 14rpx;
+						width: 14rpx;
+						height: 14rpx;
 						transform: rotate(45deg);
 					}
 
+					/* 升序图标 */
 					.ascend {
-						top: -20rpx;
+						bottom: 10rpx;
 						border-left: 3rpx solid #bbb;
 						border-top: 3rpx solid #bbb;
 					}
 
+					/* 降序图标 */
 					.descend {
-						bottom: -5rpx;
+						bottom: -3rpx;
 						border-right: 3rpx solid #bbb;
 						border-bottom: 3rpx solid #bbb;
 					}
+
 					.sel {
 						border-color: #f44;
 					}
@@ -350,61 +342,68 @@
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
+		background-color: #f6f6f6;
 
 		.info {
 			width: 720rpx;
 			height: 220rpx;
 			display: flex;
-			margin: 16rpx;
+			margin: auto;
+			margin-top: 20rpx;
 			background: #fff;
-			border-radius: 35rpx;
+			border-radius: 20rpx;
 
 			.img-box {
 				width: 220rpx;
 				height: 220rpx;
+				border-radius: 20rpx;
 
 				.img {
 					width: 220rpx;
 					height: 220rpx;
+					border-radius: 20rpx 0px 0px 20rpx;
 				}
 			}
 
 			/* 所有信心样式一 */
 			.directioc {
 				display: flex;
-				flex-direction: column; //水平布局
-				// flex-direction: row;		//垂直布局
 				width: 500rpx;
 				height: 220rpx;
-				margin-top: 20rpx;
-				margin-left: 30rpx;
+				margin-left: 10rpx;
+				flex-direction: column; //水平布局
+				justify-content: space-between;
 
 				/* 标题 */
 				.title {
-					display: flex;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
 					color: #333;
-					font-size: 26rpx;
-					padding-bottom: 10rpx;
+					margin-top: 10rpx;
+					font-size: 28rpx;
 				}
 
 				/* 价格 */
 				.price {
 					display: flex;
-					color: #f44;
-					font-size: 30rpx;
-					padding-bottom: 10rpx;
+					margin-top: 10rpx;
 
 					.price-icon {
-						margin-right: 4rpx;
+						font-size: 32rpx;
+						color: #f44;
 					}
 				}
 
 				/* 已经出售 */
 				.sales {
 					display: flex;
-					font-size: 30rpx;
+					margin-top: 5rpx;
 
 					.sales-icon {
+						font-size: 26rpx;
 						color: gray;
 					}
 				}
@@ -418,44 +417,11 @@
 					.cart-icon {
 						width: 50rpx;
 						height: 50rpx;
-						//margin-left: 400rpx;
 					}
 				}
 			}
 		}
 	}
-
-
-	/* 没有搜索更多 */
-	.empty {
-		position: relative;
-
-		.empty-img {
-			margin: auto;
-			width: 400rpx;
-			height: 400rpx;
-		}
-
-		.info-text {
-			/* 文字居中 */
-			text-align: center;
-			margin-top: -50rpx;
-
-			.text {
-				color: #969799;
-				font-size: 32rpx;
-			}
-		}
-	}
-
-	.no-more {
-		height: 120rpx;
-		line-height: 120rpx;
-		text-align: center;
-		color: #999;
-		font-size: 26rpx;
-	}
-
 
 
 	/* 第二张图片样式 */
@@ -464,7 +430,8 @@
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		margin: 16rpx;
+		margin-left: 15rpx;
+		background-color: #f6f6f6;
 
 		.goods-box {
 			width: 350rpx;
@@ -480,11 +447,11 @@
 				.img2-box {
 					width: 350rpx;
 					height: 350rpx;
-					border-radius: 20rpx;
 
 					.image {
 						width: 350rpx;
 						height: 350rpx;
+						border-radius: 20rpx 20rpx 0rpx 0rpx;
 					}
 				}
 
@@ -541,37 +508,30 @@
 				}
 			}
 		}
+	}
 
-		/* 没有搜索更多 */
-		.emptys {
-			position: relative;
+	/* 没有搜索更多 */
+	.empty {
+		display: flex;
+		flex-direction: column;
+		margin-top: 100rpx;
 
-			.empty-imgs {
-				margin-left: 80px;
-				width: 400rpx;
-				height: 400rpx;
-			}
-
-			.info-texts {
-				/* 文字居中 */
-				text-align: center;
-				margin-top: -50rpx;
-				margin-right: -100px;
-
-				.texts {
-					color: #969799;
-					font-size: 32rpx;
-				}
-			}
+		.empty-img {
+			margin: auto;
+			width: 400rpx;
+			height: 400rpx;
 		}
 
-		.no-mores {
-			margin-right: 150px;
-			height: 120rpx;
-			line-height: 120rpx;
-			text-align: center;
-			color: #999;
-			font-size: 26rpx;
+		.info-text {
+			/* 文字居中 */
+			display: flex;
+			flex-direction: column;
+			margin: auto;
+
+			.text {
+				color: #969799;
+				font-size: 36rpx;
+			}
 		}
 	}
 </style>
