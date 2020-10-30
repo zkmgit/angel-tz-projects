@@ -126,7 +126,7 @@
 					url: 'http://47.112.194.162:5959/getGoodsByGoodsName?goodsName=' + keyword, //仅为示例
 					success: (res) => {
 						this.keywordList = [];
-						this.keywordList = this.drawCorrelativeKeyword(res.data.result, keyword);
+						// this.keywordList = this.drawCorrelativeKeyword(res.data.result, keyword);
 						
 					}
 				});
@@ -175,19 +175,26 @@
 			},
 			//执行搜索
 			doSearch(keyword) {
+				/* 判断搜索框不显示false */ 
+				// if(!keyword){
+				// 	keyword = "";
+				// }
+				
 				keyword = keyword===false?this.keyword:keyword;
 				this.keyword = keyword;
-				this.saveKeyword(keyword); //保存为历史 
-				console.log(keyword, "111");
+				this.saveKeyword(this.keyword); //保存为历史 
+				console.log(this.keyword, "111");
 				uni.navigateTo({
-					url:`../goodsList/goodsList?keyword=${keyword}`
+					url:`../goodsList/goodsList?keyword=${this.keyword}`
 				})
 				
+				/* 可以搜索不是关键字 */ 
 				// uni.showToast({
 				// 	title: keyword,
 				// 	icon: 'none',
 				// 	duration: 2000
 				// });
+				
 				//以下是示例跳转淘宝搜索，可自己实现搜索逻辑
 				/*
 				//#ifdef APP-PLUS
@@ -200,6 +207,11 @@
 			},
 			//保存关键字到历史记录
 			saveKeyword(keyword) {
+				//  判断搜索记录不能为空
+				if(!keyword.trim()){
+					return;
+				}
+				
 				uni.getStorage({
 					key: 'OldKeys',
 					success: (res) => {
