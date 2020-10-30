@@ -1,5 +1,6 @@
 【<template>
 	<view class="container">
+<<<<<<< HEAD
 		<!-- 上拉加载插件 -->
 		<k-scroll-view ref="k-scroll-view" :refreshType="refreshType" :refreshTip="refreshTip" :loadTip="loadTip" :loadingTip="loadingTip"
 		 :emptyTip="emptyTip" :touchHeight="touchHeight" :height="height" :bottom="bottom" :autoPullUp="autoPullUp"
@@ -10,6 +11,28 @@
 				<swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
 					<swiper-item v-for="item in LunboData" :key="item.id">
 						<image :src="item.imgPath" />
+=======
+		<!-- 轮播图 已完成-->
+		<view class="swiper-container">
+			<swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+				<swiper-item v-for="item in LunboData" :key="item.id">
+					<image :src="item.imgPath" />
+				</swiper-item>
+			</swiper>
+		</view>
+		<!-- 搜索输入框 -->
+		<view class="search" @click="goodsList">
+			<input type="text" placeholder="输入搜索关键词" value="" />
+			<image src="/static/images/home/search.svg"></image>
+		</view>
+		<!-- 公告 跳转页面-->
+		<view class="notice-box">
+			<view class="notice">
+				<image class="notice_icon" src="http://xzebin.com/notice.png"></image>
+				<swiper class="notice_swiper" vertical autoplay circular>
+					<swiper-item>
+						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
+>>>>>>> 9468c051d4fff2cff404bc5c476822c80cedebf5
 					</swiper-item>
 				</swiper>
 			</view>
@@ -32,12 +55,35 @@
 					<navigator url="/pages/announcementDatas/announcementDatas">更多 ></navigator>
 				</view>
 			</view>
+<<<<<<< HEAD
 			<!-- 宫格分类 -->
 			<view class="category-box">
 				<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
 					<view class="category-column" @click="switchToCate(item.id,index)">
 						<image class="category-imgbox" :src="item.img"></image>
 						<view class="category-title">{{item.name}}</view>
+=======
+		</view>
+		<!-- 好礼直播 -->
+		<navigator url="/pages/liveStreaming/liveStreaming">
+			<image class="live-banner" src="http://xzebin.com/live.jpg"></image>
+		</navigator>
+		<!-- 秒杀商品 -->
+		<block>
+			<van-divider contentPosition="center">限时秒杀</van-divider>
+			<view class="miaosha-goods-list" v-for="item in SeckillGoods" :key="item.id">
+				<image class="image" :src="item.show_img" />
+				<view class="right">
+					<view class="goods-title">{{item.name}}</view>
+					<view class="count-down">
+						<van-count-down millisecond :time="time" format="剩余: HH 时 mm 分 ss 秒" />
+					</view>
+					<view class="miaosha-price-btn">
+						<view class="price">￥{{item.original_price}} <text>￥{{item.now_price}}</text></view>
+						<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<van-button type="danger" size="small" round>立即抢购</van-button>
+						</navigator>
+>>>>>>> 9468c051d4fff2cff404bc5c476822c80cedebf5
 					</view>
 				</view>
 			</view>
@@ -136,7 +182,21 @@
 					<image src="/static/images/home/gift.png" />
 				</navigator>
 			</view>
+<<<<<<< HEAD
 		</k-scroll-view>
+=======
+		</block>
+		<!-- 优惠价 -->
+		<view class='coupons-float'>
+			<navigator url="/pages/coupon/coupon">
+				<image src="http://xzebin.com/gift.png" />
+			</navigator>
+		</view>
+		<!-- 上拉刷新 hidden="{{loadingMoreHidden ? true : false}}" -->
+		<view class="no-more">
+			没有更多了
+		</view>
+>>>>>>> 9468c051d4fff2cff404bc5c476822c80cedebf5
 	</view>
 </template>
 
