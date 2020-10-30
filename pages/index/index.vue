@@ -16,7 +16,7 @@
 		<!-- 公告 跳转页面-->
 		<view class="notice-box">
 			<view class="notice">
-				<image class="notice_icon" src="/static/images/home/notice.png"></image>
+				<image class="notice_icon" src="http://xzebin.com/notice.png"></image>
 				<swiper class="notice_swiper" vertical autoplay circular>
 					<swiper-item>
 						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
@@ -38,7 +38,7 @@
 		</view>
 		<!-- 好礼直播 -->
 		<navigator url="/pages/liveStreaming/liveStreaming">
-			<image class="live-banner" src="/static/images/home/live.jpg"></image>
+			<image class="live-banner" src="http://xzebin.com/live.jpg"></image>
 		</navigator>
 		<!-- 秒杀商品 -->
 		<block>
@@ -125,7 +125,7 @@
 		<!-- 优惠价 -->
 		<view class='coupons-float'>
 			<navigator url="/pages/coupon/coupon">
-				<image src="/static/images/home/gift.png" />
+				<image src="http://xzebin.com/gift.png" />
 			</navigator>
 		</view>
 		<!-- 上拉刷新 hidden="{{loadingMoreHidden ? true : false}}" -->
