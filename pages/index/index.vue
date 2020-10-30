@@ -1,5 +1,17 @@
 【<template>
 	<view class="container">
+<<<<<<< HEAD
+		<!-- 上拉加载插件 -->
+		<k-scroll-view ref="k-scroll-view" :refreshType="refreshType" :refreshTip="refreshTip" :loadTip="loadTip" :loadingTip="loadingTip"
+		 :emptyTip="emptyTip" :touchHeight="touchHeight" :height="height" :bottom="bottom" :autoPullUp="autoPullUp"
+		 :stopPullDown="stopPullDown" @onPullUp="handleLoadMore">
+
+			<!-- 轮播图 已完成-->
+			<view class="swiper-container">
+				<swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+					<swiper-item v-for="item in LunboData" :key="item.id">
+						<image :src="item.imgPath" />
+=======
 		<!-- 轮播图 已完成-->
 		<view class="swiper-container">
 			<swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
@@ -16,29 +28,45 @@
 		<!-- 公告 跳转页面-->
 		<view class="notice-box">
 			<view class="notice">
-				<image class="notice_icon" src="/static/images/home/notice.png"></image>
+				<image class="notice_icon" src="http://xzebin.com/notice.png"></image>
 				<swiper class="notice_swiper" vertical autoplay circular>
 					<swiper-item>
 						<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
+>>>>>>> 9468c051d4fff2cff404bc5c476822c80cedebf5
 					</swiper-item>
 				</swiper>
 			</view>
-			<view class="more">
-				<navigator url="/pages/announcementDatas/announcementDatas">更多 ></navigator>
+			<!-- 搜索输入框 -->
+			<view class="search" @click="goodsList">
+				<input type="text" placeholder="输入搜索关键词" value="" />
+				<image src="/static/images/home/search.svg"></image>
 			</view>
-		</view>
-		<!-- 宫格分类 -->
-		<view class="category-box">
-			<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
-				<view class="category-column" @click="switchToCate(item.id,index)">
-					<image class="category-imgbox" :src="item.img"></image>
-					<view class="category-title">{{item.name}}</view>
+			<!-- 公告 跳转页面-->
+			<view class="notice-box">
+				<view class="notice">
+					<image class="notice_icon" src="/static/images/home/notice.png"></image>
+					<swiper class="notice_swiper" vertical autoplay circular>
+						<swiper-item>
+							<view class="notice_itemr" @click="comment(Announcement[0].title)">{{Announcement[0].title}}</view>
+						</swiper-item>
+					</swiper>
+				</view>
+				<view class="more">
+					<navigator url="/pages/announcementDatas/announcementDatas">更多 ></navigator>
 				</view>
 			</view>
+<<<<<<< HEAD
+			<!-- 宫格分类 -->
+			<view class="category-box">
+				<view class="category-list" v-for="(item,index) in MenuDatasByHome" :key="item.id">
+					<view class="category-column" @click="switchToCate(item.id,index)">
+						<image class="category-imgbox" :src="item.img"></image>
+						<view class="category-title">{{item.name}}</view>
+=======
 		</view>
 		<!-- 好礼直播 -->
 		<navigator url="/pages/liveStreaming/liveStreaming">
-			<image class="live-banner" src="/static/images/home/live.jpg"></image>
+			<image class="live-banner" src="http://xzebin.com/live.jpg"></image>
 		</navigator>
 		<!-- 秒杀商品 -->
 		<block>
@@ -55,87 +83,125 @@
 						<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
 							<van-button type="danger" size="small" round>立即抢购</van-button>
 						</navigator>
+>>>>>>> 9468c051d4fff2cff404bc5c476822c80cedebf5
 					</view>
 				</view>
 			</view>
-		</block>
-		<!-- 爆品推荐 -->
-			<van-divider contentPosition="center">爆品推荐</van-divider>
-			<view class="goods-container">
-				<view class="goods-box" v-for="item in RecommendedGoods" :key="item.id">
-					<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-						<view class="img-box">
-							<image :src="item.show_img" class="image" />
-						</view>
+			<!-- 好礼直播 -->
+			<navigator url="/pages/liveStreaming/liveStreaming">
+				<image class="live-banner" src="/static/images/home/live.jpg"></image>
+			</navigator>
+			<!-- 秒杀商品 -->
+			<block>
+				<van-divider contentPosition="center">限时秒杀</van-divider>
+				<view class="miaosha-goods-list" v-for="item in SeckillGoods" :key="item.id">
+					<image class="image" :src="item.show_img" />
+					<view class="right">
 						<view class="goods-title">{{item.name}}</view>
-						<view style='display:flex;'>
-							<view class="goods-price">¥ {{item.now_price}}</view>
-							<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
-								¥ {{item.original_price}}
-							</view>
+						<view class="count-down">
+							<van-count-down millisecond :time="time" format="剩余: HH 时 mm 分 ss 秒" />
 						</view>
-					</navigator>
+						<view class="miaosha-price-btn">
+							<view class="price">￥{{item.original_price}} <text>￥{{item.now_price}}</text></view>
+							<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+								<van-button type="danger" size="small" round>立即抢购</van-button>
+							</navigator>
+						</view>
+					</view>
 				</view>
-
-			</view>
-		</block>
-		<!-- 拼团 -->
-		<block>
-			<van-divider contentPosition="center">全民拼团</van-divider>
-			<view class='tuan' >
-				<view class='tuan-item' v-for="item in SpellAGroupGoods" :key="item.id">
-					<view class='tuan-goods-pic'>
-						<image :src="item.show_img" />
-					</view>
-					<view class='tuan-title'>{{item.name}}</view>
-					<view class='tuan-profile'>尼多熊袜子，适合秋冬天</view>
-					<view class='tuan-price'>
-						<text class='now'>￥ {{item.now_price}}</text>
-						<text class='original'>￥ {{item.original_price}}</text>
-					</view>
-					<view class="tuan-btn">
+			</block>
+			<!-- 爆品推荐 -->
+			<block>
+				<van-divider contentPosition="center">爆品推荐</van-divider>
+				<view class="goods-container">
+					<view class="goods-box" v-for="item in RecommendedGoods" :key="item.id">
 						<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-							<button type="warn" size="mini">拼团</button>
+							<view class="img-box">
+								<image :src="item.show_img" class="image" />
+							</view>
+							<view class="goods-title">{{item.name}}</view>
+							<view style='display:flex;'>
+								<view class="goods-price">¥ {{item.now_price}}</view>
+								<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
+									¥ {{item.original_price}}
+								</view>
+							</view>
 						</navigator>
 					</view>
-				</view>
-			</view>
-		</block>
-		<!-- 商品列表 -->
-		<block>
-			<van-divider contentPosition="center">商品列表</van-divider>
-			<view class="goods-container">
-				<view class="goods-box" v-for="item in GoodsList" :key="item.id">
-					<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
-						<view class="img-box">
-							<image :src="item.show_img" class="image" />
-						</view>
 
-						<view class="goods-title">{{item.name}}</view>
-						<view style='display:flex;'>
-							<view class="goods-price">¥ {{item.now_price}}</view>
-							<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
-								¥ {{item.original_price}}
-							</view>
-						</view>
-					</navigator>
 				</view>
+			</block>
+			<!-- 拼团 -->
+			<block>
+				<van-divider contentPosition="center">全民拼团</van-divider>
+				<view class='tuan'>
+					<view class='tuan-item' v-for="item in SpellAGroupGoods" :key="item.id">
+						<view class='tuan-goods-pic'>
+							<image :src="item.show_img" />
+						</view>
+						<view class='tuan-title'>{{item.name}}</view>
+						<view class='tuan-profile'>尼多熊袜子，适合秋冬天</view>
+						<view class='tuan-price'>
+							<text class='now'>￥ {{item.now_price}}</text>
+							<text class='original'>￥ {{item.original_price}}</text>
+						</view>
+						<view class="tuan-btn">
+							<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+								<button type="warn" size="mini">拼团</button>
+							</navigator>
+						</view>
+					</view>
+				</view>
+			</block>
+			<!-- 商品列表 -->
+			<block>
+				<van-divider contentPosition="center">商品列表</van-divider>
+
+				<view class="goods-container">
+					<view class="goods-box" v-for="item in GoodsList" :key="item.id">
+						<navigator class="goods" :url="'/pages/goodsDetail/goodsDetail?goodsId='+item.id">
+							<view class="img-box">
+								<image :src="item.show_img" class="image" />
+							</view>
+
+							<view class="goods-title">{{item.name}}</view>
+							<view style='display:flex;'>
+								<view class="goods-price">¥ {{item.now_price}}</view>
+								<view class="goods-price" style='color:#aaa;text-decoration:line-through'>
+									¥ {{item.original_price}}
+								</view>
+							</view>
+						</navigator>
+					</view>
+
+				</view>
+			</block>
+			<!-- 优惠价 -->
+			<view class='coupons-float'>
+				<navigator url="/pages/coupon/coupon">
+					<image src="/static/images/home/gift.png" />
+				</navigator>
 			</view>
+<<<<<<< HEAD
+		</k-scroll-view>
+=======
 		</block>
 		<!-- 优惠价 -->
 		<view class='coupons-float'>
 			<navigator url="/pages/coupon/coupon">
-				<image src="/static/images/home/gift.png" />
+				<image src="http://xzebin.com/gift.png" />
 			</navigator>
 		</view>
 		<!-- 上拉刷新 hidden="{{loadingMoreHidden ? true : false}}" -->
 		<view class="no-more">
 			没有更多了
 		</view>
+>>>>>>> 9468c051d4fff2cff404bc5c476822c80cedebf5
 	</view>
 </template>
 
 <script>
+	import kScrollView from '@/components/k-scroll-view/k-scroll-view.vue';
 	import {
 		getIndexLunbo,
 		getAnnouncementDatas,
@@ -145,25 +211,76 @@
 		getRecommendedGoods,
 		getGoodsList,
 		getSpellAGroupGoods
-	} from "../../api/homeApi.js"
+	} from "../../api/homeApi.js";
+
 	export default {
+		components: {
+			kScrollView
+		},
 		data() {
 			return {
+				//上拉插件所需属性
+				refreshType: 'custom',
+				loadTip: '获取更多数据',
+				loadingTip: '正在加载中...',
+				emptyTip: '--我是有底线的--',
+				touchHeight: 20,
+				height: 0,
+				bottom: 20,
+				autoPullUp: true,
+				stopPullDown: false, // 如果为 false 则不使用下拉刷新，只进行上拉加载
+				list: [],
+				GoodsList: [], // 商品列表
+				index: 0,
+
 				LunboData: [], // 轮播图
 				Announcement: [], // 公告
 				MenuDatasByHome: [], // 宫格分类
 				SeckillGoods: [], // 限时秒杀
 				RecommendedGoods: [], // 爆品推荐
 				time: 30 * 60 * 60 * 1000, // 倒计时
-				GoodsList: [], // 商品列表
+
 				SpellAGroupGoods: [], // 拼团
 			}
 		},
+		// 加载插件
+		async onLoad() {
+
+			//获取出该商品的所有评价
+			let evaluations = await getGoodsList();
+			this.evaluationDatas = evaluations;
+			let tempArr3 = [];
+			this.list = tempArr3;
+
+		},
 		methods: {
+			// 加载插件
+			async handleLoadMore(stopLoad) {
+				// console.log(stopLoad)
+				this.index = this.index + 6
+				var res = await getGoodsList()
+				res = res.splice(this.index, 6)
+				var size = 0
+
+				var list = res
+
+				this.GoodsList = this.GoodsList.concat(list);
+
+				if (size == this.GoodsList.length) {
+					stopLoad({
+						isEnd: true
+					});
+				}
+				size = size + 6
+				stopLoad ? stopLoad() : '';
+			},
+
+
+
 			// 搜索
 			goodsList() {
 				uni.navigateTo({
-					url: `/pages/goodsList/goodsList`
+					url: `/pages/search/search`
 				})
 			},
 
@@ -210,6 +327,8 @@
 			async getGoodsListData() {
 				var res = await getGoodsList();
 				// console.log(res);
+				res = res.splice(0, 6)
+				console.log(res);
 				this.GoodsList = res;
 			},
 			// 拼团
@@ -225,9 +344,6 @@
 				});
 			},
 		},
-		// onLoad:function(option){				//opthin为object类型，会序列化上页面传递的参数
-		// 	console.log(option.title);			//打印出上页面传递的参数
-		// },
 		created() {
 			this.getLunboData();
 			this.getAnnouncementData();
@@ -237,12 +353,6 @@
 			this.getGoodsListData();
 			this.getSpellAGroupGoodsData();
 		},
-		// onShow() {
-		// 	uni.setTabBarBadge({
-		// 		index:2,
-		// 		text:'3'
-		// 	})
-		// }
 	}
 </script>
 
@@ -431,7 +541,7 @@
 			}
 		}
 	}
-	
+
 	// 爆品推荐		商品列表
 	.goods-container {
 		display: flex;
@@ -440,6 +550,7 @@
 		box-sizing: content-box;
 		padding: 24rpx;
 		background-color: #F2f2f2;
+
 		.goods-box {
 			width: 339rpx;
 			height: 472rpx;
@@ -487,6 +598,7 @@
 		background-color: #F2f2f2;
 		padding-top: 10rpx;
 		padding-bottom: 20rpx;
+
 		.tuan-item {
 			width: 720rpx;
 			margin: auto;
@@ -561,11 +673,10 @@
 	}
 
 	// 上拉刷新
-	.no-more {
-		height: 120rpx;
-		line-height: 120rpx;
-		text-align: center;
-		color: #999;
-		font-size: 26rpx;
-	}
+	// .content {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	align-items: center;
+	// 	justify-content: center;
+	// }
 </style>

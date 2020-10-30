@@ -11,7 +11,7 @@
 					<text class="sales">已有{{currentGoods.sales}}人购买</text>
 					<view class="goods-info-fx">
 						<view class="item">
-							<image src="../../static/images/share/share1.png"></image>
+							<image src="http://xzebin.com/share1.png"></image>
 							<button class="weui-btn" type="primary" open-type="share"></button>
 						</view>
 					</view>
