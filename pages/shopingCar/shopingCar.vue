@@ -25,7 +25,7 @@
 						</view>
 					</view>
 					<view class="stepper">
-						<van-stepper @plus="add(item.id,item.num)" @minus="sub(item.id,item.num)" :value="item.num" min="1" max="10" disable-input />
+						<van-stepper @plus="add(item.id,item.num)" @minus="sub(item.id,item.num)" :value="item.num" min="1" max="100" disable-input />
 					</view>
 				</view>
 		
