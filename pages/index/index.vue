@@ -214,8 +214,7 @@
 			// 搜索
 			goodsList() {
 				uni.navigateTo({
-					// goodsList
-					url: `/pages/goodsList/goodsList`
+					url: `/pages/search/search`
 				})
 			},
 
