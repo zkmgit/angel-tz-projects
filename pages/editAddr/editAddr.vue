@@ -1,12 +1,6 @@
 <template>
 	<view class="addr-container">
-		<van-popup
-		  round
-		  :show="show"
-		  position="bottom"
-		  custom-style="height: 50%;"
-		  @close="onClose"
-		>
+		<van-popup round :show="show" position="bottom" custom-style="height: 50%;" @close="onClose">
 			<view class="cancel" @click="cancel">
 				取消
 			</view>
@@ -15,7 +9,7 @@
 			</view>
 			<van-picker :columns="columns" @change="onChange" />
 		</van-popup>
-		
+
 		<view class="shoping-addr" @click="getAddr" v-if="choose != 'edit'">
 			<view class="text">
 				获取微信收货地址
@@ -24,7 +18,7 @@
 				<image src="../../static/images/userAddr/right.png" mode=""></image>
 			</view>
 		</view>
-		
+
 		<view class="addr-list">
 			<view class="province common" @click="showPopup('province')">
 				<view class="text">
@@ -37,7 +31,7 @@
 					<image src="../../static/images/userAddr/right.png" mode=""></image>
 				</view>
 			</view>
-			
+
 			<view class="city common" @click="showPopup('city')" v-if="city != ''">
 				<view class="text">
 					城市
@@ -49,7 +43,7 @@
 					<image src="../../static/images/userAddr/right.png" mode=""></image>
 				</view>
 			</view>
-			
+
 			<view class="area common" @click="showPopup('district')" v-if="district != ''">
 				<view class="text">
 					区县
@@ -61,35 +55,23 @@
 					<image src="../../static/images/userAddr/right.png" mode=""></image>
 				</view>
 			</view>
+
+		</view>
+
+
+		<van-cell-group>
+			<van-field class='color' label="姓名" :value="name" placeholder="填写收货人" @change="setName" />
+			<van-field class='color' label="手机号码" :value="phone" type="number" placeholder="填写手机号码" @change="setPhone" />
+			<van-field class='color' label="详细地址" :value="address" placeholder="街道门牌信息" @change="setAddress" />
+		</van-cell-group>
+		<view class="Identify">
+			<textarea maxlength='60' v-model="IdentifyValue" value="" placeholder="请输入格式为收货地址,电话号码,收件人" />
 			
 		</view>
-		
-		
-		<van-cell-group>
-		  <van-field
-		    class='color'
-			label="姓名"
-		    :value="name"
-		    placeholder="填写收货人"
-		    @change="setName"
-		  />
-		  <van-field
-		    class='color'
-			label="手机号码"
-		    :value="phone"
-			type="number"
-		    placeholder="填写手机号码"
-		    @change="setPhone"
-		  />
-		  <van-field
-		    class='color'
-		    label="详细地址"
-		    :value="address"
-		    placeholder="街道门牌信息"
-		    @change="setAddress"
-		  />
-		</van-cell-group>
 		<view class="footer">
+			<view class="IdentifyBtn" @click="IdentifyAddr">
+				智能识别
+			</view>
 			<view class="btn" @click="save">
 				保存
 			</view>
@@ -103,11 +85,11 @@
 
 <script>
 	import area from '../../util/area.js';
+	import { addrRecognition } from '../../util/addrRecognition.js';
 	import { delAddr,addAddr,editAddr } from '../../api/addr.js';
 	export default {
 		data(){
 			return {
-				
 				// 用于隐藏
 				choose:'',
 				// 用于编辑的地址回显
@@ -127,8 +109,10 @@
 				value: '',
 				// 存放省市区
 				columns: [],
+				IdentifyValue: ''
 			}
 		},
+		
 		onLoad(e){
 			this.choose = e.switch;
 			
@@ -144,6 +128,21 @@
 			}
 		},
 		methods:{
+			IdentifyAddr(){
+				// 智能识别地址
+				// console.log(this.IdentifyValue);
+				let res = addrRecognition(this.IdentifyValue);
+				if(res != undefined){
+					console.log(res);
+					this.name = res.name;
+					this.address = res.detailAddr;
+					this.phone = res.phone[0]; 
+					this.province = res.provinceName;
+					this.city = res.cityName;
+					this.district = res.countyName;
+				}
+				this.IdentifyValue = '';
+			},
 			setAddress(e){
 				console.log('address',e.detail);
 				this.address = e.detail;
@@ -263,14 +262,16 @@
 					return;
 				}
 				
-				let str = this.phone;
+				let str = this.phone;
+
 				if(str.length != 11){
 					uni.showToast({
 						title:'号码位数不正确',
 						icon:'none'
 					})
 				    return;
-				}
+				}
+
 				let reg = /^[1][3-9]\d{9}$/g;
 				console.log();
 				if(!reg.test(str)){
@@ -355,6 +356,27 @@
 		background-color: #F4F5F9;
 		height: 100vh;
 		font-size: 28rpx;
+		
+		.Identify {
+			// display: flex;
+			// justify-content: space-between;
+			padding: 0 20rpx;
+			background-color: #FFFFFF;
+			
+			// .IdentifyBtn {
+			// 	font-size: 25rpx;
+			// 	background-color: #0ACE0A;
+			// 	color: #FFFFFF;
+			// 	height: 80rpx;
+			// 	border-radius: 10rpx;
+			// 	text-align: center;
+			// 	line-height: 80rpx;
+			// }
+			
+			textarea {
+				height: 80rpx;
+			}
+		}
 		
 		.van-popup {
 			// position: relative;
@@ -452,13 +474,14 @@
 		.footer {
 			padding: 60rpx 20rpx 0rpx;
 			background-color: #FFFFFF;
-			.btn,.del-btn {
+			.btn,.del-btn,.IdentifyBtn {
 				background-color: #0ACE0A;
 				color: #FFFFFF;
 				height: 80rpx;
 				border-radius: 10rpx;
 				text-align: center;
 				line-height: 80rpx;
+				margin-bottom: 20rpx;
 			}
 			.del-btn {
 				margin-top: 20rpx;
