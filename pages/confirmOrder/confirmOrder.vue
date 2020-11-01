@@ -242,8 +242,11 @@
 					// 删除优惠卷
 					if(this.delId != 0) await delCollectVouchersById(this.delId);
 					// delShoppingCar
-					uni.navigateTo({
-						url:'../orderList/orderList?status=all'
+					// uni.navigateTo({
+					// 	url:'../orderList/orderList?status=all'
+					// })
+					uni.reLaunch({
+						url:'../shopingCar/shopingCar'
 					})
 				}
 			},

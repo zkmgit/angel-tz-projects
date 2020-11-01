@@ -149,9 +149,11 @@
 				}
 			},
 			onChange(event) {
+				console.log('test',event.detail);
+				console.log(this.getAllCarIds().length);
 			    this.result = event.detail;
 				this.calculation();
-				if(this.result.length != 0){
+				if(this.result.length == this.getAllCarIds().length){
 					this.checked = true;
 				}else {
 					this.checked = false;

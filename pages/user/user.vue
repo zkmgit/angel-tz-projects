@@ -87,8 +87,8 @@
 		<van-cell size="large" title-style="color:#000000" title="领卷中心" is-link @click="goCoupon"/>
 		<view class="margin"></view>
 		<van-cell size="large" title-style="color:#000000" title="每日签到" is-link @click="goSignin"/>
-		<view class="wire"></view>
-		<van-cell size="large" title-style="color:#000000" title="积分卷兑换积分" is-link />
+		<!-- <view class="wire"></view> -->
+		<!-- <van-cell size="large" title-style="color:#000000" title="积分卷兑换积分" is-link /> -->
 		<view class="wire"></view>
 		<van-cell size="large" title-style="color:#000000" title="积分兑换成长值" is-link @click="goIntegral"/>
 		
